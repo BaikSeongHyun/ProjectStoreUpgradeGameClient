@@ -3,11 +3,14 @@ using System.Collections;
 
 public class ElfCharacter : MonoBehaviour 
 {
-	Vector3 destination;
+	[SerializeField] Vector3 destination;
 
-	Animator elfAnimator;
-	state presentState;
-	AnimatorStateInfo AniInfo;
+	[SerializeField] Animator elfAnimator;
+	[SerializeField] state presentState;
+	[SerializeField] AnimatorStateInfo AniInfo;
+	[SerializeField] Quaternion des;
+	[SerializeField] GameObject Pet;
+	[SerializeField] NavMeshAgent moveAgent;
 
 	public enum state
 	{
@@ -31,36 +34,45 @@ public class ElfCharacter : MonoBehaviour
 	void Start () 
 	{
 		destination = transform.position;
-		elfAnimator = GetComponent<Animator> ();	
+		elfAnimator = GetComponent<Animator> ();
+		moveAgent = GetComponent<NavMeshAgent> ();
+	}
+
+	void PetActiveFalse()
+	{
+		Pet.SetActive (false);
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		
 		//Debug.Log (destination);
 		transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
 		AniInfo = this.elfAnimator.GetCurrentAnimatorStateInfo(0);
 
-		if (Vector3.Distance (destination,transform.position) <= 0.1f)
+		if (Vector3.Distance (destination,transform.position) <= 1.1f)
 		{
-			elfAnimator.Play ("Idle");	
-	
+			
+			elfPattern ("Idle");	
+			moveAgent.ResetPath ();
+			transform.position = new Vector3 (transform.position.x, transform.position.y , transform.position.z);
 		}
-		else
+		else if(Vector3.Distance (destination,transform.position) >= 1.1f)
 		{
-			Debug.Log ("Runin");
+			
 			elfPattern ("Run");
 
-				if(AniInfo.IsName("Run"))
-				{
-					Vector3 direction = destination - this.transform.position;
-					this.transform.LookAt (destination);
-					direction.Normalize ();
-					transform.Translate (direction * Time.deltaTime * 1, Space.World);
+			if (AniInfo.IsName ("Run"))
+			{
+				Pet.SetActive (true);
+				moveAgent.SetDestination (Destination);
+				transform.position = new Vector3 (transform.position.x, transform.position.y+0.55f , transform.position.z);
 
-				}
-			
+			}
+
 		}
+
 	
 	}
 
@@ -69,15 +81,17 @@ public class ElfCharacter : MonoBehaviour
 
 		switch (Status)
 		{
-			case "Idle":
-				presentState = state.Idle;
-				elfAnimator.SetBool ("Idle", true);
-				break;
+		case "Idle":
+			presentState = state.Idle;
+			elfAnimator.SetBool ("Run", false);
+			elfAnimator.SetBool ("Idle", true);
+			break;
 
-			case "Run":
-				presentState = state.Run;
-				elfAnimator.SetBool ("Run", true);
-				break;
+		case "Run":
+			presentState = state.Run;
+			elfAnimator.SetBool ("Idle", false);
+			elfAnimator.SetBool ("Run", true);
+			break;
 
 		}
 

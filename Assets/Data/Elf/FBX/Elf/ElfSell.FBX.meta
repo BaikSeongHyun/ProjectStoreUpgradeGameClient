@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ba9051795f1603d488a0ea998dbacc27
+guid: 4c9b3ef1b73334b4d8f10bf6bfc24fc2
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -232,14 +232,14 @@ ModelImporter:
     - serializedVersion: 16
       name: idle
       takeName: 
-      firstFrame: 0
-      lastFrame: 30
+      firstFrame: 37
+      lastFrame: 96
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      hasAdditiveReferencePose: 0
+      hasAdditiveReferencePose: 1
       loopTime: 1
       loopBlend: 1
       loopBlendOrientation: 1
@@ -249,18 +249,10 @@ ModelImporter:
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0
-        functionName: PetActiveFalse
-        data: 
-        objectReferenceParameter: {fileID: 7400000, guid: ba9051795f1603d488a0ea998dbacc27,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
