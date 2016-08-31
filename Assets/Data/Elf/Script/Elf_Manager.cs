@@ -43,7 +43,8 @@ public class Elf_Manager : MonoBehaviour {
 		Wand[0].SetActive(true);
 		Pet[0].SetActive(true);
 	}
-	void OnGUI() {
+	void OnGUI()
+	{
 		//char
 		GUI.Label(new Rect(10, 30, 100, 20),"Character ");
 		if (GUI.Button(new Rect(80, 30, 25, 25), "<"))
