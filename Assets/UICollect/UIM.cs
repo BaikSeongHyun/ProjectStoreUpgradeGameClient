@@ -4,30 +4,46 @@ using System.Collections;
 using System;
 public class UIM : MonoBehaviour {
 
+	public int sOb; //0 defalte, 1 = buy, 2 = sell;
+
+
+
 	public Mode presentMode;
 	public Mode PresentMode{
 		get { return presentMode;}
 	}
+
+
 	public GameObject StepView;
+	public StepViewLogic stepView;
 	//public stepView stepViewLogic;
 
 	public GameObject Gold;
+	public GoldLogic gold;
 
 	public GameObject BackButton;
+	public BackButtonLogic backButton;
 
 	public GameObject ExitGameButton;
+	public ExitGameButtonLogic exitGameButton;
 
 	public GameObject MakingItemList;
+	public MakingItemListLogic makingItemList;
 
 	public GameObject ItemView;
+	public ItemViewLogic itemview;
 
 	public GameObject Sell;
+	public SellLogic sell;
 
 	public GameObject Make;
+	public MakeLogic make;
 
-	public GameObject Acttion;
+	public GameObject Act;
+	public ActLogic act;
 
 	public GameObject NeedItemList;
+	public NeedItemListLogic needItemList;
 
 
 
@@ -42,7 +58,6 @@ public class UIM : MonoBehaviour {
 	}
 
 	public void IdleMode(){
-	
 		StepView.SetActive (true);
 		Gold.SetActive (true);
 		BackButton.SetActive (true);
@@ -50,19 +65,29 @@ public class UIM : MonoBehaviour {
 		ItemView.SetActive (true);
 		Sell.SetActive (true);
 		Make.SetActive (true);
-		Acttion.SetActive (true);
+		//acttion is setactive if making item or selling item;
+		Act.SetActive (false);
 		NeedItemList.SetActive (true);
 
 
 	}
 
+
+
 	public void SwichMode(Mode uiMode){
 		switch (uiMode) {
-		case Mode.BuyMode: 
+		case Mode.BuyMode:
+			BuyMode ();
+			sOb = 1;
 			break;
 		case Mode.IdleMode: 
+			IdleMode ();
+			sOb = 0;
 			break;
 		case Mode.SellMode:
+			SellMode ();
+			act.SendMessage ("a");
+			sOb = 2;
 			break;
 
 
@@ -77,9 +102,9 @@ public class UIM : MonoBehaviour {
 		ExitGameButton= GameObject.Find("ExitGameButton");
 		MakingItemList= GameObject.Find("MakingItemList");
 		ItemView = GameObject.Find ("ItemView");
-		Sell= GameObject.Find("Sell");
-		Make= GameObject.Find("Make");
-		Acttion= GameObject.Find("Acttion");
+		Sell= GameObject.Find("SellButton");
+		Make= GameObject.Find("MakeButton");
+		Act= GameObject.Find("Act");
 		NeedItemList= GameObject.Find("NeedItemList");
 	}
 
@@ -93,10 +118,38 @@ public class UIM : MonoBehaviour {
 		ItemView.SetActive (false);
 		Sell.SetActive (false);
 		Make.SetActive (false);
-		Acttion.SetActive (false);
+		Act.SetActive (false);
 		NeedItemList.SetActive (false);
 
 
+	}
+
+	public void SellMode()
+	{
+		presentMode = Mode.SellMode;
+
+		BackButton.SetActive (false);
+		ExitGameButton.SetActive (false);
+		MakingItemList.SetActive (false);
+		ItemView.SetActive (false);
+		Sell.SetActive (false);
+		Make.SetActive (false);
+		Act.SetActive (true);
+		NeedItemList.SetActive (false);
+	}
+
+	public void BuyMode()
+	{
+		presentMode = Mode.BuyMode;
+
+		BackButton.SetActive (false);
+		ExitGameButton.SetActive (false);
+		MakingItemList.SetActive (false);
+		ItemView.SetActive (false);
+		Sell.SetActive (false);
+		Make.SetActive (false);
+		Act.SetActive (true);
+		NeedItemList.SetActive (false);
 	}
 
 
@@ -107,12 +160,14 @@ public class UIM : MonoBehaviour {
 	void Start () {
 		Link ();
 		IdleMode ();
+		SwichMode (Mode.IdleMode);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKey (KeyCode.A)) {
-			nonIdleMode ();
+			SwichMode (Mode.BuyMode);
 		}
+
 	}
 }
