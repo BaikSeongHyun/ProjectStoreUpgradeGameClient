@@ -256,8 +256,7 @@ ModelImporter:
       - time: 0
         functionName: PetActiveFalse
         data: 
-        objectReferenceParameter: {fileID: 7400000, guid: ba9051795f1603d488a0ea998dbacc27,
-          type: 3}
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

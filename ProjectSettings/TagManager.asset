@@ -6,6 +6,8 @@ TagManager:
   tags:
   - MainUI
   - Terrain
+  - House
+  - Mat
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - Player
   - Terrain
-  - 
+  - Mat
   - 
   - 
   - 
