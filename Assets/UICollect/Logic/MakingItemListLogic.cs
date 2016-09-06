@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MakingItemListLogic : MonoBehaviour {
-
+	GameObject MakingItemText;
 	// Use this for initialization
 	void Start () {
 	
