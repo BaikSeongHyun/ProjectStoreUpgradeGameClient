@@ -4,7 +4,6 @@ using System.Collections;
 using System;
 public class UIM : MonoBehaviour {
 
-	public int sOb; //0 defalte, 1 = buy, 2 = sell;
 
 
 
@@ -52,7 +51,7 @@ public class UIM : MonoBehaviour {
 	public enum Mode
 	{
 		IdleMode,
-		BuyMode,
+		MakeMode,
 		SellMode,
 
 	}
@@ -76,18 +75,15 @@ public class UIM : MonoBehaviour {
 
 	public void SwichMode(Mode uiMode){
 		switch (uiMode) {
-		case Mode.BuyMode:
-			BuyMode ();
-			sOb = 1;
+		case Mode.MakeMode:
+			MakeMode ();
+
 			break;
 		case Mode.IdleMode: 
 			IdleMode ();
-			sOb = 0;
 			break;
 		case Mode.SellMode:
 			SellMode ();
-			act.SendMessage ("a");
-			sOb = 2;
 			break;
 
 
@@ -108,6 +104,7 @@ public class UIM : MonoBehaviour {
 		NeedItemList= GameObject.Find("NeedItemList");
 	}
 
+	//test
 	public void nonIdleMode(){
 
 		StepView.SetActive (false);
@@ -120,8 +117,6 @@ public class UIM : MonoBehaviour {
 		Make.SetActive (false);
 		Act.SetActive (false);
 		NeedItemList.SetActive (false);
-
-
 	}
 
 	public void SellMode()
@@ -138,9 +133,9 @@ public class UIM : MonoBehaviour {
 		NeedItemList.SetActive (false);
 	}
 
-	public void BuyMode()
+	public void MakeMode()
 	{
-		presentMode = Mode.BuyMode;
+		presentMode = Mode.MakeMode;
 
 		BackButton.SetActive (false);
 		ExitGameButton.SetActive (false);
@@ -165,9 +160,5 @@ public class UIM : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.A)) {
-			SwichMode (Mode.BuyMode);
-		}
-
 	}
 }

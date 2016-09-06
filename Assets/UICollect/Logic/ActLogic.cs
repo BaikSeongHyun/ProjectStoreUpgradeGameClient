@@ -36,7 +36,7 @@ public class ActLogic : MonoBehaviour,IPointerDownHandler
 			SellAction.SetActive (true);
 			MakeAction.SetActive (false);
 		}
-		if (uIM.presentMode == UIM.Mode.BuyMode) {
+		if (uIM.presentMode == UIM.Mode.MakeMode) {
 			SellAction.SetActive (false);
 			MakeAction.SetActive (true);
 		}
