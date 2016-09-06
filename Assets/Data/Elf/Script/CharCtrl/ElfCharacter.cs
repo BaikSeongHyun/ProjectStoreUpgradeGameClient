@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
 
 public class ElfCharacter : MonoBehaviour 
 {
@@ -13,18 +11,13 @@ public class ElfCharacter : MonoBehaviour
 	[SerializeField] Quaternion des;
 	[SerializeField] GameObject Pet;
 	[SerializeField] NavMeshAgent moveAgent;
-	[SerializeField] public bool makeTime;
-	[SerializeField] BoxCollider charBoxcollider;
-	[SerializeField] public bool isStopMat = false;
-	[SerializeField] List <GameObject> makeItem = new List<GameObject>();
-
 
 	public enum state
 	{
 		Idle,
-		Run,
-		Motion
+		Run
 	};
+
 
 	public Vector3 Destination
 	{
@@ -43,76 +36,44 @@ public class ElfCharacter : MonoBehaviour
 		destination = transform.position;
 		elfAnimator = GetComponent<Animator> ();
 		moveAgent = GetComponent<NavMeshAgent> ();
-		charBoxcollider = transform.GetComponent<BoxCollider> ();
 	}
 
 	void PetActiveFalse()
 	{
 		Pet.SetActive (false);
-
-		if (isStopMat)
-		{
-			transform.rotation = new Quaternion (transform.rotation.x, 180, transform.rotation.z, 0);
-			if (Vector3.Distance (destination, transform.position) <= 1.1f)
-			{
-				makeTime = true;
-			}
-		}
-		if (isStopMat && makeTime)
-		{
-			elfPattern ("Motion");
-		}
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		
+		//Debug.Log (destination);
+		transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
+		AniInfo = this.elfAnimator.GetCurrentAnimatorStateInfo(0);
 
-		if (!makeTime)
+		if (Vector3.Distance (destination,transform.position) <= 1.1f)
 		{
-			charBoxcollider.enabled = true;
+			
+			elfPattern ("Idle");	
+			moveAgent.ResetPath ();
+			transform.position = new Vector3 (transform.position.x, transform.position.y , transform.position.z);
+		}
+		else if(Vector3.Distance (destination,transform.position) >= 1.1f)
+		{
+			
+			elfPattern ("Run");
 
-			transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
-			AniInfo = this.elfAnimator.GetCurrentAnimatorStateInfo (0);
-
-			if (Vector3.Distance (destination, transform.position) <= 1.1f)
+			if (AniInfo.IsName ("Run"))
 			{
-				
-				elfPattern ("Idle");	
-				moveAgent.ResetPath ();
-				transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
-			}
-			else if (Vector3.Distance (destination, transform.position) >= 1.1f)
-			{
-				
-				elfPattern ("Run");
-
-				if (AniInfo.IsName ("Run"))
-				{
-					Pet.SetActive (true);
-					moveAgent.SetDestination (Destination);
-					transform.position = new Vector3 (transform.position.x, transform.position.y + 0.55f, transform.position.z);
-				}
+				Pet.SetActive (true);
+				moveAgent.SetDestination (Destination);
+				transform.position = new Vector3 (transform.position.x, transform.position.y+0.55f , transform.position.z);
 
 			}
-		}
-		else
-		{
-			elfPattern ("Motion");
-			charBoxcollider.enabled = false;
+
 		}
 
-		if (makeTime)
-		{
-
-			if (!EventSystem.current.IsPointerOverGameObject ())
-			{
-				if (Input.GetButtonDown ("Move"))
-				{
-					Instantiate (makeItem [0], Destination, transform.rotation);
-				}
-			}	
-		}
+	
 	}
 
 	public void elfPattern(string Status)
@@ -123,35 +84,16 @@ public class ElfCharacter : MonoBehaviour
 		case "Idle":
 			presentState = state.Idle;
 			elfAnimator.SetBool ("Run", false);
-			elfAnimator.SetBool ("Motion", false);
 			elfAnimator.SetBool ("Idle", true);
 			break;
 
 		case "Run":
 			presentState = state.Run;
 			elfAnimator.SetBool ("Idle", false);
-			elfAnimator.SetBool ("Motion", false);
 			elfAnimator.SetBool ("Run", true);
 			break;
-		case "Motion":
-			presentState = state.Motion;
-			elfAnimator.SetBool ("Idle", false);
-			elfAnimator.SetBool ("Run", false);
-			elfAnimator.SetBool ("Motion", true);
-			break;
+
 		}
 
-	}
-
-	public void MakeTime(bool state)
-	{
-		if (state)
-		{
-			makeTime = true;
-		}
-		else
-		{
-			makeTime = false;
-		}
 	}
 }
