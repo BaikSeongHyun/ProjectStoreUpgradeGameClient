@@ -9,7 +9,7 @@ using System.Net.Sockets;
 public class NetworkController : MonoBehaviour
 {
 	// client connection socket
-	[SerializeField] TCPClient myClientSocket;
+	[SerializeField] TCPClient clientProcesser;
 
 	// queue -> input / output check point
 	[SerializeField] PacketQueue receiveQueue;
@@ -19,7 +19,7 @@ public class NetworkController : MonoBehaviour
 	public delegate void ReceiveNotifier(Socket socket,byte[] data);
 
 	// client notifier set -> socket library
-	Dictionary <int, ReceiveNotifier> notifierForServer = new Dictionary<int, ReceiveNotifier>();
+	Dictionary <int, ReceiveNotifier> notifierForClient = new Dictionary<int, ReceiveNotifier>();
 
 	// byte array data
 	byte[] receiveBuffer;
@@ -43,25 +43,20 @@ public class NetworkController : MonoBehaviour
 		sendBuffer = new byte[bufferSize];
 
 		// client information set
-		myClientSocket = new TCPClient();
-		//myClientSocket.OnReceived += OnReceivedPacketFromServer;
-		myClientSocket.SetServerInformation( serverIP, serverPort );
-	}
-
-	void Start()
-	{
-
+		clientProcesser = new TCPClient();
+		clientProcesser.OnReceived += OnReceivedPacketFromServer;
+		clientProcesser.SetServerInformation( serverIP, serverPort );
 	}
 
 	void Update()
 	{
-		Receive( myClientSocket.ClientSocket );
+		Receive( clientProcesser.ClientSocket );
 	}
 
 	// game quit
 	void OnApplicationQuit()
 	{
-		myClientSocket.Disconnect();
+		clientProcesser.Disconnect();
 	}
 
 	// private method
@@ -80,7 +75,19 @@ public class NetworkController : MonoBehaviour
 		return true;
 	}
 
+	// enqueue - receive queue
+	private void OnReceivedPacketFromServer( byte[] message, int size )
+	{
+		receiveQueue.Enqueue( message, size );
+	}
+
 	// public method
+	// start network connection
+	public bool ConnectToServer()
+	{
+		return clientProcesser.Connect();
+	}
+
 	// data receive
 	public void Receive( Socket socket )
 	{
@@ -91,6 +98,7 @@ public class NetworkController : MonoBehaviour
 			int receiveSize = 0;
 			receiveSize = receiveQueue.Dequeue( ref receiveBuffer, receiveBuffer.Length );
 
+			// packet precess
 			if( receiveSize > 0 )
 			{
 				byte[] message = new byte[receiveSize];
@@ -98,15 +106,37 @@ public class NetworkController : MonoBehaviour
 
 				int packetID;
 				byte[] packetData;
+
+				// packet seperate -> header / data
 				SeperatePacket( message, out packetID, out packetData );
 
+				ReceiveNotifier notifier;
+
+				// use notifier
+				try
+				{
+					notifierForClient.TryGetValue( packetID, out notifier );
+					notifier( socket, packetData );			
+				}
+				catch ( NullReferenceException e )
+				{
+					Debug.Log( e.Message );
+					Debug.Log( e.InnerException );
+					Debug.Log( "Client : Null Reference Exception - On Receive (use notifier)" );
+				}
 			}
 		}
 	}
 
-	// receive packet
-	public void ReceivePacket( Dictionary<int, ReceiveNotifier> notifier, Socket socket, byte[] data )
+	// client receive notifier register
+	public void RegisterServerReceivePacket( int packetID, ReceiveNotifier notifier )
 	{
+		notifierForClient.Add( packetID, notifier );
+	}
 
+	// client receive notifier unregister
+	public void UnregisterServerReceivePackter( int packetID )
+	{
+		notifierForClient.Remove( packetID );
 	}
 }

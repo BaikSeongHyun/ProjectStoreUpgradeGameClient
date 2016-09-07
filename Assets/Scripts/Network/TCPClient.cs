@@ -168,6 +168,7 @@ public class TCPClient
 		}
 	}
 
+	// disconnect from server
 	public void Disconnect()
 	{
 		try
