@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GoldLogic : MonoBehaviour {
+public class Gold : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

@@ -3,16 +3,16 @@ using UnityEngine.EventSystems;
 using System.Collections;
 
 
-public class SellLogic : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler 
+public class Sell : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler 
 {	
-	private UIM MainUI;
+	private FirstStep firstStep;
 
 	void Start(){
-		MainUI = GameObject.Find ("MainUI").GetComponent<UIM> ();
+		firstStep = GameObject.Find ("FirstStep").GetComponent<FirstStep> ();
 	}
 
 	public void OnPointerDown(PointerEventData eventDate){
-		if(MainUI.presentMode == UIM.Mode.IdleMode)MainUI.SendMessage ("SellMode");
+		if(firstStep.presentMode == FirstStep.Mode.IdleMode)firstStep.SendMessage ("SellMode");
 	}
 
 	public void OnPointerEnter(PointerEventData eventDate){

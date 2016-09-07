@@ -2,9 +2,9 @@
 using UnityEngine.EventSystems;
 using System.Collections;
 
-public class NeedItemListLogic : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler  {
-	public GameObject NeedItemList;
-	public GameObject Item1;
+public class NeedItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler  {
+	public GameObject needItemList;
+	public GameObject item;
 
 
 	// Use this for initialization

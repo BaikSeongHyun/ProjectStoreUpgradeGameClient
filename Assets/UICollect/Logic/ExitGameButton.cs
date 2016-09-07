@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using System.Collections;
 
-public class ExitGameButtonLogic : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler,IPointerClickHandler
+public class ExitGameButton : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler,IPointerClickHandler
 {
 
 	// Use this for initialization

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BackButtonLogic : MonoBehaviour {
+public class BackButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

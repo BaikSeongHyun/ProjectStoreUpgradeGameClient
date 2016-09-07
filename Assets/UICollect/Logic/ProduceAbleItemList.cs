@@ -3,15 +3,15 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 
-public class MakingItemListLogic : MonoBehaviour {
+public class ProduceAbleItemList : MonoBehaviour {
 //	public GameObject MakingItemText1;
 //	public GameObject ItemView;
 
 //	[SerializeField]Item itemName;
 //	[SerializeField]Image itemImage;
 
-	public Text[] makingItemName;
-	public Image[] makingItemImage;
+	public Text[] produceAbleItemName;
+	public Image[] produceAbleItemImage;
 //	public GameObject MakingItemName1;
 //	public GameObject MakingItemName2;
 //	public GameObject MakingItemName3;
@@ -25,11 +25,11 @@ public class MakingItemListLogic : MonoBehaviour {
 
 	void Link()
 	{
-		makingItemName = new Text[5];
-		for(int i = 0; i < makingItemName.Length; i++)
+		produceAbleItemName = new Text[5];
+		for(int i = 0; i < produceAbleItemName.Length; i++)
 		{
 			string name = "MakingItemName" + (i + 1).ToString ();
-			makingItemName [i] = GameObject.Find (name).GetComponent<Text>();
+			produceAbleItemName [i] = GameObject.Find (name).GetComponent<Text>();
 		}
 		//MakingItemName1 = GameObject.Find ("MakingItemName1");
 //		MakingItemName2 = GameObject.Find ("MakingItemName2");

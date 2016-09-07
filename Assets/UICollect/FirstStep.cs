@@ -10,30 +10,30 @@ public class FirstStep : MonoBehaviour {
 	}
 
 
-	public GameObject StepView;
-	public StepViewLogic stepView;
+	public GameObject stepView;
+	public StepView stepViewLogic;
 	//public stepView stepViewLogic;
 
-	public GameObject Gold;
-	public GoldLogic gold;
+	public GameObject gold;
+	public Gold goldLogic;
 
-	public GameObject BackButton;
-	public BackButtonLogic backButton;
+	public GameObject backButton;
+	public BackButton backButtonLogic;
 
-	public GameObject ExitGameButton;
-	public ExitGameButtonLogic exitGameButton;
+	public GameObject exitGameButton;
+	public ExitGameButton exitGameButtonLogic;
 
-	public GameObject MakingItemList;
-	public MakingItemListLogic makingItemList;
+	public GameObject produceAbleItemList;
+	public ProduceAbleItemList produceAbleItemListLogic;
 
-	public GameObject ItemView;
-	public ItemViewLogic itemview;
+	public GameObject itemView;
+	public ItemView itemviewLogic;
 
-	public GameObject Sell;
-	public SellLogic sell;
+	public GameObject sell;
+	public Sell sellLogic;
 
-	public GameObject Make;
-	public MakeLogic make;
+	public GameObject produce;
+	public Produce produceLogic;
 
 	[SerializeField] Item test;
 
@@ -43,20 +43,20 @@ public class FirstStep : MonoBehaviour {
 	public enum Mode
 	{
 		IdleMode,
-		MakeMode,
+		produceMode,
 		SellMode,
 
 	}
 
 	public void IdleMode(){
 		presentMode = Mode.SellMode;
-		StepView.SetActive (true);
-		Gold.SetActive (true);
-		BackButton.SetActive (true);
-		ExitGameButton.SetActive (true);
-		ItemView.SetActive (true);
-		Sell.SetActive (true);
-		Make.SetActive (true);
+		stepView.SetActive (true);
+		gold.SetActive (true);
+		backButton.SetActive (true);
+		exitGameButton.SetActive (true);
+		itemView.SetActive (true);
+		sell.SetActive (true);
+		produce.SetActive (true);
 		//acttion is setactive if making item or selling item;
 	
 
@@ -67,8 +67,8 @@ public class FirstStep : MonoBehaviour {
 
 	public void SwichMode(Mode uiMode){
 		switch (uiMode) {
-		case Mode.MakeMode:
-			MakeMode ();
+		case Mode.produceMode:
+			produceMode ();
 
 			break;
 		case Mode.IdleMode: 
@@ -84,28 +84,28 @@ public class FirstStep : MonoBehaviour {
 
 	public void Link()
 	{
-		StepView= GameObject.Find("StepView");
-		Gold = GameObject.Find("Gold");
-		BackButton= GameObject.Find("BackButton");
-		ExitGameButton= GameObject.Find("ExitGameButton");
-		MakingItemList= GameObject.Find("MakingItemList");
-		ItemView = GameObject.Find ("ItemView");
-		Sell= GameObject.Find("SellButton");
-		Make= GameObject.Find("MakeButton");
+		stepView= GameObject.Find("StepView");
+		gold = GameObject.Find("Gold");
+		backButton= GameObject.Find("BackButton");
+		exitGameButton= GameObject.Find("ExitGameButton");
+		produceAbleItemList= GameObject.Find("ProduceAbleItemList");
+		itemView = GameObject.Find ("ItemView");
+		sell= GameObject.Find("SellButton");
+		produce= GameObject.Find("Produce");
 
 	}
 
 	//test
 	public void nonIdleMode(){
 
-		StepView.SetActive (false);
-		Gold.SetActive (false);
-		BackButton.SetActive (false);
-		ExitGameButton.SetActive (false);
-		MakingItemList.SetActive (false);
-		ItemView.SetActive (false);
-		Sell.SetActive (false);
-		Make.SetActive (false);
+		stepView.SetActive (false);
+		gold.SetActive (false);
+		backButton.SetActive (false);
+		exitGameButton.SetActive (false);
+		produceAbleItemList.SetActive (false);
+		itemView.SetActive (false);
+		sell.SetActive (false);
+		produce.SetActive (false);
 
 	}
 
@@ -113,25 +113,25 @@ public class FirstStep : MonoBehaviour {
 	{
 		presentMode = Mode.SellMode;
 
-		BackButton.SetActive (false);
-		ExitGameButton.SetActive (false);
-		MakingItemList.SetActive (false);
-		ItemView.SetActive (false);
-		Sell.SetActive (false);
-		Make.SetActive (false);
+		backButton.SetActive (false);
+		exitGameButton.SetActive (false);
+		produceAbleItemList.SetActive (false);
+		itemView.SetActive (false);
+		sell.SetActive (false);
+		produce.SetActive (false);
 
 	}
 
-	public void MakeMode()
+	public void produceMode()
 	{
-		presentMode = Mode.MakeMode;
+		presentMode = Mode.produceMode;
 
-		BackButton.SetActive (false);
-		ExitGameButton.SetActive (false);
-		MakingItemList.SetActive (false);
-		ItemView.SetActive (false);
-		Sell.SetActive (false);
-		Make.SetActive (false);
+		backButton.SetActive (false);
+		exitGameButton.SetActive (false);
+		produceAbleItemList.SetActive (false);
+		itemView.SetActive (false);
+		sell.SetActive (false);
+		produce.SetActive (false);
 
 	}
 
@@ -142,7 +142,7 @@ public class FirstStep : MonoBehaviour {
 		SwichMode (Mode.IdleMode);
 
 		test = Database.Instance.FindItemUseID (0001);
-		itemview.UpdateMakingIteamInfo (test);
+		itemviewLogic.UpdateMakingIteamInfo (test);
 
 	}
 

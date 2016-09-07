@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ItemViewLogic : MonoBehaviour {
+public class ItemView : MonoBehaviour {
 
 	[SerializeField]Text itemName;
 	[SerializeField]Image itemImage;
