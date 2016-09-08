@@ -5,7 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class StepViewLogic : MonoBehaviour ,IPointerEnterHandler, IPointerExitHandler 
+public class StepView : MonoBehaviour ,IPointerEnterHandler, IPointerExitHandler 
 {
 	Text stepTextField;
 	// Use this for initialization

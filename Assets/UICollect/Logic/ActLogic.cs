@@ -9,7 +9,7 @@ public class ActLogic : MonoBehaviour,IPointerDownHandler
 	public GameObject SellAction;
 	public GameObject MakeAction;
 
-	private UIM uIM;
+	private FirstStep firstStep;
 
 	void Link()
 	{
@@ -17,7 +17,7 @@ public class ActLogic : MonoBehaviour,IPointerDownHandler
 		Check = GameObject.Find ("Check");
 		SellAction = GameObject.Find ("SellAction");
 		MakeAction = GameObject.Find ("MakeAction");
-		uIM = GameObject.Find ("MainUI").GetComponent<UIM> ();
+		firstStep = GameObject.Find ("MainUI").GetComponent<FirstStep> ();
 	}
 
 	void StartSetting()
@@ -32,11 +32,11 @@ public class ActLogic : MonoBehaviour,IPointerDownHandler
 
 
 	void ModeSelect(){
-		if (uIM.presentMode == UIM.Mode.SellMode) {
+		if (firstStep.presentMode == FirstStep.Mode.SellMode) {
 			SellAction.SetActive (true);
 			MakeAction.SetActive (false);
 		}
-		if (uIM.presentMode == UIM.Mode.MakeMode) {
+		if (firstStep.presentMode == FirstStep.Mode.produceMode) {
 			SellAction.SetActive (false);
 			MakeAction.SetActive (true);
 		}

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MakingItemListLogic : MonoBehaviour {
-	public GameObject MakingItemText;
+public class Gold : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
