@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class ItemView : MonoBehaviour {
@@ -25,4 +26,9 @@ public class ItemView : MonoBehaviour {
 		itemImage.sprite = Resources.Load<Sprite> ("ItemImage/" + selectedData.Name);
 
 	}
+
+	public void TestCollMe(string _name, int _count){
+		Debug.Log (_name + +_count);
+	}
+
 }
