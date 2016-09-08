@@ -2,31 +2,17 @@
 using UnityEngine.EventSystems;
 using System.Collections;
 
-public class ExitGameButton : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler,IPointerClickHandler
+public class ExitGameButton : MonoBehaviour,IPointerClickHandler
 {
-
+	private GameObject exitGameButton;
 	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		exitGameButton = GameObject.Find ("ExitGameButton");
 	}
 
-	public void OnPointerEnter(PointerEventData eventData)
-	{
-
-	}
-
-	public void OnPointerExit (PointerEventData eventDate)
-	{
-
-	}
 
 	public void OnPointerClick (PointerEventData eventDate)
 	{
-
+		//popup and exit comfirmation popup;
 	}
 }

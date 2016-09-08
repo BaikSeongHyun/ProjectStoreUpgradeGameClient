@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System;
 
-public class ProduceAbleItemList : MonoBehaviour {
+public class ProduceAbleItemList : MonoBehaviour, IPointerDownHandler {
 //	public GameObject MakingItemText1;
 //	public GameObject ItemView;
 
@@ -12,6 +13,9 @@ public class ProduceAbleItemList : MonoBehaviour {
 
 	public Text[] produceAbleItemName;
 	public Image[] produceAbleItemImage;
+
+	public GameObject[] produceAbleItemNameObject;
+
 //	public GameObject MakingItemName1;
 //	public GameObject MakingItemName2;
 //	public GameObject MakingItemName3;
@@ -26,10 +30,19 @@ public class ProduceAbleItemList : MonoBehaviour {
 	void Link()
 	{
 		produceAbleItemName = new Text[5];
+
+
+		produceAbleItemNameObject = new GameObject[5];
+
+
+
 		for(int i = 0; i < produceAbleItemName.Length; i++)
 		{
-			string name = "MakingItemName" + (i + 1).ToString ();
+			string name = "ProduceAbleItemName" + (i + 1).ToString ();
 			produceAbleItemName [i] = GameObject.Find (name).GetComponent<Text>();
+			////produceAbleItemNameObject [i] = GameObject.Find (name).GetComponent<GameObject> ();
+			produceAbleItemNameObject[i] = GameObject.Find(name);
+		
 		}
 		//MakingItemName1 = GameObject.Find ("MakingItemName1");
 //		MakingItemName2 = GameObject.Find ("MakingItemName2");
@@ -41,6 +54,9 @@ public class ProduceAbleItemList : MonoBehaviour {
 //		ItemImage3 = GameObject.Find ("ItemImage3");
 //		ItemImage4 = GameObject.Find ("ItemImage4");
 //		ItemImage5 = GameObject.Find ("ItemImage5");
+
+	
+
 	}
 
 	void ShowView()
@@ -56,9 +72,21 @@ public class ProduceAbleItemList : MonoBehaviour {
 		//itemName = GetComponent<Text> ();
 		Link ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+
+	public void OnPointerDown(PointerEventData eventdate){
+		
+//			if (eventdate.pointerCurrentRaycast.gameObject == produceAbleItemNameObject []) {
+				Debug.Log ("aa");
+//			}
+
+//		if (eventdate.pointerCurrentRaycast.gameObject == produceAbleItemNameObject) {
+			
+//		}
+
+				
 	}
+
+
+
 }
