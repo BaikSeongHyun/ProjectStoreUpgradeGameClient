@@ -31,6 +31,7 @@ public class Serializer
 		}
 		catch ( NullReferenceException e )
 		{
+			Debug.Log( e.Message );
 			return false;
 		}
 
@@ -38,7 +39,7 @@ public class Serializer
 	}
 
 	// return memory offset
-	public int GetDateSize()
+	public int GetDataSize()
 	{
 		return memoryOffset;
 	}
@@ -66,6 +67,7 @@ public class Serializer
 		}
 		catch ( NullReferenceException e )
 		{
+			Debug.Log( e.Message );
 			Debug.Log( "Serializer : Null Reference Expection - On Write Buffer" );
 			return false;
 		}
@@ -98,6 +100,15 @@ public class Serializer
 		byte[] data = BitConverter.GetBytes( element );
 
 		return WriteBuffer( data, sizeof(bool) );
+	}
+
+	// serialize - byte
+	protected bool Serialize( byte element )
+	{
+		byte[] data = new byte[1];
+		data[0] = element;
+
+		return WriteBuffer( data, sizeof(byte) );
 	}
 
 	// serialize - short
@@ -183,7 +194,7 @@ public class Serializer
 	protected bool Deserialize( ref bool element )
 	{
 		int size = sizeof(bool);
-		byte[] data = new byte[1024];
+		byte[] data = new byte[size];
 
 		bool result = ReadBuffer( ref data, data.Length );
 
@@ -196,11 +207,27 @@ public class Serializer
 		return false;
 	}
 
+	protected bool Deserialize( ref byte element )
+	{
+		int size = sizeof(byte);
+		byte[] data = new byte[size];
+
+		bool result = ReadBuffer( ref data, data.Length );
+
+		if( result )
+		{
+			element = data[0];
+			return true;
+		}
+
+		return false;			
+	}
+
 	// deserialize - short
 	protected bool Deserialize( ref short element )
 	{
 		int size = sizeof(short);
-		byte[] data = new byte[1024];
+		byte[] data = new byte[size];
 
 		bool result = ReadBuffer( ref data, data.Length );
 
@@ -217,7 +244,7 @@ public class Serializer
 	protected bool Deserialize( ref ushort element )
 	{
 		int size = sizeof(ushort);
-		byte[] data = new byte[1024];
+		byte[] data = new byte[size];
 
 		bool result = ReadBuffer( ref data, data.Length );
 
@@ -234,7 +261,7 @@ public class Serializer
 	protected bool Deserialize( ref int element )
 	{
 		int size = sizeof(int);
-		byte[] data = new byte[1024];
+		byte[] data = new byte[size];
 
 		bool result = ReadBuffer( ref data, data.Length );
 
@@ -251,7 +278,7 @@ public class Serializer
 	protected bool Deserialize( ref uint element )
 	{
 		int size = sizeof(uint);
-		byte[] data = new byte[1024];
+		byte[] data = new byte[size];
 
 		bool result = ReadBuffer( ref data, data.Length );
 
@@ -268,7 +295,7 @@ public class Serializer
 	protected bool Deserialize( ref long element )
 	{
 		int size = sizeof(long);
-		byte[] data = new byte[1024];
+		byte[] data = new byte[size];
 
 		bool result = ReadBuffer( ref data, data.Length );
 
@@ -284,8 +311,8 @@ public class Serializer
 	// deserialize - ulong
 	protected bool Deserialize( ref ulong element )
 	{
-		int size = sizeof(long);
-		byte[] data = new byte[1024];
+		int size = sizeof(ulong);
+		byte[] data = new byte[size];
 
 		bool result = ReadBuffer( ref data, data.Length );
 
@@ -302,7 +329,7 @@ public class Serializer
 	protected bool Deserialize( ref float element )
 	{
 		int size = sizeof(float);
-		byte[] data = new byte[1024];
+		byte[] data = new byte[size];
 
 		bool result = ReadBuffer( ref data, data.Length );
 
@@ -319,7 +346,7 @@ public class Serializer
 	protected bool Deserialize( ref double element )
 	{
 		int size = sizeof(double);
-		byte[] data = new byte[1024];
+		byte[] data = new byte[size];
 
 		bool result = ReadBuffer( ref data, data.Length );
 

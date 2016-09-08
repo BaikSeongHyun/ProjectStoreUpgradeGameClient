@@ -3,38 +3,48 @@ using System.IO;
 
 public class HeaderSerializer : Serializer
 {
+	// serialize packet header
 	public bool Serialize( PacketHeader data )
 	{
 		// clear buffer
 		Clear();
 
 		// serialize element
-		bool ret = true;
-		ret &= Serialize( data.length );
-		ret &= Serialize( data.id );
+		bool result = true;
+		result &= Serialize( data.length );
+		result &= Serialize( data.id );
 
-		if( !ret )
+		// failure serialize -> method exit
+		if( !result )
 			return false;
 
+		// success serialize -> return result
 		return true;
 	}
 
-	public bool Deserialize( ref PacketHeader serialized )
+	// deserialize packet header
+	public bool Deserialize( ref PacketHeader data )
 	{
 		// set deserialize data
-		bool ret = ( GetDateSize() > 0 ) ? true : false;
+		bool result = ( GetDataSize() > 0 ) ? true : false;
 
-		if( !ret )
+		// data read failure -> method exit
+		if( !result )
 			return false;
 
+		// return data initialazie
 		short packetLength = 0;
 		byte packetID = 0;
 
-		ret &= Deserialize( ref packetLength );
-		//ret &= Deserialize( ref packetID );
-		serialized.length = packetLength;
-		serialized.id = packetID;
+		// data deserialize 
+		result &= Deserialize( ref packetLength );
+		result &= Deserialize( ref packetID );
 
-		return ret;
+		// input data
+		data.length = packetLength;
+		data.id = packetID;
+
+		// return result
+		return result;
 	}
 }
