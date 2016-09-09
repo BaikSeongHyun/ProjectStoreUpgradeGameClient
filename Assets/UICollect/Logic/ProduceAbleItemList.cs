@@ -76,8 +76,25 @@ public class ProduceAbleItemList : MonoBehaviour, IPointerDownHandler {
 
 	public void OnPointerDown(PointerEventData eventdate){
 		
+
+
+
+		for(int i= 0; i < produceAbleItemName.Length; i++){
+			string name = "ProduceAbleItemName" + (i).ToString(); 
+
+		if (eventdate.pointerCurrentRaycast.gameObject.name == name) {
+				//select iteminfo send to Itemview,  needitem;
+
+
+				
+
+					}
+				}
+			}
+
+
 //			if (eventdate.pointerCurrentRaycast.gameObject == produceAbleItemNameObject []) {
-				Debug.Log ("aa");
+				
 //			}
 
 //		if (eventdate.pointerCurrentRaycast.gameObject == produceAbleItemNameObject) {
@@ -85,7 +102,7 @@ public class ProduceAbleItemList : MonoBehaviour, IPointerDownHandler {
 //		}
 
 				
-	}
+
 
 
 

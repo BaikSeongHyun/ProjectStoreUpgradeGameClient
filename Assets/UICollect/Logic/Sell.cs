@@ -12,7 +12,7 @@ public class Sell : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPoin
 	}
 
 	public void OnPointerDown(PointerEventData eventDate){
-		if(firstStep.presentMode == FirstStep.Mode.IdleMode)firstStep.SendMessage ("SellMode");
+//		if(firstStep.presentMode == FirstStep.Mode.IdleMode)firstStep.SendMessage ("SellMode");
 	}
 
 	public void OnPointerEnter(PointerEventData eventDate){

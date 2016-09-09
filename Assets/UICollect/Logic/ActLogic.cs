@@ -32,14 +32,14 @@ public class ActLogic : MonoBehaviour,IPointerDownHandler
 
 
 	void ModeSelect(){
-		if (firstStep.presentMode == FirstStep.Mode.SellMode) {
-			SellAction.SetActive (true);
-			MakeAction.SetActive (false);
-		}
-		if (firstStep.presentMode == FirstStep.Mode.produceMode) {
-			SellAction.SetActive (false);
-			MakeAction.SetActive (true);
-		}
+//		if (firstStep.presentMode == FirstStep.Mode.SellMode) {
+//			SellAction.SetActive (true);
+//			MakeAction.SetActive (false);
+//		}
+//		if (firstStep.presentMode == FirstStep.Mode.produceMode) {
+//			SellAction.SetActive (false);
+//			MakeAction.SetActive (true);
+//		}
 	}
 
 

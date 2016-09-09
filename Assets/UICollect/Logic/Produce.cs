@@ -19,8 +19,8 @@ public class Produce : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IP
 		{
 			
 			if (eventDate.pointerCurrentRaycast.gameObject == ProduceButton) {
-				if (firstStep.presentMode == FirstStep.Mode.IdleMode)
-					firstStep.SendMessage ("produceMode");
+//				if (firstStep.presentMode == FirstStep.Mode.IdleMode)
+//					firstStep.SendMessage ("produceMode");
 			
 			}
 		}
