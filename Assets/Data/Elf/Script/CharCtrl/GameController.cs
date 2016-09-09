@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
 		mat = GameObject.FindGameObjectWithTag ("Mat");
 		mainUI = GameObject.FindGameObjectWithTag ("MainUI").GetComponent<UIManager> ();
 		mainUI.LinkElement ();
+	
 		mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
 	}
 	// Update is called once per frame

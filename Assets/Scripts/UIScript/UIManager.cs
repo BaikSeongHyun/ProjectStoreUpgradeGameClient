@@ -42,24 +42,25 @@ public class UIManager : MonoBehaviour
 		{
 		case Mode.CreateStore:
 			presentMode = Mode.CreateStore;
-			InitializeModeSelectStore ();
+			InitializeModeCreateStore ();
 			break;
 
 		case Mode.SelectStore:
 			presentMode = Mode.SelectStore;
-			InitializeModeCreateStore ();
+			InitializeModeSelectStore ();
 			break;		
 		}
 	}
 
 	public void InitializeModeCreateStore()
 	{
-		storeCreate.SetActive (false);
+		storeSelect.SetActive (false);
+		storeCreate.SetActive (true);
 	}
 	public void InitializeModeSelectStore()
 	{
-		storeSelect.SetActive (false);
-		storeCreate.SetActive (true);
+		storeSelect.SetActive (true);		
+		storeCreate.SetActive (false);
 	}
 
 }
