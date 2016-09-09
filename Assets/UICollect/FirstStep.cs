@@ -27,6 +27,8 @@ public class FirstStep : MonoBehaviour {
 	[SerializeField] Item test;
 
 
+
+
 	public void UpdateGold(){}
 
 //	public enum Mode
