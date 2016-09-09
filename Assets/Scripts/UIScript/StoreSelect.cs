@@ -9,6 +9,7 @@ using System;
 public class StoreSelect : MonoBehaviour, IPointerDownHandler
 {
 	
+
 	[SerializeField] GameObject selectStore;
 	[SerializeField] GameObject selectUI;
 	public UIManager mainUI;
