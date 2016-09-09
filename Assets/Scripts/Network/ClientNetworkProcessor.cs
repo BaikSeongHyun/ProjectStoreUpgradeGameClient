@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Net;
 using System.Net.Sockets;
 
@@ -30,6 +32,47 @@ public class ClientNetworkProcessor
 		receiveAsyncCallback = new AsyncCallback( ReceiveAsyncCallback );
 	}
 
+	// private method
+	// create packet include header
+	private byte[] CreatePacketStream<T, U>( Packet<T,U> packet )
+	{
+		
+		// data iniialize  
+		byte[] packetData = packet.GetPacketData();
+	
+
+		PacketHeader header = new PacketHeader();
+		HeaderSerializer serializer = new HeaderSerializer();
+
+		// set header data
+		header.length = (short) packetData.Length;
+		header.id = (byte) packet.GetPacketID();
+
+		byte[] headerData = null;
+
+		try
+		{
+			serializer.Serialize( header );
+		}
+		catch
+		{
+
+		}
+
+		headerData = serializer.GetSerializeData();
+
+		// header / packet data combine
+		byte[] data = new byte[headerData.Length + packetData.Length];
+
+		int headerSize = Marshal.SizeOf( header.id ) + Marshal.SizeOf( header.length );
+		Buffer.BlockCopy( headerData, 0, data, 0, headerSize );
+		Buffer.BlockCopy( packetData, 0, data, headerSize, packetData.Length );
+
+		return data;
+	}
+
+	// public method
+	// set serverInformation
 	public void SetServerInformation( string _serverIP, int _serverPort )
 	{
 		serverIP = _serverIP;
@@ -145,12 +188,14 @@ public class ClientNetworkProcessor
 	}
 
 	// send method
-	public int Send( byte[] data, int size )
+	public int Send<T,U>( Packet<T,U> packet )
 	{
+		byte[] data = CreatePacketStream( packet );
+
 		// send message to client
 		try
 		{
-			return myClientSocket.Send( data, size, SocketFlags.None );
+			return myClientSocket.Send( data, data.Length, SocketFlags.None );
 		}
 		catch ( NullReferenceException e )
 		{

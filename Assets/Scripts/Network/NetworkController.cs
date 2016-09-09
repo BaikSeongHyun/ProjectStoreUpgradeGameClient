@@ -128,10 +128,10 @@ public class NetworkController : MonoBehaviour
 		}
 	}
 
-	public void Send( byte[] packetData, int dataLength )
+	public void Send<T,U>( Packet<T,U> packet )
 	{
 		Debug.Log( "Network processor : Send Packet" );
-		clientProcessor.Send( packetData, dataLength );
+		clientProcessor.Send( packet );
 	}
 
 	// client receive notifier register

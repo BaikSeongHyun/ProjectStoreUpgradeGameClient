@@ -28,13 +28,14 @@ public class GameManager : MonoBehaviour
 	// public method
 	public void SendJoinRequest()
 	{
+		// set data
 		JoinRequestData sendData = new JoinRequestData();
 		sendData.id = id;
 		sendData.password = password;
 
 		JoinRequestPakcet sendPacket = new JoinRequestPakcet( sendData );
 
-		networkProcessor.Send( sendPacket.GetPacketData(), sendPacket.GetPacketData().Length );
+		networkProcessor.Send( sendPacket );
 	}
 
 	// receive data section
