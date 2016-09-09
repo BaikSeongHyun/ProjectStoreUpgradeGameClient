@@ -9,14 +9,14 @@ using System.Net.Sockets;
 public class NetworkController : MonoBehaviour
 {
 	// client connection socket
-	[SerializeField] TCPClient clientProcesser;
+	[SerializeField] ClientNetworkProcessor clientProcessor;
 
 	// queue -> input / output check point
 	[SerializeField] PacketQueue receiveQueue;
 	[SerializeField] PacketQueue sendQueue;
 
 	// delegate -> for packtet receive check
-	public delegate void ReceiveNotifier(Socket socket,byte[] data);
+	public delegate void ReceiveNotifier(byte[] data);
 
 	// client notifier set -> socket library
 	Dictionary <int, ReceiveNotifier> notifierForClient = new Dictionary<int, ReceiveNotifier>();
@@ -43,20 +43,20 @@ public class NetworkController : MonoBehaviour
 		sendBuffer = new byte[bufferSize];
 
 		// client information set
-		clientProcesser = new TCPClient();
-		clientProcesser.OnReceived += OnReceivedPacketFromServer;
-		clientProcesser.SetServerInformation( serverIP, serverPort );
+		clientProcessor = new ClientNetworkProcessor();
+		clientProcessor.OnReceived += OnReceivedPacketFromServer;
+		clientProcessor.SetServerInformation( serverIP, serverPort );
 	}
 
 	void Update()
 	{
-		Receive( clientProcesser.ClientSocket );
+		Receive( clientProcessor.ClientSocket );
 	}
 
 	// game quit
 	void OnApplicationQuit()
 	{
-		clientProcesser.Disconnect();
+		clientProcessor.Disconnect();
 	}
 
 	// private method
@@ -85,7 +85,7 @@ public class NetworkController : MonoBehaviour
 	// start network connection
 	public bool ConnectToServer()
 	{
-		return clientProcesser.Connect();
+		return clientProcessor.Connect();
 	}
 
 	// data receive
@@ -116,7 +116,7 @@ public class NetworkController : MonoBehaviour
 				try
 				{
 					notifierForClient.TryGetValue( packetID, out notifier );
-					notifier( socket, packetData );			
+					notifier( packetData );			
 				}
 				catch ( NullReferenceException e )
 				{
@@ -126,6 +126,12 @@ public class NetworkController : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	public void Send( byte[] packetData, int dataLength )
+	{
+		Debug.Log( "Network processor : Send Packet" );
+		clientProcessor.Send( packetData, dataLength );
 	}
 
 	// client receive notifier register

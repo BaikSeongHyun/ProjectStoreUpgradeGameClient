@@ -4,7 +4,7 @@ using System.Collections;
 using System.Net;
 using System.Net.Sockets;
 
-public class TCPClient
+public class ClientNetworkProcessor
 {
 	class AsyncData
 	{
@@ -14,7 +14,7 @@ public class TCPClient
 		public int messageLength;
 	}
 
-	public delegate void OnReceiveEvent(byte[] message,int messageSize);
+	public delegate void OnReceiveEvent(byte[] message, int messageSize);
 
 	public event OnReceiveEvent OnReceived;
 
@@ -25,7 +25,7 @@ public class TCPClient
 
 	public Socket ClientSocket { get { return myClientSocket; } }
 
-	public TCPClient()
+	public ClientNetworkProcessor()
 	{
 		receiveAsyncCallback = new AsyncCallback( ReceiveAsyncCallback );
 	}

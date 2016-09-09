@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Net;
+using System.Net.Sockets;
 
 public class GameManager : MonoBehaviour
 {
-	[SerializeField] NetworkController network;
+	[SerializeField] NetworkController networkProcessor;
 
-
+	[SerializeField] string id;
+	[SerializeField] string password;
 	// unity method
 	void Awake()
 	{
-		network = GetComponent<NetworkController>();
-		network.ConnectToServer();
+		networkProcessor = GetComponent<NetworkController>();
+		networkProcessor.ConnectToServer();
+
+		// set receive notifier
+		networkProcessor.RegisterServerReceivePacket( (int) ClientToServerPacket.JoinRequest, ReceiveJoinResult );
 	}
 
 
@@ -20,4 +26,26 @@ public class GameManager : MonoBehaviour
 
 
 	// public method
+	public void SendJoinRequest()
+	{
+		JoinRequestData sendData = new JoinRequestData();
+		sendData.id = id;
+		sendData.password = password;
+
+		JoinRequestPakcet sendPacket = new JoinRequestPakcet( sendData );
+
+		networkProcessor.Send( sendPacket.GetPacketData(), sendPacket.GetPacketData().Length );
+	}
+
+	// receive data section
+	// receive joi result
+	public void ReceiveJoinResult( byte[] data )
+	{
+		// receive packet serialize 
+		JoinResultPacket receivePacket = new JoinResultPacket( data );
+		JoinResultData joinResultData = receivePacket.GetData();
+
+		//process - join success
+		Debug.Log( joinResultData.message );
+	}
 }
