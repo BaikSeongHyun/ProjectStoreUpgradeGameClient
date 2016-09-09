@@ -12,6 +12,7 @@ public class ItemView : MonoBehaviour {
 	void Start () {
 		itemName = GetComponent<Text> ();
 		itemImage = transform.Find ("ItemImage").GetComponent<Image> ();
+		// = Gameob.find
 	}
 	
 	// Update is called once per frame
@@ -27,8 +28,9 @@ public class ItemView : MonoBehaviour {
 
 	}
 
-	public void TestCollMe(string _name, int _count){
-		Debug.Log (_name + +_count);
+	public void TestCollMe(string name, int count){
+		Debug.Log (name +" " +count);
 	}
+
 
 }

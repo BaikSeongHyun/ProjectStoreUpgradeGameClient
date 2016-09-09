@@ -17,7 +17,8 @@ public class GameController : MonoBehaviour
 	[SerializeField] GameObject mat;
 	bool Test = true;
 	[SerializeField] List <GameObject> makeItem = new List<GameObject>();
-	[SerializeField] ItemView[] soldItem;
+	[SerializeField] ItemViewLogic[] soldItem;
+	[SerializeField] UIManager mainUI;
 
 	// Use this for initializationpublic 
 
@@ -27,6 +28,10 @@ public class GameController : MonoBehaviour
 		cameraDistance = new Vector3 (0f, 7.5f, -8f);
 		matHit = false;
 		mat = GameObject.FindGameObjectWithTag ("Mat");
+		mainUI = GameObject.FindGameObjectWithTag ("MainUI").GetComponent<UIManager> ();
+		mainUI.LinkElement ();
+	
+		mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
 	}
 	// Update is called once per frame
 	void Update ()
@@ -56,7 +61,8 @@ public class GameController : MonoBehaviour
 					}
 				}
 			}
-		}   
+		}
+
 	}
 
 
@@ -101,6 +107,5 @@ public class GameController : MonoBehaviour
 
 				Instantiate (makeItem [0], matSize, transform.rotation);
 			}
-		}
-
+	}
 }

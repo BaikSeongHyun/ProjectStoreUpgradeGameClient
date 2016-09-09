@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 using System.Collections;
 using System;
@@ -9,20 +8,15 @@ using System;
 
 public class StoreSelect : MonoBehaviour, IPointerDownHandler
 {
-	[SerializeField] GameObject[] selectImage;
+	
+
 	[SerializeField] GameObject selectStore;
 	[SerializeField] GameObject selectUI;
-
 	public UIManager mainUI;
 
 	// Use this for initialization
 	void Start ()
 	{
-		selectImage = new GameObject[3];
-
-		selectImage [0] = transform.Find ("FirstStore").gameObject;
-		selectImage [1] = transform.Find ("SecondStore").gameObject;
-		selectImage [2] = transform.Find ("ThirdStore").gameObject;
 
 		mainUI = GameObject.FindGameObjectWithTag ("MainUI").GetComponent<UIManager> ();
 		selectUI = this.gameObject;
@@ -41,9 +35,14 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 		selectUI.SetActive (false);		
 	}
 
+	public void StartCreateStore()
+	{
+		selectUI.SetActive (false);	
+
+	}
+
 	void OnMouseDown()
 	{
 		StartGame ();
-	}
-		
+	}		
 }
