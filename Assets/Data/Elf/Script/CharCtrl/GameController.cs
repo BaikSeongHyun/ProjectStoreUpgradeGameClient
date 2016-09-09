@@ -17,12 +17,8 @@ public class GameController : MonoBehaviour
 	[SerializeField] GameObject mat;
 	bool Test = true;
 	[SerializeField] List <GameObject> makeItem = new List<GameObject>();
-<<<<<<< HEAD
-	[SerializeField] ItemView[] soldItem;
-=======
 	[SerializeField] ItemViewLogic[] soldItem;
 	[SerializeField] UIManager mainUI;
->>>>>>> 306df4664ef62c7bdeb8cef4a675ead1b0dbeb07
 
 	// Use this for initializationpublic 
 
