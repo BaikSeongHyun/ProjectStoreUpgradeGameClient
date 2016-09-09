@@ -172,7 +172,7 @@ GameObject:
   - 222: {fileID: 33766138}
   - 114: {fileID: 33766137}
   m_Layer: 5
-  m_Name: MakingItemName3
+  m_Name: ProducedItemName3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,7 +246,7 @@ GameObject:
   - 222: {fileID: 36983280}
   - 114: {fileID: 36983279}
   m_Layer: 5
-  m_Name: ItemImage2
+  m_Name: ProduceAbleItemImage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -766,7 +766,7 @@ RectTransform:
   - {fileID: 1052290904}
   - {fileID: 535333740}
   m_Father: {fileID: 856035109}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 237, y: -58}
@@ -783,8 +783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be75c2b897f4dc4da61a427ba320a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needItemList: {fileID: 0}
-  item: {fileID: 0}
 --- !u!1 &220886468
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,7 +794,7 @@ GameObject:
   - 222: {fileID: 220886471}
   - 114: {fileID: 220886470}
   m_Layer: 5
-  m_Name: ItemImage1
+  m_Name: ProduceAbleItemImage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -951,7 +949,7 @@ GameObject:
   - 222: {fileID: 283796857}
   - 114: {fileID: 283796856}
   m_Layer: 5
-  m_Name: MakingItemName2
+  m_Name: ProducedItemName2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1133,7 +1131,7 @@ GameObject:
   - 222: {fileID: 334150420}
   - 114: {fileID: 334150419}
   m_Layer: 5
-  m_Name: ItemImage4
+  m_Name: ProducedItemImage4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1304,7 +1302,7 @@ GameObject:
   - 222: {fileID: 478362747}
   - 114: {fileID: 478362746}
   m_Layer: 5
-  m_Name: MakingItemText
+  m_Name: ProducedItemText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1811,7 +1809,7 @@ GameObject:
   - 222: {fileID: 736816109}
   - 114: {fileID: 736816108}
   m_Layer: 5
-  m_Name: MakedItemCount
+  m_Name: NeedItemCount2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2028,7 +2026,7 @@ GameObject:
   - 222: {fileID: 782711029}
   - 114: {fileID: 782711028}
   m_Layer: 5
-  m_Name: MakedItemCount
+  m_Name: NeedItemCount3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2416,7 +2414,7 @@ GameObject:
   - 222: {fileID: 847978430}
   - 114: {fileID: 847978429}
   m_Layer: 5
-  m_Name: ItemImage3
+  m_Name: ProduceAbleItemImage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2582,9 +2580,9 @@ RectTransform:
   - {fileID: 1568139074}
   - {fileID: 2113708996}
   - {fileID: 114434580}
+  - {fileID: 173398958}
   - {fileID: 1341012323}
   - {fileID: 1774364858}
-  - {fileID: 173398958}
   - {fileID: 1415208082}
   - {fileID: 1940816930}
   m_Father: {fileID: 2061363208}
@@ -2605,15 +2603,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4c886fab099864daace454ec05ccf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  presentMode: 0
-  stepView: {fileID: 0}
-  stepViewLogic: {fileID: 0}
-  gold: {fileID: 0}
-  goldLogic: {fileID: 0}
-  backButton: {fileID: 0}
-  backButtonLogic: {fileID: 0}
-  exitGameButton: {fileID: 0}
-  exitGameButtonLogic: {fileID: 0}
   produceAbleItemList: {fileID: 0}
   produceAbleItemListLogic: {fileID: 0}
   itemView: {fileID: 0}
@@ -2712,7 +2701,7 @@ GameObject:
   - 222: {fileID: 881120994}
   - 114: {fileID: 881120993}
   m_Layer: 5
-  m_Name: MakingItemName4
+  m_Name: ProducedItemName4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2866,7 +2855,7 @@ GameObject:
   - 222: {fileID: 1007297487}
   - 114: {fileID: 1007297486}
   m_Layer: 5
-  m_Name: MakedItemCount
+  m_Name: NeedItemCount1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3273,7 +3262,7 @@ GameObject:
   - 222: {fileID: 1075725267}
   - 114: {fileID: 1075725266}
   m_Layer: 5
-  m_Name: ItemImage3
+  m_Name: ProducedItemImage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3342,7 +3331,7 @@ GameObject:
   - 222: {fileID: 1088030038}
   - 114: {fileID: 1088030037}
   m_Layer: 5
-  m_Name: ItemImage5
+  m_Name: ProducedItemImage5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3485,7 +3474,7 @@ GameObject:
   - 222: {fileID: 1104493031}
   - 114: {fileID: 1104493030}
   m_Layer: 5
-  m_Name: ItemImage2
+  m_Name: ProducedItemImage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3554,7 +3543,7 @@ GameObject:
   - 222: {fileID: 1154278552}
   - 114: {fileID: 1154278551}
   m_Layer: 5
-  m_Name: ItemImage5
+  m_Name: ProduceAbleItemImage5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3873,7 +3862,7 @@ GameObject:
   - 222: {fileID: 1324781012}
   - 114: {fileID: 1324781011}
   m_Layer: 5
-  m_Name: ItemImage4
+  m_Name: ProduceAbleItemImage4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4031,7 +4020,7 @@ RectTransform:
   m_Children:
   - {fileID: 1879002679}
   m_Father: {fileID: 856035109}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 534, y: -265}
@@ -4081,6 +4070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c505400750f40e341915f4a4d922b89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  producedItemList: {fileID: 0}
 --- !u!1 &1350444049
 GameObject:
   m_ObjectHideFlags: 0
@@ -4262,7 +4252,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -13, y: 0}
   m_SizeDelta: {x: 350, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1365836542
@@ -4284,11 +4274,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 3abb30781a2f7de47bb24714df856343, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -4309,7 +4299,7 @@ GameObject:
   - 222: {fileID: 1377311864}
   - 114: {fileID: 1377311863}
   m_Layer: 5
-  m_Name: ItemImage1
+  m_Name: ProducedItemImage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4377,7 +4367,7 @@ GameObject:
   - 224: {fileID: 1415208082}
   - 114: {fileID: 1415208083}
   m_Layer: 5
-  m_Name: MakedItemList
+  m_Name: ProducedItemList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4411,12 +4401,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1415208081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1abfa6fb5f9293b418fe4555926d0f42, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e0636fe82874834b8bcecf96e97fd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  produceAbleItemName: []
-  produceAbleItemImage: []
-  produceAbleItemNameObject: []
+  producedItemName: []
+  producedItemImage: []
+  producedItemNameObject: []
+  producedItemImageObject: []
+  selectObject: {fileID: 0}
 --- !u!1 &1422502835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4604,7 +4596,7 @@ GameObject:
   - 222: {fileID: 1551290031}
   - 114: {fileID: 1551290030}
   m_Layer: 5
-  m_Name: MakingItemName5
+  m_Name: ProducedItemName5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5090,7 +5082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1694287675
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5295,7 +5287,7 @@ RectTransform:
   - {fileID: 64760575}
   - {fileID: 1365836541}
   m_Father: {fileID: 856035109}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 879, y: 278.00006}
@@ -5312,6 +5304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3552657a5ec4c9343aee41c85cd3d859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filltime: 0
 --- !u!1 &1821751464
 GameObject:
   m_ObjectHideFlags: 0
@@ -5763,7 +5756,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 426097087}
   m_HandleRect: {fileID: 426097086}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6481,7 +6474,7 @@ GameObject:
   - 222: {fileID: 2055461484}
   - 114: {fileID: 2055461483}
   m_Layer: 5
-  m_Name: MakingItemName1
+  m_Name: ProducedItemName1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6606,6 +6599,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1abfa6fb5f9293b418fe4555926d0f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  produceAbleItemName: []
-  produceAbleItemImage: []
-  produceAbleItemNameObject: []

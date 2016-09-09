@@ -25,13 +25,17 @@ public class Database
 	{
 		Item[] recipe;
 		int[] recipeCount;
-		itemInformation.Add (0001, new Item (0001, "Wheat", 0, 0, null, null, false, 0, Store.StoreType.Bakery));
+		itemInformation.Add (0001, new Item (0001, "소보로빵", 0, 0, null, null, false, 0, Store.StoreType.Bakery));
 
 		recipe = new Item[1];
 		recipe [0] = FindItemUseID (0001);
 		recipeCount = new int[1];
 		recipeCount[0] = 3;
-		itemInformation.Add (0002, new Item(0002, "TutoBread", 1000, 10f, recipe, recipeCount, false, 100, Store.StoreType.Bakery));
+		itemInformation.Add (0002, new Item(0002, "죽빵", 1000, 10f, recipe, recipeCount, false, 100, Store.StoreType.Bakery));
+		recipe [0] = FindItemUseID (0002);
+		recipeCount = new int[1]; 
+		recipeCount[0] = 3;
+
 	}
 
 	public Item FindItemUseID(int id)

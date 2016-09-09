@@ -11,10 +11,14 @@ public class ProduceAbleItemList : MonoBehaviour, IPointerDownHandler {
 //	[SerializeField]Item itemName;
 //	[SerializeField]Image itemImage;
 
-	public Text[] produceAbleItemName;
-	public Image[] produceAbleItemImage;
+	private Text[] produceAbleItemName;
+	private Image[] produceAbleItemImage;
 
-	public GameObject[] produceAbleItemNameObject;
+	private GameObject[] produceAbleItemNameObject;
+	private GameObject[] produceAbleItemImageObject;
+
+	private ItemView itemView;
+	private NeedItemList needItemList; 
 
 //	public GameObject MakingItemName1;
 //	public GameObject MakingItemName2;
@@ -30,19 +34,21 @@ public class ProduceAbleItemList : MonoBehaviour, IPointerDownHandler {
 	void Link()
 	{
 		produceAbleItemName = new Text[5];
-
+		produceAbleItemImage = new Image[5];
 
 		produceAbleItemNameObject = new GameObject[5];
+		produceAbleItemImageObject = new GameObject[5];
 
 
-
-		for(int i = 0; i < produceAbleItemName.Length; i++)
+		for(int count = 0; count < produceAbleItemName.Length; count++)
 		{
-			string name = "ProduceAbleItemName" + (i + 1).ToString ();
-			produceAbleItemName [i] = GameObject.Find (name).GetComponent<Text>();
-			////produceAbleItemNameObject [i] = GameObject.Find (name).GetComponent<GameObject> ();
-			produceAbleItemNameObject[i] = GameObject.Find(name);
-		
+			string produceAbleItemNameSearch = "ProduceAbleItemName" + (count + 1).ToString ();
+			produceAbleItemName [count] = GameObject.Find (produceAbleItemNameSearch).GetComponent<Text>();
+			produceAbleItemNameObject[count] = GameObject.Find(produceAbleItemNameSearch);
+
+			string produceAbleItemImageSearch = "ProduceAbleItemImage" + (count + 1).ToString ();
+			produceAbleItemImage [count] = GameObject.Find (produceAbleItemImageSearch).GetComponent<Image>();
+			produceAbleItemImageObject[count] = GameObject.Find(produceAbleItemImageSearch);
 		}
 		//MakingItemName1 = GameObject.Find ("MakingItemName1");
 //		MakingItemName2 = GameObject.Find ("MakingItemName2");
@@ -55,8 +61,9 @@ public class ProduceAbleItemList : MonoBehaviour, IPointerDownHandler {
 //		ItemImage4 = GameObject.Find ("ItemImage4");
 //		ItemImage5 = GameObject.Find ("ItemImage5");
 
-	
-
+		//send to variable for gameobject
+		itemView = GameObject.Find("ItemView").GetComponent<ItemView> ();
+		needItemList = GameObject.Find ("NeedItemList").GetComponent<NeedItemList> ();
 	}
 
 	void ShowView()
@@ -74,19 +81,20 @@ public class ProduceAbleItemList : MonoBehaviour, IPointerDownHandler {
 	}
 
 
-	public void OnPointerDown(PointerEventData eventdate){
+	public void OnPointerDown(PointerEventData eventdata){
 		
 
 
 
-		for(int i= 0; i < produceAbleItemName.Length; i++){
-			string name = "ProduceAbleItemName" + (i).ToString(); 
+		for(int count= 0; count < produceAbleItemName.Length; count++){
+			string produceAbleItemNameSearch = "ProduceAbleItemName" + (count).ToString(); 
 
-		if (eventdate.pointerCurrentRaycast.gameObject.name == name) {
+		if (eventdata.pointerCurrentRaycast.gameObject.name == name) {
 				//select iteminfo send to Itemview,  needitem;
-
+				itemView.TestCollMe(name,count);
 
 				
+				needItemList.TestCollMe (name);
 
 					}
 				}
