@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
 	[SerializeField] Player playerData;
 	[SerializeField] string id;
 	[SerializeField] string password;
+	[SerializeField] UserInterfaceController mainUI;
+
+	// property
+	public Player PlayerData { get { return playerData; } }
 	// unity method
 	void Awake()
 	{
@@ -34,7 +38,7 @@ public class GameManager : MonoBehaviour
 	{
 		// set data
 		JoinRequestData sendData = new JoinRequestData();
-		Debug.Log( id  + " / " + password);
+		Debug.Log( id + " / " + password );
 		sendData.id = id;
 		sendData.password = password;
 
@@ -92,6 +96,7 @@ public class GameManager : MonoBehaviour
 		// check parameter -> active value
 
 		// set select ui
+		mainUI.MakeSelectUI();
 
 		yield return new WaitForSeconds( 0f );
 	}

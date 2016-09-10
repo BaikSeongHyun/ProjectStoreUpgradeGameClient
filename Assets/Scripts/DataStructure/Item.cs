@@ -7,18 +7,29 @@ public class Item
 	// key value
 	[SerializeField] int id;
 
-	// 
+	//
 	[SerializeField] string name;
 	[SerializeField] int price;
 	[SerializeField] float makeTime;
 	[SerializeField] Item[] recipe;
 	[SerializeField] int[] recipeCount;
 	[SerializeField] bool onDisplay;
+	[SerializeField] int count;
 	[SerializeField] float storeExp;
 	[SerializeField] Store.StoreType Type;
 
 	// property
-	public string Name { get { return name;} }
+	public int ID { get { return id; } }
+
+	public string Name { get { return name; } }
+
+	public float MakeTime{ get { return makeTime; } }
+
+	public Item[] Recipe { get { return recipe; } }
+
+	public int[] RecipeCount { get { return recipeCount; } }
+
+	public int Count { get { return count; } set { count = value; } }
 
 	// constructor - no parameter
 	public Item()
@@ -35,7 +46,7 @@ public class Item
 	}
 
 	// constructor = all item parameter
-	public Item(int _id, string _name, int _price, float _makeTime, Item[] _recipe, int[] _recipeCount, bool _onDisplay, float _storeExp, Store.StoreType _type)
+	public Item( int _id, string _name, int _price, float _makeTime, Item[] _recipe, int[] _recipeCount, bool _onDisplay, float _storeExp, Store.StoreType _type )
 	{
 		id = _id;
 		name = _name;
@@ -48,7 +59,7 @@ public class Item
 		Type = _type;
 	}
 
-	public Item (Item data)
+	public Item( Item data )
 	{
 		id = data.id;
 		name = data.name;

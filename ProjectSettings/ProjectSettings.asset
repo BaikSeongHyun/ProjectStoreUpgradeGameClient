@@ -10,11 +10,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-<<<<<<< HEAD
-  productName: ProjectStoreUpgradeGame
-=======
   productName: ProjectStoreUpgradeGameClient
->>>>>>> 306df4664ef62c7bdeb8cef4a675ead1b0dbeb07
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
@@ -68,20 +64,12 @@ PlayerSettings:
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
   xboxEnablePIXSampling: 0
-<<<<<<< HEAD
-=======
-  xboxEnableEnableRenderThreadRunsJobs: 0
->>>>>>> 306df4664ef62c7bdeb8cef4a675ead1b0dbeb07
   n3dsDisableStereoscopicView: 0
   n3dsEnableSharedListOpt: 1
   n3dsEnableVSync: 0
   uiUse16BitDepthBuffer: 0
   ignoreAlphaClear: 0
   xboxOneResolution: 0
-<<<<<<< HEAD
-=======
-  xboxOneMonoLoggingLevel: 0
->>>>>>> 306df4664ef62c7bdeb8cef4a675ead1b0dbeb07
   ps3SplashScreen: {fileID: 0}
   videoMemoryForVertexBuffers: 0
   psp2PowerMode: 0
@@ -108,11 +96,7 @@ PlayerSettings:
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
-<<<<<<< HEAD
-  productGUID: 62f406192eb07744ca5cf85e01d0b8b6
-=======
-  productGUID: d1083c8d189ebad4daa5da05b36d99a6
->>>>>>> 306df4664ef62c7bdeb8cef4a675ead1b0dbeb07
+  productGUID: 33498a948b5da04478861388a5c42e4f
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
@@ -268,10 +252,6 @@ PlayerSettings:
   ps4NPtitleDatPath: 
   ps4RemotePlayKeyAssignment: -1
   ps4RemotePlayKeyMappingDir: 
-<<<<<<< HEAD
-=======
-  ps4PlayTogetherPlayerCount: 0
->>>>>>> 306df4664ef62c7bdeb8cef4a675ead1b0dbeb07
   ps4EnterButtonAssignment: 1
   ps4ApplicationParam1: 0
   ps4ApplicationParam2: 0
@@ -298,11 +278,6 @@ PlayerSettings:
   ps4attribMoveSupport: 0
   ps4attrib3DSupport: 0
   ps4attribShareSupport: 0
-<<<<<<< HEAD
-=======
-  ps4attribExclusiveVR: 0
-  ps4disableAutoHideSplash: 0
->>>>>>> 306df4664ef62c7bdeb8cef4a675ead1b0dbeb07
   ps4IncludedModules: []
   monoEnv: 
   psp2Splashimage: {fileID: 0}
@@ -355,22 +330,14 @@ PlayerSettings:
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
   scriptingDefineSymbols: {}
-<<<<<<< HEAD
-  metroPackageName: ProjectStoreUpgradeGame
-=======
   metroPackageName: ProjectStoreUpgradeGameClient
->>>>>>> 306df4664ef62c7bdeb8cef4a675ead1b0dbeb07
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-<<<<<<< HEAD
-  metroApplicationDescription: ProjectStoreUpgradeGame
-=======
   metroApplicationDescription: ProjectStoreUpgradeGameClient
->>>>>>> 306df4664ef62c7bdeb8cef4a675ead1b0dbeb07
   wsaImages: {}
   metroTileShortName: 
   metroCommandLineArgsFile: 
@@ -448,7 +415,6 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   intPropertyNames:
-<<<<<<< HEAD
   - Android::ScriptingBackend
   - Standalone::ScriptingBackend
   - WebPlayer::ScriptingBackend
@@ -461,12 +427,6 @@ PlayerSettings:
   iOS::Architecture: 2
   iOS::EnableIncrementalBuildSupportForIl2cpp: 1
   iOS::ScriptingBackend: 1
-=======
-  - Standalone::ScriptingBackend
-  - WebPlayer::ScriptingBackend
-  Standalone::ScriptingBackend: 0
-  WebPlayer::ScriptingBackend: 0
->>>>>>> 306df4664ef62c7bdeb8cef4a675ead1b0dbeb07
   boolPropertyNames:
   - XboxOne::enus
   XboxOne::enus: 1
