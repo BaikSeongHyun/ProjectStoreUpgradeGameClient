@@ -385,9 +385,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Join
-
-'
+  m_Text: Join
 --- !u!222 &295537191
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1179,7 +1177,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275.8, y: 0.3}
+  m_AnchoredPosition: {x: 280, y: 0}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1616189612

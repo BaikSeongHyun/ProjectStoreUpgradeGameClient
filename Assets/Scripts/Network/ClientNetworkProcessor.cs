@@ -38,8 +38,7 @@ public class ClientNetworkProcessor
 	{
 		
 		// data iniialize  
-		byte[] packetData = packet.GetPacketData();
-	
+		byte[] packetData = packet.GetPacketData();	
 
 		PacketHeader header = new PacketHeader();
 		HeaderSerializer serializer = new HeaderSerializer();
@@ -67,6 +66,8 @@ public class ClientNetworkProcessor
 		int headerSize = Marshal.SizeOf( header.id ) + Marshal.SizeOf( header.length );
 		Buffer.BlockCopy( headerData, 0, data, 0, headerSize );
 		Buffer.BlockCopy( packetData, 0, data, headerSize, packetData.Length );
+
+		Debug.Log( header.id );
 
 		return data;
 	}

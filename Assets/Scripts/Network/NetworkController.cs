@@ -69,9 +69,24 @@ public class NetworkController : MonoBehaviour
 		serializer.SetDeserializedData( originalData );
 		serializer.Deserialize( ref header );
 
-		seperatedData = null;
+		int headerSize = Marshal.SizeOf( header.id ) + Marshal.SizeOf( header.length );
+		int packetDataSize = originalData.Length + headerSize;
+		byte[] packetData = null;
 
-		packetID = 0;
+		if( packetDataSize > 0 )
+		{
+			packetData = new byte[packetDataSize];
+			Buffer.BlockCopy( originalData, headerSize, packetData, 0, packetData.Length );
+		}
+		else
+		{
+			packetID = header.id;
+			seperatedData = null;
+			return false;
+		}
+		packetID = header.id;
+		seperatedData = packetData;
+
 		return true;
 	}
 
