@@ -18,6 +18,30 @@ public class Player
 		playerID = _playerID;
 		password = _password;
 	}
+
+	public void CreatePlayerStore(string name)
+	{
+		switch (name)
+		{
+			case "Bakery":
+				
+				break; 
+
+			case "Bar":
+			
+				break;
+
+			case "FastFood":
+				
+				break;
+
+			case "Cafe":
+				
+				break;
+			
+		}
+		
+	}
 }
 
 
