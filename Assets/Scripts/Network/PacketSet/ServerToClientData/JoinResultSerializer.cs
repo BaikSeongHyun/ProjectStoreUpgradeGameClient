@@ -33,11 +33,11 @@ public class JoinResultSerializer : Serializer
 
 		// return data initialize 
 		bool joinResult = false;
-		string message = null;
+		string message;
 
 		// data deserizlize
 		result &= Deserialize( ref joinResult );
-		result &= Deserialize( ref message, (int) GetDataSize() );
+		result &= Deserialize( out message, (int) GetDataSize() );
 
 		// input data
 		data.joinResult = joinResult;

@@ -373,7 +373,7 @@ public class Serializer
 	}
 
 	// deserialize - string
-	protected bool Deserialize( ref string element, int length )
+	protected bool Deserialize( out string element, int length )
 	{
 		byte[] data = new byte[length];
 

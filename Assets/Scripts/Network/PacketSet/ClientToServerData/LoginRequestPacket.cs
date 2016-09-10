@@ -1,33 +1,33 @@
 ﻿using System;
 
-public class JoinRequestPacket : Packet<JoinRequestData, JoinRequestSerializer>
+public class LoginRequestPacket : Packet<LoginRequestData, LoginRequestSerializer>
 {
 	// constructor - packet data
-	public JoinRequestPacket( JoinRequestData data )
+	public LoginRequestPacket( LoginRequestData data )
 	{
 		// allocate serialier
-		serializer = new JoinRequestSerializer();
-	
+		serializer = new LoginRequestSerializer();
+
 		// allocate data
 		dataElement = data;
 	}
 
 	// constructor - byte stream
-	public JoinRequestPacket( byte[] data )
+	public LoginRequestPacket( byte[] data )
 	{
 		// allocate serializer
-		serializer = new JoinRequestSerializer();
+		serializer = new LoginRequestSerializer();
 		serializer.SetDeserializedData( data );
 
 		// allocate data
-		dataElement = new JoinRequestData();
+		dataElement = new LoginRequestData();
 
 		// deserialize data
 		serializer.Deserialize( ref dataElement );
 	}
 
 	// return data set
-	public override JoinRequestData GetData()
+	public override LoginRequestData GetData()
 	{
 		return dataElement;
 	}
@@ -35,7 +35,7 @@ public class JoinRequestPacket : Packet<JoinRequestData, JoinRequestSerializer>
 	// return packet data -> packet od
 	public override int GetPacketID()
 	{
-		return (int) ClientToServerPacket.JoinRequest;
+		return (int) ClientToServerPacket.LoginRequest;
 	}
 
 	// return packet data -> byte stream data section

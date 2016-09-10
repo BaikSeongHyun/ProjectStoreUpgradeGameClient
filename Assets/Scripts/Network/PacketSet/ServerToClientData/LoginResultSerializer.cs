@@ -33,11 +33,11 @@ public class LoginResultSerializer : Serializer
 
 		// return data initialize 
 		bool loginResult = false;
-		string message = null;
+		string message ;
 
 		// data deserizlize
 		result &= Deserialize( ref loginResult );
-		result &= Deserialize( ref message, (int) GetDataSize() );
+		result &= Deserialize( out message, (int) GetDataSize() );
 
 		// input data
 		data.loginResult = loginResult;

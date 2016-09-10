@@ -1,9 +1,9 @@
 ﻿using System;
 
-public class JoinRequestSerializer : Serializer
+public class LoginRequestSerializer : Serializer
 {
-	// serialize join request data
-	public bool Serialize( JoinRequestData data )
+	// serialize login request data
+	public bool Serialize( LoginRequestData data )
 	{
 		// clear buffer
 		Clear();
@@ -22,12 +22,12 @@ public class JoinRequestSerializer : Serializer
 		return result;
 	}
 
-	// deserialize join request data
-	public bool Deserialize( ref JoinRequestData data )
+	// deserialize login request data
+	public bool Deserialize( ref LoginRequestData data )
 	{
 		// set deserialize data
 		bool result = ( GetDataSize() > 0 ) ? true : false;
-	
+
 		// data read failure -> method exit
 		if( !result )
 			return false;
@@ -46,5 +46,4 @@ public class JoinRequestSerializer : Serializer
 		return result;
 	}
 }
-
 
