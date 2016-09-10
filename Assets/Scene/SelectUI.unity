@@ -195,7 +195,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 768116933}
         m_MethodName: SelectStoreCreateEvent
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -609,6 +609,14 @@ MonoBehaviour:
   selectStore: {fileID: 0}
   selectUI: {fileID: 0}
   mainUI: {fileID: 0}
+  selectStoreLine:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  selectStoreChange:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &181325456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1279,6 +1287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainUI: {fileID: 506800968}
+  storeSelectArray: {fileID: 181325455}
   bakery: {fileID: 706009042}
   bakeryCheck: {fileID: 1613425437}
   bakeryImage: {fileID: 0}
@@ -1296,6 +1305,7 @@ MonoBehaviour:
   cafeImage: {fileID: 942640556}
   cafeAccount: {fileID: 166152741}
   createStoreButton: {fileID: 9228952}
+  storeCreateStart: 
 --- !u!1 &942640554
 GameObject:
   m_ObjectHideFlags: 0
