@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 		sendData.id = id;
 		sendData.password = password;
 
-		JoinRequestPakcet sendPacket = new JoinRequestPakcet( sendData );
+		JoinRequestPacket sendPacket = new JoinRequestPacket( sendData );
 
 		networkProcessor.Send( sendPacket );
 	}
