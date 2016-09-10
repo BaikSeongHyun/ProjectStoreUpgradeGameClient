@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 	{
 		// set data
 		JoinRequestData sendData = new JoinRequestData();
+		Debug.Log( id  + " / " + password);
 		sendData.id = id;
 		sendData.password = password;
 
