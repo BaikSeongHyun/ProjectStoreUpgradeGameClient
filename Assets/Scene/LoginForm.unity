@@ -1052,8 +1052,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   networkProcessor: {fileID: 0}
-  id: bsh1234
-  password: 123456
+  id: 123
+  password: 123
+  mainUI: {fileID: 0}
 --- !u!4 &1459307913
 Transform:
   m_ObjectHideFlags: 0

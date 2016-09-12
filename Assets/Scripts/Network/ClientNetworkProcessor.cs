@@ -16,7 +16,7 @@ public class ClientNetworkProcessor
 		public int messageLength;
 	}
 
-	public delegate void OnReceiveEvent(byte[] message, int messageSize);
+	public delegate void OnReceiveEvent(byte[] message,int messageSize);
 
 	public event OnReceiveEvent OnReceived;
 
@@ -36,7 +36,7 @@ public class ClientNetworkProcessor
 	// create packet include header
 	private byte[] CreatePacketStream<T, U>( Packet<T,U> packet )
 	{
-		
+		Debug.Log( packet.GetPacketData().Length );
 		// data iniialize  
 		byte[] packetData = packet.GetPacketData();	
 
@@ -44,19 +44,13 @@ public class ClientNetworkProcessor
 		HeaderSerializer serializer = new HeaderSerializer();
 
 		// set header data
-		header.length = (short) packetData.Length;
 		header.id = (byte) packet.GetPacketID();
+		header.length = (short) packetData.Length;
 
 		byte[] headerData = null;
 
-		try
-		{
-			serializer.Serialize( header );
-		}
-		catch
-		{
-
-		}
+		if( !serializer.Serialize( header ) )
+			return null;
 
 		headerData = serializer.GetSerializeData();
 
@@ -66,8 +60,6 @@ public class ClientNetworkProcessor
 		int headerSize = Marshal.SizeOf( header.id ) + Marshal.SizeOf( header.length );
 		Buffer.BlockCopy( headerData, 0, data, 0, headerSize );
 		Buffer.BlockCopy( packetData, 0, data, headerSize, packetData.Length );
-
-		Debug.Log( header.id );
 
 		return data;
 	}
@@ -192,10 +184,14 @@ public class ClientNetworkProcessor
 	public int Send<T,U>( Packet<T,U> packet )
 	{
 		byte[] data = CreatePacketStream( packet );
+		Debug.Log( data.Length );
+
+		AnalysisPacket( data );
 
 		// send message to client
 		try
 		{
+			
 			return myClientSocket.Send( data, data.Length, SocketFlags.None );
 		}
 		catch ( NullReferenceException e )
@@ -233,6 +229,56 @@ public class ClientNetworkProcessor
 			Debug.Log( e.InnerException );
 			Debug.Log( "Client : Socket Exception - On Disconnect (close section)" );
 		}
+	}
+
+	public void AnalysisPacket( byte[] data )
+	{
+		int packetID;
+		byte[] packetData;
+
+		SeperatePacket( data, out packetID, out packetData );
+		Debug.Log( packetData.Length );
+		ReceiveJoinRequest( packetData );		
+	}
+
+	public bool SeperatePacket( byte[] originalData, out int packetID, out byte[] seperatedData )
+	{
+		PacketHeader header = new PacketHeader();
+		HeaderSerializer serializer = new HeaderSerializer();
+
+		serializer.SetDeserializedData( originalData );
+		serializer.Deserialize( ref header );
+
+		Debug.Log( "Packet ID : " + header.id.ToString() + " , Packet Length :" + header.length.ToString() ); 
+		int headerSize = Marshal.SizeOf( header.id ) + Marshal.SizeOf( header.length );
+		int packetDataSize = originalData.Length - headerSize;
+		byte[] packetData = null;
+
+		if( packetDataSize > 0 )
+		{
+			packetData = new byte[packetDataSize];
+			Buffer.BlockCopy( originalData, headerSize, packetData, 0, packetData.Length );
+		}
+		else
+		{
+			packetID = header.id;
+			seperatedData = null;
+			return false;
+		}
+
+		packetID = header.id;
+		seperatedData = packetData;
+		return true;
+	}
+
+	public void ReceiveJoinRequest( byte[] data )
+	{
+		// receive packet serialize 
+		JoinRequestPacket receivePacket = new JoinRequestPacket( data );
+		JoinRequestData joinRequestData = receivePacket.GetData();
+
+		Debug.Log( joinRequestData.id );
+		Debug.Log( joinRequestData.password );
 	}
 
 }

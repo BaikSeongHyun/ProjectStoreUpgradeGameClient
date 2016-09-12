@@ -38,10 +38,10 @@ public class GameManager : MonoBehaviour
 	{
 		// set data
 		JoinRequestData sendData = new JoinRequestData();
-		Debug.Log( id + " / " + password );
 		sendData.id = id;
 		sendData.password = password;
 
+		Debug.Log( sendData.id + " / " + sendData.password );
 		JoinRequestPacket sendPacket = new JoinRequestPacket( sendData );
 
 		networkProcessor.Send( sendPacket );

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using UnityEngine;
+using System;
 using System.IO;
 
 public class HeaderSerializer : Serializer
@@ -11,8 +12,8 @@ public class HeaderSerializer : Serializer
 
 		// serialize element
 		bool result = true;
-		result &= Serialize( data.length );
 		result &= Serialize( data.id );
+		result &= Serialize( data.length );
 
 		// failure serialize -> method exit
 		if( !result )
@@ -37,12 +38,12 @@ public class HeaderSerializer : Serializer
 		byte packetID = 0;
 
 		// data deserialize 
-		result &= Deserialize( ref packetLength );
 		result &= Deserialize( ref packetID );
+		result &= Deserialize( ref packetLength );	
 
 		// input data
-		data.length = packetLength;
 		data.id = packetID;
+		data.length = packetLength;
 
 		// return result
 		return result;

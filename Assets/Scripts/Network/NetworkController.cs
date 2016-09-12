@@ -61,7 +61,7 @@ public class NetworkController : MonoBehaviour
 
 	// private method
 	// packet seperate id / data
-	private bool SeperatePacket( byte[] originalData, out int packetID, out byte[] seperatedData )
+	public bool SeperatePacket( byte[] originalData, out int packetID, out byte[] seperatedData )
 	{
 		PacketHeader header = new PacketHeader();
 		HeaderSerializer serializer = new HeaderSerializer();
@@ -70,7 +70,7 @@ public class NetworkController : MonoBehaviour
 		serializer.Deserialize( ref header );
 
 		int headerSize = Marshal.SizeOf( header.id ) + Marshal.SizeOf( header.length );
-		int packetDataSize = originalData.Length + headerSize;
+		int packetDataSize = originalData.Length - headerSize;
 		byte[] packetData = null;
 
 		if( packetDataSize > 0 )
@@ -84,12 +84,11 @@ public class NetworkController : MonoBehaviour
 			seperatedData = null;
 			return false;
 		}
+
 		packetID = header.id;
 		seperatedData = packetData;
-
 		return true;
 	}
-
 	// enqueue - receive queue
 	private void OnReceivedPacketFromServer( byte[] message, int size )
 	{
@@ -145,7 +144,6 @@ public class NetworkController : MonoBehaviour
 
 	public void Send<T,U>( Packet<T,U> packet )
 	{
-		Debug.Log( "Network processor : Send Packet" );
 		clientProcessor.Send( packet );
 	}
 
