@@ -51,6 +51,8 @@ public class CreateViewSet : MonoBehaviour
 	// button - on click method
 	public void SetCreateItem()
 	{
+		// count recipe
+
 		createTime = 0.0f;
 		createItem = selectedItem;
 	}
