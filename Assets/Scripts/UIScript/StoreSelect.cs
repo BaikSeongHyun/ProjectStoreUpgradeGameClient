@@ -52,8 +52,6 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 		}
 		else
 		{
-			Debug.Log (changename);
-
 			switch(name)
 			{
 			case "Bakery":
@@ -80,7 +78,8 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 
 	public void StartGame()
 	{
-		selectUI.SetActive (false);		
+		selectUI.SetActive (false);
+		//store infomation push
 	}
 	public void StartCreateStore()
 	{
