@@ -40,15 +40,15 @@ public class ProducedItemList : MonoBehaviour ,IPointerEnterHandler,IPointerExit
 	}
 
 	public void HaveItemUpdate(Player playerdate){
-		for(int i = 0; i < playerdate.HaveItem.Length; i++)
-		{
-			if (playerdate.HaveItem [i].Name == null) {
-				break;
-			}
-			producedItemImage [i].sprite = Resources.Load<Sprite> ("ItemIcon/" + playerdate.HaveItem [i].Name);
+//		for(int i = 0; i < playerdate.HaveItem.Length; i++)
+//		{	
+//			if (playerdate.HaveItem [i].Name == null) {
+//				break;
+//			}
+//			producedItemImage [i].sprite = Resources.Load<Sprite> ("ItemIcon/" + playerdate.HaveItem [i].Name);
+//			}
+//			Debug.Log (playerdate.HaveItem [0].Name);
 		}
-		Debug.Log (playerdate.HaveItem [0].Name);
-	}
 
 
 

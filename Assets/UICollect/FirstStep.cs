@@ -22,7 +22,7 @@ public class FirstStep : MonoBehaviour {
 	public Sell sellLogic;
 
 	public GameObject produce;
-	public Produce produceLogic;
+	public ProduceViewSet produceLogic;
 
 	[SerializeField] Item test;
 

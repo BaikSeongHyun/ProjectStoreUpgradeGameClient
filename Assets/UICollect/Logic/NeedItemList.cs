@@ -16,13 +16,13 @@ public class NeedItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
 
 		needItemCountObject = new GameObject[5];
 
-		for (int count = 0; count < needItemCount.Length; count++) {
-			string name = "NeedItemCount"+ (count+1).ToString();
-			needItemCount [count] = GameObject.Find (name).GetComponent<Text> ();
-			//needItemImage [count] = GameObject.Find ()
-			needItemCountObject [count] = GameObject.Find (name);
-		}
-
+//		for (int count = 0; count < needItemCount.Length; count++) {
+//			string name = "NeedItemCount"+ (count+1).ToString();
+//			needItemCount [count] = GameObject.Find (name).GetComponent<Text> ();
+//			//needItemImage [count] = GameObject.Find ()
+//			needItemCountObject [count] = GameObject.Find (name);
+//		}
+//
 
 
 	}

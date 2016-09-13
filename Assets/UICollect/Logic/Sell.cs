@@ -9,7 +9,7 @@ public class Sell : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPoin
 	public ProducedItemList producedItemList;
 
 	void Start(){
-		firstStep = GameObject.Find ("FirstStep").GetComponent<FirstStep> ();
+//		firstStep = GameObject.Find ("FirstStep").GetComponent<FirstStep> ();
 		producedItemList = GameObject.Find ("ProducedItemList").GetComponent<ProducedItemList> ();
 	}
 

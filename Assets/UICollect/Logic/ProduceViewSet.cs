@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 
 
-public class Produce : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler 
+public class ProduceViewSet : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler 
 	{
 	[SerializeField] DisplayItem[] produceAbleItemList;
 
@@ -27,7 +27,6 @@ public class Produce : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IP
 	private FirstStep firstStep;//fuck
 
 	public void Link(){
-		firstStep = GameObject.Find ("FirstStep").GetComponent<FirstStep> ();//fuck
 		ProduceButton = GameObject.Find ("ProduceButton");
 		stateGauge = GameObject.Find ("StateGauge").GetComponent<Image>();
 	}
