@@ -13,9 +13,12 @@ public class CreateViewSet : MonoBehaviour
 	[SerializeField] RecipeDisplayItem[] selectedItemRecipeList;
 
 	// create item
+
 	[SerializeField] Image createTimeBar;
 	[SerializeField] Item createItem;
 	[SerializeField] float createTime;
+
+
 
 	// link component element
 	public void LinkComponentElement()
