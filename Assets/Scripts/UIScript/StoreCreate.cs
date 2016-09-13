@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class StoreCreate : MonoBehaviour
 {
 	public UIManager mainUI;
+	public StoreSelect storeSelectArray;
+	public Player player;
 
 	public GameObject bakery;
 	public Image bakeryCheck;
@@ -30,6 +32,16 @@ public class StoreCreate : MonoBehaviour
 	public Image cafeAccount;
 
 	public GameObject createStoreButton;
+	public string storeCreateStart;
+
+
+	public enum StoreName
+	{
+		Bakery = 1,
+		Bar,
+		FastFood,
+		Cafe		
+	};
 
 	// Use this for initialization
 	void Start () 
@@ -57,6 +69,8 @@ public class StoreCreate : MonoBehaviour
 		cafeAccount = transform.Find ("CafeCreate").Find ("CafeAccount").GetComponent<Image> ();
 
 		createStoreButton = GameObject.Find ("CreateStore");
+
+
 
 //		CreateBakeryCheck (false);
 //		barCheck.enabled = false;
@@ -124,19 +138,22 @@ public class StoreCreate : MonoBehaviour
 		{
 		case "Bakery":
 			CreateBakeryCheck (true);
-
+			storeCreateStart = name;
 			break; 
 		
 		case "Bar":
 			CreateBarCheck (true);
+			storeCreateStart = name;
 			break;
 
 		case "FastFood":
 			CreateFastFoodCheck (true);
+			storeCreateStart = name;
 			break;
 
 		case "Cafe":
 			CreateCafeCheck (true);
+			storeCreateStart = name;
 			break;
 			
 
@@ -147,19 +164,36 @@ public class StoreCreate : MonoBehaviour
 	{
 		mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
 	}
-
-	public void SelectStoreCreateEvent(string name)
+	//switch
+	public void SelectStoreCreateEvent()
 	{
-		if (name == "Bakery")
+		if (storeCreateStart == "Bakery")
 		{
 			Debug.Log ("i`m bakery");
+			storeSelectArray.CreateStore (storeCreateStart);
+			mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
 
 		}
-		else if (name == "Bar")
+		else if (storeCreateStart == "Bar")
 		{
 			Debug.Log ("i`m bar");
+			storeSelectArray.CreateStore (storeCreateStart);
+			mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
 		}
-				
+		else if (storeCreateStart == "FastFood")
+		{
+			Debug.Log ("FastFood");
+			storeSelectArray.CreateStore (storeCreateStart);
+			mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
+		
+		}
+		else if (storeCreateStart == "Cafe")
+		{
+			Debug.Log ("Cafe");
+			storeSelectArray.CreateStore (storeCreateStart);
+			mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
+		}
 	}
 
+	//pass packit player infomation
 }

@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] GameObject mat;
 	bool Test = true;
 	[SerializeField] List <GameObject> makeItem = new List<GameObject>();
-	[SerializeField] ItemView[] soldItem;
+//	[SerializeField] ItemViewLogic[] soldItem;
 	[SerializeField] UIManager mainUI;
 
 	// Use this for initializationpublic 
@@ -30,7 +30,6 @@ public class GameController : MonoBehaviour
 		mat = GameObject.FindGameObjectWithTag ("Mat");
 		mainUI = GameObject.FindGameObjectWithTag ("MainUI").GetComponent<UIManager> ();
 		mainUI.LinkElement ();
-	
 		mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
 	}
 	// Update is called once per frame
