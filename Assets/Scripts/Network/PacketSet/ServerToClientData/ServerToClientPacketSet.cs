@@ -3,7 +3,7 @@
 public enum ServerToClientPacket : int
 {
 	JoinResult = 1,
-	LoginResultData = 2
+	LoginResult = 2
 }
 
 // Packet ID : 1 -> Login Result Data
