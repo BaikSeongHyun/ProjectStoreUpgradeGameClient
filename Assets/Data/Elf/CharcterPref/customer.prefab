@@ -3960,6 +3960,19 @@ MonoBehaviour:
   searchItemList: []
   AIMoveNav: {fileID: 0}
   elfPlayer: {fileID: 0}
+  mat: {fileID: 0}
+  Item:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  wantItem: {fileID: 0}
 --- !u!137 &13712440
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
