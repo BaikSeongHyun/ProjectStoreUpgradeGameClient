@@ -1,9 +1,11 @@
-﻿using System;
+﻿using UnityEngine;
+using System;
 
+[System.Serializable]
 public class Player
 {
 	//key value
-	string playerID;
+	[SerializeField] string playerID;
 
 	//dependant value
 	string password;
@@ -32,6 +34,11 @@ public class Player
 	{
 		// add haveItem
 	}
+
+	public Item[] HaveItem{
+		get {return haveItem;}
+	}
+
 }
 
 

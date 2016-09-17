@@ -30,5 +30,5 @@ public class UserInterfaceController : MonoBehaviour
 				stepUIObject = (GameObject) Instantiate( Resources.Load<GameObject>( "UIObject/GameViewFirstStep" ), transform.position, transform.rotation );
 				break;
 		}
-	}
+	}	
 }
