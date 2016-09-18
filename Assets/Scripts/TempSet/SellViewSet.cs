@@ -3,6 +3,9 @@ using System.Collections;
 
 public class SellViewSet : MonoBehaviour
 {
+
+	ProducedItemList producedItemList;
+	ProduceAbleItem produceAbleItem;
 	// link component element
 	public void LinkComponentElement()
 	{
@@ -14,4 +17,6 @@ public class SellViewSet : MonoBehaviour
 	{
 
 	}
+
+
 }

@@ -4,17 +4,19 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System;
 
-public class NeedItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler  {
-	private Text[] needItemCount;
-	private Image[] needItemImage;
+public class RecipeItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler  {
+	public RecipeDisplayItem[] recipeItem;
 
-	private GameObject[] needItemCountObject;
+	public Text[] recipeItemCount;
+	public Image[] recipeItemImage;
 
-	void Link(){
-		needItemCount = new Text[5];
-		needItemImage = new Image[5];
+	private GameObject[] recipeItemCountObject;
 
-		needItemCountObject = new GameObject[5];
+	public void LinkComponentElement(){
+		recipeItemCount = new Text[5];
+		recipeItemImage = new Image[5];
+
+		recipeItemCountObject = new GameObject[5];
 
 //		for (int count = 0; count < needItemCount.Length; count++) {
 //			string name = "NeedItemCount"+ (count+1).ToString();
@@ -27,9 +29,11 @@ public class NeedItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
 
 	}
 
+
+
 	// Use this for initialization
 	void Start () {
-		Link ();
+		
 	}
 	
 	// Update is called once per frame

@@ -6,85 +6,92 @@ using System.Collections;
 
 public class ProduceViewSet : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler 
 	{
-	[SerializeField] DisplayItem[] produceAbleItemList;
 
-	//produce item;
-	[SerializeField] Item produceItem;
-	[SerializeField] float produceTime;
-	[SerializeField] private Image stateGauge;
+
+
+//	//produce item;
+//	[SerializeField] Item produceItem;
+//	[SerializeField] float produceTime;
+//	[SerializeField] private Image stateGauge;
+//
+//	//select item; ItemView
+//	[SerializeField] Item selectedItem;
+//	[SerializeField] Image selectedImage;
+//	[SerializeField] RecipeDisplayItem[] selectedItemRecipeList;
 
 	//produce item button;
-	[SerializeField] private GameObject ProduceButton;
-
-	//select item;
-	[SerializeField] Item selectedItem;
-	[SerializeField] Image selectedImage;
-	[SerializeField] RecipeDisplayItem[] selectedItemRecipeList;
+	[SerializeField] private ProduceButton produceButton;
+	[SerializeField] ProduceAbleItem produceAbleItem;
+	[SerializeField] RecipeItemList recipeItemList;
+	[SerializeField] Item selectItem;
 
 
 
 
-	private FirstStep firstStep;//fuck
 
-	public void Link(){
-		ProduceButton = GameObject.Find ("ProduceButton");
-		stateGauge = GameObject.Find ("StateGauge").GetComponent<Image>();
+
+
+
+	public void LinkComponentElement(){
+		produceButton.LinkComponentElement ();
+		produceAbleItem.LinkComponentElement ();
+		recipeItemList.LinkComponentElement ();
+
+		//produceAbleItem
+//		stateGauge = GameObject.Find ("StateGauge").GetComponent<Image>();
 	}
 
-	void Start(){
-		Link ();//fuck
-	}
 
-	public void ProduceItemList(Store data)
+
+	public void ProduceAbleItemListSend(Store data)
 	{
-		produceAbleItemList = new DisplayItem[data.CreateItemSet.Length];
-		for (int i = 0; i < produceAbleItemList.Length; i++) {
-			produceAbleItemList [i].LinkComponentElement ();
-			produceAbleItemList [i].UpdateComponentElement (data.CreateItemSet [i]);
-		}
+		produceAbleItem.ProduceAbleItemList (data);
+
 	}
 
 	// update component element
-	public void UpdateSelectedItem( Player data )
+	public void UpdateSelectedItemSend( Player data )
 	{
-		selectedImage.sprite = Resources.Load<Sprite>( "ItemIcon/" + selectedItem.Name );
-
-		selectedItemRecipeList = new RecipeDisplayItem[selectedItem.Recipe.Length];
-		for ( int i = 0; i < selectedItemRecipeList.Length; i++ )
-		{
-			selectedItemRecipeList[i].UpdateComponent( selectedItem, selectedItem.RecipeCount[i], data );
-		}
+		produceAbleItem.UpdateSelectedItem (data);
 	}
 
 	//button click method
-	public void SetCreateItem()
+	public void SetProduceItem()
 	{
 		// count recipe
 
-		produceTime = 0.0f;
-		produceItem = selectedItem;
+//		produceTime = 0.0f;
+//		produceItem = selectedItem;
+		Debug.Log("b");
 	}
+
 
 	public void ProduceProcess(Player data){
 		
-		if( produceItem != null )
-		{
-			produceTime += Time.deltaTime;
-			stateGauge.fillAmount = produceTime / produceItem.MakeTime;
+//		if( produceItem != null )
+//		{
+//			produceTime += Time.deltaTime;
+//			stateGauge.fillAmount = produceTime / produceItem.MakeTime;
+//
+//			if( produceTime >= produceItem.MakeTime )
+//			{
+//				data.AddItem( produceItem );
+//				produceItem = null;
+//			}
+//		}
+	}
 
-			if( produceTime >= produceItem.MakeTime )
-			{
-				data.AddItem( produceItem );
-				produceItem = null;
-			}
-		}
+	public void ClickAndSelectItem(PointerEventData eventData){
+		
 	}
 
 
 	public void OnPointerDown(PointerEventData eventDate){
+		
 	}
 
 	public void OnPointerEnter(PointerEventData eventDate){
+		
 		//image change;
 	}
 

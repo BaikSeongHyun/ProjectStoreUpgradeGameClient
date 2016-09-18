@@ -13,12 +13,14 @@ public class GameViewFirstStep : MonoBehaviour
 	// link component element
 	public void Awake()
 	{
-		produceItem.Link();
+		produceItem.LinkComponentElement();
+		sellItem.LinkComponentElement ();
 	}
 
 	void Update()
 	{
 		produceItem.ProduceProcess( manager.PlayerData );
+
 	}
 
 }

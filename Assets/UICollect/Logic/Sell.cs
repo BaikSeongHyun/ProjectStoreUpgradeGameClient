@@ -5,7 +5,7 @@ using System.Collections;
 
 public class Sell : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler 
 {	
-	private FirstStep firstStep;
+	//private FirstStep firstStep;
 	public ProducedItemList producedItemList;
 
 	void Start(){
