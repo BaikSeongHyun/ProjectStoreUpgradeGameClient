@@ -6,7 +6,7 @@ using System.Collections;
 public class GameViewFirstStep : MonoBehaviour
 {
 
-	[SerializeField] GameManager manager;
+	//[SerializeField] GameManager manager;
 	[SerializeField] ProduceViewSet produceItem;
 	[SerializeField] SellViewSet sellItem;
 
@@ -19,8 +19,8 @@ public class GameViewFirstStep : MonoBehaviour
 
 	void Update()
 	{
-		produceItem.ProduceProcess( manager.PlayerData );
-		sellItem.SellProcess (manager.PlayerData);
+//		produceItem.ProduceProcess( manager.PlayerData );
+//		sellItem.SellProcess (manager.PlayerData);
 
 	}
 

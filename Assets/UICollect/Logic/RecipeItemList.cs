@@ -5,10 +5,15 @@ using System.Collections;
 using System;
 
 public class RecipeItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler  {
+	[SerializeField] ItemView itemView;
+
 	public RecipeDisplayItem[] recipeItem;
 
 	public Text[] recipeItemCount;
 	public Image[] recipeItemImage;
+
+
+
 
 	private GameObject[] recipeItemCountObject;
 
@@ -25,30 +30,14 @@ public class RecipeItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
 //			needItemCountObject [count] = GameObject.Find (name);
 //		}
 //
+		itemView.LinkComponentElement();
 
-
-	}
-
-
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	public void OnPointerDown(PointerEventData eventDate){
 
 		//
 	}
-
-
-
-
 	public void OnPointerEnter(PointerEventData eventDate){
 		//image change;
 	}
@@ -59,8 +48,12 @@ public class RecipeItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
 
 
 
-//	public void TestCollMe(string count, Image image){
-	public void TestCollMe(string name){
-		Debug.Log ("aa");
+
+	//middle bridge part method;
+	public void SendItemViewItemUpdate(Item data){
+		Debug.Log ("this infomation get form produceableitem -> produceViewSet and Send to Itemview");
+		itemView.UpdateProducingIteamInfo (data);
 	}
+
+
 }

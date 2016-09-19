@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System;
 
-public class ProducedItemList : MonoBehaviour {
+public class ProducedItem : MonoBehaviour,IPointerDownHandler {
 
 	//[SerializeField] private Player playerinfo;
 
@@ -12,14 +12,20 @@ public class ProducedItemList : MonoBehaviour {
 	[SerializeField] DisplayItem[] producedItemList;
 	[SerializeField] private Player playerdata;
 
-	public GameObject selectObject;
+	public SellViewSet selectItem;//sellectItem coll;
 
-	void Link()
+	public void PlayerHaveItemUpdata(Player data){
+		producedItemList = new DisplayItem[data.HaveItem.Length];
+		for (int i = 0; i < playerdata.HaveItem.Length; i++) {
+			producedItemList [i].LinkComponentElement ();
+			producedItemList [i].UpdateComponentElement (data.HaveItem[i]);
+		}
+	}
+
+	public void LinkComponentElement()
 	{
-//		producedItemName = new Text[5];
-//		producedItemImage = new Image[5];
-//		producedItemNameObject = new GameObject [5];
-//		producedItemImageObject = new GameObject[5];
+		selectItem = GameObject.Find ("Sell").GetComponent<SellViewSet> ();
+		
 //
 //		for (int count = 0; count < producedItemName.Length; count++) {
 //			string producedItemNameSearch = "ProducedItemName" + ( count + 1 ).ToString();
@@ -30,7 +36,7 @@ public class ProducedItemList : MonoBehaviour {
 //			producedItemImage [count] = GameObject.Find (producedItemImageSearch).GetComponent<Image> ();
 //			producedItemImageObject [count] = GameObject.Find (producedItemImageSearch);
 //
-		}
+	}
 
 		//playerdata = GameObject.Find ("GameManager").GetComponent<GameManager> ().PlayerData;
 
@@ -51,21 +57,13 @@ public class ProducedItemList : MonoBehaviour {
 
 
 
-
-
-	// Use this for initialization
-	void Start () {
-		Link ();
-		//HaveItemUpdate(playerdata);
-	}
-	
-	// Update is called once per frame
-
-
-
-
-
 	public void OnPointerDown(PointerEventData eventdata){
+		selectItem.SellSelectItem (eventdata);
+
+		//Debug.Log("a"); clear;
+
+
+
 		//for (int count = 0; count < producedItemName.Length; count++) {
 			//string producedItemNameSearch = "ProducedItemImage" + (count).ToString (); 
 //			if (eventdata.pointerCurrentRaycast.gameObject.name == producedItemNameSearch) {
