@@ -3991,6 +3991,7 @@ GameObject:
   - 114: {fileID: 1190201807}
   - 222: {fileID: 1190201806}
   - 114: {fileID: 1190201805}
+  - 114: {fileID: 1190201808}
   m_Layer: 5
   m_Name: ProduceItemList
   m_TagString: Untagged
@@ -4082,6 +4083,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1190201808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1190201803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1abfa6fb5f9293b418fe4555926d0f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  produceItemList: []
 --- !u!1 &1226772674
 GameObject:
   m_ObjectHideFlags: 0
@@ -5404,7 +5417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e35e9bb9a57ce4c9353aea970cfd07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  produceItem: {fileID: 1774364859}
+  produceMain: {fileID: 1774364859}
   sellItem: {fileID: 534560925}
 --- !u!1 &1557257224
 GameObject:
@@ -5756,8 +5769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3552657a5ec4c9343aee41c85cd3d859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  produceButton: {fileID: 0}
-  produceAbleItem: {fileID: 0}
+  produceItemList: {fileID: 1190201808}
   recipeItemList: {fileID: 173398959}
   selectItem:
     id: 0
@@ -7229,6 +7241,6 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 49.999954}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
