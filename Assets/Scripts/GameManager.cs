@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour
 		networkProcessor.ConnectToServer();
 
 		// set receive notifier
-		networkProcessor.RegisterServerReceivePacket( (int) ClientToServerPacket.JoinRequest, ReceiveJoinResult );
+		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.JoinResult, ReceiveJoinResult );
+		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.LoginResult, ReceiveLoginResult );
 	}
 
 	// private method
@@ -50,13 +51,27 @@ public class GameManager : MonoBehaviour
 	// send login request
 	public void SendLoginRequest()
 	{
+		// set data
+		LoginRequestData sendData = new LoginRequestData();
+		sendData.id = id;
+		sendData.password = password;
 
+		Debug.Log( sendData.id + " / " + sendData.password );
+		LoginRequestPacket sendPacket = new LoginRequestPacket( sendData );
+
+		networkProcessor.Send( sendPacket );
 	}
 
 	// send game data request
 	public void SendGameDataRequest()
 	{
-		StartCoroutine( GameLoading() );
+		//StartCoroutine( GameLoading() );
+	}
+
+	// send create store
+	public void CreateStore( Store createStore )
+	{
+		
 	}
 
 
@@ -75,10 +90,18 @@ public class GameManager : MonoBehaviour
 	// receive login result
 	public void ReceiveLoginResult( byte[] data )
 	{
-
+		// receive packet serialize
+		LoginResultPacket receivePacket = new LoginResultPacket( data );
+		LoginResultData loginResultData = receivePacket.GetData();
 
 		// login success
-		SendGameDataRequest();
+		if( loginResultData.loginResult )
+		{
+			SendGameDataRequest();
+			Debug.Log( loginResultData.message );
+		}
+		else
+			Debug.Log( loginResultData.message );
 	}
 
 	// receive game data
@@ -88,6 +111,16 @@ public class GameManager : MonoBehaviour
 
 		// data set -> check parameter
 
+	}
+
+	// receive store create result
+	public void ReceiveStoreCreateData( byte[] data )
+	{
+		// success -> data update
+
+		// success -> ui (create -> select)
+
+		// fail -> pop up ( result string )
 	}
 
 	// coroutine section

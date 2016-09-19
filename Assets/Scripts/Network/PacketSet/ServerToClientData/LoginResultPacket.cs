@@ -34,7 +34,7 @@ public class LoginResultPacket : Packet<LoginResultData, LoginResultSerializer>
 	// return packet data -> packet id
 	public override int GetPacketID()
 	{
-		return (int) ServerToClientPacket.LoginResultData;
+		return (int) ServerToClientPacket.LoginResult;
 	}
 
 	// return packet data -> byte stream data section
