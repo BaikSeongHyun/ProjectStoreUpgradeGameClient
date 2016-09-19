@@ -4,49 +4,55 @@ using UnityEngine.EventSystems;
 using System.Collections;
 
 
+
 public class ProduceViewSet : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler 
 	{
 
-
-
-//	//produce item;
-//	[SerializeField] Item produceItem;
-//	[SerializeField] float produceTime;
-//	[SerializeField] private Image stateGauge;
-//
-//	//select item; ItemView
-//	[SerializeField] Item selectedItem;
-//	[SerializeField] Image selectedImage;
-//	[SerializeField] RecipeDisplayItem[] selectedItemRecipeList;
-
-	//produce item button;
+	//this class control;
 	[SerializeField] private ProduceButton produceButton;
 	[SerializeField] ProduceAbleItem produceAbleItem;
 	[SerializeField] RecipeItemList recipeItemList;
+
+	//feature variable, this variable effected producebutton,itemview;
 	[SerializeField] Item selectItem;
 
+	public void recipe(){
+		Player player;
+		//player
+	}
+		
 
-
-
-
-
-
-
+	//link
 	public void LinkComponentElement(){
 		produceButton.LinkComponentElement ();
 		produceAbleItem.LinkComponentElement ();
 		recipeItemList.LinkComponentElement ();
 
 		//produceAbleItem
-//		stateGauge = GameObject.Find ("StateGauge").GetComponent<Image>();
+		//		stateGauge = GameObject.Find ("StateGauge").GetComponent<Image>();
 	}
+
+
+	//selectItem need Method;
+	public void ProduceSelectItem(PointerEventData eventdata){
+		//iteminfomationgetting from ProduceAbleItem;
+		//selectItem = eventdata.pointerCurrentRaycast.gameObject.GetComponent<Item> ();
+		Debug.Log ("this infomation get from ProduceAbleItem and send to Itemview");
+		recipeItemList.SendItemViewItemUpdate(selectItem);
+	}
+
+	public Item GetProduceSelectItem()
+	{return selectItem;}
+
+
+
+
 
 
 
 	public void ProduceAbleItemListSend(Store data)
 	{
 		produceAbleItem.ProduceAbleItemList (data);
-
 	}
 
 	// update component element
@@ -56,12 +62,13 @@ public class ProduceViewSet : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
 	}
 
 	//button click method
-	public void SetProduceItem()
+	public void SetProduceItem(Item item)
 	{
 		// count recipe
 
 //		produceTime = 0.0f;
 //		produceItem = selectedItem;
+
 		Debug.Log("b");
 	}
 
@@ -87,7 +94,7 @@ public class ProduceViewSet : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
 
 
 	public void OnPointerDown(PointerEventData eventDate){
-		
+
 	}
 
 	public void OnPointerEnter(PointerEventData eventDate){
@@ -101,5 +108,5 @@ public class ProduceViewSet : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
 
 
 
-	}
+}
 

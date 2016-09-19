@@ -5,18 +5,17 @@ using System.Collections;
 using System;
 
 public class ProduceAbleItem : MonoBehaviour, IPointerDownHandler {
-
 	[SerializeField]DisplayItem[] produceAbleList;
 
+	//selectItem InfoMation getting
+	[SerializeField]ProduceViewSet selectItem;
 
-	[SerializeField] ItemView itemView;
-	[SerializeField] RecipeItemList recipeItemList; 
-	[SerializeField] RecipeDisplayItem[] selectedItemRecipeList;
 
-//	[SerializeField] Image selectedImage;
-//	[SerializeField] Item selectedItem;
+//	[SerializeField] Item itemView;
 
-//	
+
+
+
 
 	public void ProduceAbleItemList( Store data )
 	{
@@ -46,6 +45,14 @@ public class ProduceAbleItem : MonoBehaviour, IPointerDownHandler {
 
 	public void LinkComponentElement()
 	{
+		
+		selectItem = GameObject.Find ("Produce").GetComponent<ProduceViewSet> ();
+		//recipeItemList.LinkComponentElement ();
+
+
+
+
+
 //		produceAbleItemName = new Text[5];
 //		produceAbleItemImage = new Image[5];
 //
@@ -95,7 +102,9 @@ public class ProduceAbleItem : MonoBehaviour, IPointerDownHandler {
 
 
 	public void OnPointerDown(PointerEventData eventdata){
-		
+
+		selectItem.ProduceSelectItem (eventdata);
+			
 
 
 

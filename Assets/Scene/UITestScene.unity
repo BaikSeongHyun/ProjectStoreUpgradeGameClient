@@ -228,7 +228,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uACF0\uD321\uC774\uC548\uB4E4\uC5C8\uBE75"
+  m_Text: 2/3
 --- !u!222 &33766138
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -385,8 +385,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   produceButton: {fileID: 0}
-  produceAbleItem: {fileID: 0}
-  recipeItemList: {fileID: 0}
+  produceGauge: {fileID: 1365836542}
+  isAbleProducing: 0
   selectItem:
     id: 0
     name: 
@@ -398,9 +398,6 @@ MonoBehaviour:
     count: 0
     storeExp: 0
     Type: 0
-  produceButton: {fileID: 0}
-  produceGauge: {fileID: 1365836542}
-  isAbleProducing: 0
 --- !u!1 &114434579
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,11 +428,11 @@ RectTransform:
   m_Children:
   - {fileID: 1919572849}
   - {fileID: 880352623}
-  m_Father: {fileID: 2113708996}
-  m_RootOrder: 1
+  m_Father: {fileID: 173398958}
+  m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 615.0001, y: 113.99991}
+  m_AnchoredPosition: {x: -88.99994, y: 376.9997}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114434581
@@ -449,6 +446,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c187d28473c0dfe4c8a94d00770e7468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectItem:
+    id: 0
+    name: 
+    price: 0
+    makeTime: 0
+    recipe: []
+    recipeCount: 
+    onDisplay: 0
+    count: 0
+    storeExp: 0
+    Type: 0
   itemName: {fileID: 0}
   itemImage: {fileID: 0}
 --- !u!222 &114434583
@@ -681,6 +689,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 114434580}
   - {fileID: 1052290904}
   - {fileID: 535333740}
   m_Father: {fileID: 1774364858}
@@ -701,6 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be75c2b897f4dc4da61a427ba320a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemView: {fileID: 114434581}
   recipeItem: []
   recipeItemCount: []
   recipeItemImage: []
@@ -1026,7 +1036,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC8FD\uBE75"
+  m_Text: 1/1
 --- !u!222 &283796857
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1257,7 +1267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1484,7 +1494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1524,6 +1534,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28ca451bdf254c459d187cc602d1086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  producedItem: {fileID: 1415208083}
+  sellButton: {fileID: 1341012326}
+  selectItem:
+    id: 0
+    name: 
+    price: 0
+    makeTime: 0
+    recipe: []
+    recipeCount: 
+    onDisplay: 0
+    count: 0
+    storeExp: 0
+    Type: 0
 --- !u!1 &535333739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,7 +1577,7 @@ RectTransform:
   m_Children:
   - {fileID: 1069266594}
   m_Father: {fileID: 173398958}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -106, y: -99}
@@ -2937,7 +2960,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC624\uBE60\uCC45\uC784\uC838\uBE75\n"
+  m_Text: '0/3
+
+'
 --- !u!222 &881120994
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3403,7 +3428,7 @@ RectTransform:
   m_Children:
   - {fileID: 819398633}
   m_Father: {fileID: 173398958}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -92, y: 101.999985}
@@ -4468,7 +4493,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c505400750f40e341915f4a4d922b89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  producedItemList: {fileID: 0}
+  sellButton: {fileID: 0}
+  selectItem:
+    id: 0
+    name: 
+    price: 0
+    makeTime: 0
+    recipe: []
+    recipeCount: 
+    onDisplay: 0
+    count: 0
+    storeExp: 0
+    Type: 0
+  isSellingAble: 0
 --- !u!1 &1365836540
 GameObject:
   m_ObjectHideFlags: 0
@@ -4665,7 +4702,7 @@ GameObject:
   - 224: {fileID: 1415208082}
   - 114: {fileID: 1415208083}
   m_Layer: 5
-  m_Name: ProducedItemList
+  m_Name: ProducedItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4706,7 +4743,7 @@ MonoBehaviour:
   producedItemList: []
   playerdata:
     playerID: 
-  selectObject: {fileID: 0}
+  selectItem: {fileID: 0}
 --- !u!1 &1422502835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4978,7 +5015,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e35e9bb9a57ce4c9353aea970cfd07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 191432562}
   produceItem: {fileID: 1774364859}
   sellItem: {fileID: 534560925}
 --- !u!1 &1557257224
@@ -5494,6 +5530,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 158656, guid: b68c4bb22a1961843a8d0d10310b2260, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 167090, guid: b68c4bb22a1961843a8d0d10310b2260, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b68c4bb22a1961843a8d0d10310b2260, type: 2}
   m_IsPrefabParent: 0
@@ -5619,7 +5663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5693,7 +5737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6584,7 +6628,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1494590287}
-  - {fileID: 114434580}
   m_Father: {fileID: 1774364858}
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6604,6 +6647,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   produceAbleList: []
-  itemView: {fileID: 114434581}
-  recipeItemList: {fileID: 173398959}
-  selectedItemRecipeList: []
+  selectItem: {fileID: 0}
