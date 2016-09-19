@@ -7,13 +7,13 @@ public class GameViewFirstStep : MonoBehaviour
 {
 
 	//[SerializeField] GameManager manager;
-	[SerializeField] ProduceViewSet produceItem;
+	[SerializeField] ProduceMain produceMain;
 	[SerializeField] SellViewSet sellItem;
 
 	// link component element
 	public void Awake()
 	{
-		produceItem.LinkComponentElement();
+		produceMain.LinkComponentElement();
 		sellItem.LinkComponentElement ();
 	}
 

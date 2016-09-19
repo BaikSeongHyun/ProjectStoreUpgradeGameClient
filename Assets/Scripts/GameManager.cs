@@ -7,13 +7,16 @@ public class GameManager : MonoBehaviour
 {
 	[SerializeField] NetworkController networkProcessor;
 	[SerializeField] Player playerData;
+	[SerializeField] Store presentStore;
 	[SerializeField] string id;
 	[SerializeField] string password;
 	[SerializeField] UserInterfaceController mainUI;
 
 	// property
 	public Player PlayerData { get { return playerData; } }
+
 	// unity method
+	// awake -> active this script
 	void Awake()
 	{
 		// create player data
@@ -26,7 +29,17 @@ public class GameManager : MonoBehaviour
 		// set receive notifier
 		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.JoinResult, ReceiveJoinResult );
 		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.LoginResult, ReceiveLoginResult );
+
+		presentStore = null;
 	}
+
+	// update
+	void Update()
+	{
+		if( presentStore != null )
+			mainUI.UIUpdate( playerData, presentStore );
+	}
+
 
 	// private method
 

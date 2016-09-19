@@ -8,13 +8,15 @@ public class Player
 	[SerializeField] string playerID;
 
 	//dependant value
-	string password;
-	int availableMoney;
-	Store[] haveStore;
-	Item[] haveItem;
-	DecorateObject[] haveDecorateObject;
+	[SerializeField] string password;
+	[SerializeField] int money;
+	[SerializeField] Store[] haveStore;
+	[SerializeField] Item[] haveItem;
+	[SerializeField] DecorateObject[] haveDecorateObject;
 
 	// property
+	public int Money { get { return money; } }
+
 	public Item[] HaveItem { get { return haveItem; } }
 
 	//constructor ->

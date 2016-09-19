@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System;
 
-public class RecipeItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler  {
+public class RecipeItemSet: MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler
+{
 	[SerializeField] ItemView itemView;
 
 	public RecipeDisplayItem[] recipeItem;
@@ -17,7 +18,8 @@ public class RecipeItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
 
 	private GameObject[] recipeItemCountObject;
 
-	public void LinkComponentElement(){
+	public void LinkComponentElement()
+	{
 		recipeItemCount = new Text[5];
 		recipeItemImage = new Image[5];
 
@@ -34,15 +36,19 @@ public class RecipeItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
 
 	}
 
-	public void OnPointerDown(PointerEventData eventDate){
+	public void OnPointerDown( PointerEventData eventDate )
+	{
 
 		//
 	}
-	public void OnPointerEnter(PointerEventData eventDate){
+
+	public void OnPointerEnter( PointerEventData eventDate )
+	{
 		//image change;
 	}
 
-	public void OnPointerExit(PointerEventData eventDate){
+	public void OnPointerExit( PointerEventData eventDate )
+	{
 		//image change;
 	}
 
@@ -50,9 +56,10 @@ public class RecipeItemList : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
 
 
 	//middle bridge part method;
-	public void SendItemViewItemUpdate(Item data){
-		Debug.Log ("this infomation get form produceableitem -> produceViewSet and Send to Itemview");
-		itemView.UpdateProducingIteamInfo (data);
+	public void SendItemViewItemUpdate( Item data )
+	{
+		Debug.Log( "this infomation get form produceableitem -> produceViewSet and Send to Itemview" );
+		itemView.UpdateProducingIteamInfo( data );
 	}
 
 
