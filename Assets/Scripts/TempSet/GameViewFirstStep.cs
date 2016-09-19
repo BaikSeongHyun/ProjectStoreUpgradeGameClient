@@ -20,6 +20,7 @@ public class GameViewFirstStep : MonoBehaviour
 	void Update()
 	{
 		produceItem.ProduceProcess( manager.PlayerData );
+		sellItem.SellProcess (manager.PlayerData);
 
 	}
 

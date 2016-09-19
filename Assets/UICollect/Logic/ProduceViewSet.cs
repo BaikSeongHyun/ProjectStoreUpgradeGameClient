@@ -56,12 +56,13 @@ public class ProduceViewSet : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
 	}
 
 	//button click method
-	public void SetProduceItem()
+	public void SetProduceItem(Item item)
 	{
 		// count recipe
 
 //		produceTime = 0.0f;
 //		produceItem = selectedItem;
+
 		Debug.Log("b");
 	}
 
@@ -87,7 +88,7 @@ public class ProduceViewSet : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
 
 
 	public void OnPointerDown(PointerEventData eventDate){
-		
+
 	}
 
 	public void OnPointerEnter(PointerEventData eventDate){

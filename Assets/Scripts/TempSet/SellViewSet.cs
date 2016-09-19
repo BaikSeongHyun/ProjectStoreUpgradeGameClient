@@ -18,5 +18,10 @@ public class SellViewSet : MonoBehaviour
 
 	}
 
+	public void SellProcess(Player data)
+	{
+		
+	}
+
 
 }
