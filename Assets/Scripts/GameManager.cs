@@ -65,11 +65,11 @@ public class GameManager : MonoBehaviour
 	// send game data request
 	public void SendGameDataRequest()
 	{
-		// StartCoroutine( GameLoading() );
+		//StartCoroutine( GameLoading() );
 	}
 
 	// send create store
-	public void CreateStore(Store createStore)
+	public void CreateStore( Store createStore )
 	{
 		
 	}
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	// receive store create result
-	public void ReceiveStoreCreateData(byte[] data)
+	public void ReceiveStoreCreateData( byte[] data )
 	{
 		// success -> data update
 
