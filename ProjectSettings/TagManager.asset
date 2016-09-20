@@ -7,6 +7,8 @@ TagManager:
   - MainUI
   - Terrain
   - Mat
+  - Item
+  - CreateOrSelect
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Player
   - Terrain
   - Mat
-  - 
+  - SellPos
   - 
   - 
   - 

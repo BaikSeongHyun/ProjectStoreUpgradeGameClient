@@ -18,7 +18,8 @@ public class GameController : MonoBehaviour
 	bool Test = true;
 	[SerializeField] List <GameObject> makeItem = new List<GameObject>();
 //	[SerializeField] ItemViewLogic[] soldItem;
-	[SerializeField] UIManager mainUI;
+	[SerializeField] UIManager CreateOrSelect;
+	[SerializeField] SecondStepUI secondStepUI;
 
 	// Use this for initializationpublic 
 
@@ -28,9 +29,9 @@ public class GameController : MonoBehaviour
 		cameraDistance = new Vector3 (0f, 7.5f, -8f);
 		matHit = false;
 		mat = GameObject.FindGameObjectWithTag ("Mat");
-		mainUI = GameObject.FindGameObjectWithTag ("MainUI").GetComponent<UIManager> ();
-		mainUI.LinkElement ();
-		mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
+		secondStepUI = GameObject.Find ("SecondStepUI").GetComponent<SecondStepUI> ();
+		secondStepUI.ChangeSecondUIMode (SecondStepUI.SecondStepMode.NormalStep);
+
 	}
 	// Update is called once per frame
 	void Update ()
@@ -47,16 +48,19 @@ public class GameController : MonoBehaviour
 					if (hitPoint.transform.tag == "Terrain")
 					{   
 						InTerrainRay ();
+						secondStepUI.ChangeSecondUIMode (SecondStepUI.SecondStepMode.NormalStep);
+
 					}
 					else if (hitPoint.transform.tag == "Mat" && !matHit)
 					{
 						InsertMatRay ();
+						secondStepUI.ChangeSecondUIMode (SecondStepUI.SecondStepMode.AuctionStep);
+
 					}
 					else if (hitPoint.transform.tag == "Mat" && elf.makeTime && matHit)
 					{
 						MakeItemRay ();
-
-
+					
 					}
 				}
 			}
@@ -87,24 +91,27 @@ public class GameController : MonoBehaviour
 		destination = hitPoint.point;
 		Vector3 matSize;
 		//summonposition chec
-			
-			if (Test)
-			{
-					matSize = new Vector3 (mat.transform.localPosition.x - 5, 
-					mat.transform.localPosition.y,
-					mat.transform.localPosition.z);
+		//popup itemprice
 
-				Instantiate (makeItem [0], matSize, transform.rotation);
-				Test = false;
+		if (Test)
+		{
+			matSize = new Vector3 (mat.transform.localPosition.x - 5, 
+				mat.transform.localPosition.y,
+				mat.transform.localPosition.z);
 
-			}
-			else
-			{
-				matSize = new Vector3 (mat.transform.localPosition.x +5, 
-					mat.transform.localPosition.y,
-					mat.transform.localPosition.z);
+			Instantiate (makeItem [0], matSize, transform.rotation);
+			Test = false;
 
-				Instantiate (makeItem [0], matSize, transform.rotation);
-			}
+		}
+		else
+		{
+			matSize = new Vector3 (mat.transform.localPosition.x + 5, 
+				mat.transform.localPosition.y,
+				mat.transform.localPosition.z);
+
+			Instantiate (makeItem [0], matSize, transform.rotation);
+		}
+
 	}
+
 }

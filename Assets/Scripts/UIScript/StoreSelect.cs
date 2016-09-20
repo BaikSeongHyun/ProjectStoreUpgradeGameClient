@@ -12,8 +12,9 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 
 	[SerializeField] GameObject selectStore;
 	[SerializeField] GameObject selectUI;
-	public UIManager mainUI;
+	public UIManager CreateOrSelect;
 	int changename = 0;
+	[SerializeField] UserInterfaceController UIController;
 
 	public GameObject[] selectStoreLine = new GameObject[3];
 	public Image[] selectStoreChange = new Image[3];
@@ -21,7 +22,7 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 	// Use this for initialization
 	void Start ()
 	{
-		mainUI = GameObject.FindGameObjectWithTag ("MainUI").GetComponent<UIManager> ();
+		CreateOrSelect = GameObject.FindGameObjectWithTag ("CreateOrSelect").GetComponent<UIManager> ();
 		selectUI = this.gameObject;
 		selectStoreLine [0] =GameObject.Find ("FirstStore");
 		selectStoreChange[0] = transform.Find("FirstStore").GetComponent<Image> ();
@@ -32,8 +33,7 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 		selectStoreLine [2] =GameObject.Find ("ThirdStore");
 		selectStoreChange[2] = transform.Find("ThirdStore").GetComponent<Image> ();
 
-
-
+		UIController = GameObject.Find ("UIManager").GetComponent<UserInterfaceController> ();
 	}
 
 	public void OnPointerDown (PointerEventData eventData)
@@ -79,6 +79,8 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 	public void StartGame()
 	{
 		selectUI.SetActive (false);
+		UIController.MakeGameStep (UserInterfaceController.Step.Third);
+		Destroy (GameObject.Find("CreateOrSelect"),0.5f);
 		//store infomation push
 	}
 	public void StartCreateStore()

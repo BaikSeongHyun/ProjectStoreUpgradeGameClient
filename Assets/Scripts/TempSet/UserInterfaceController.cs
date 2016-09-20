@@ -16,7 +16,9 @@ public class UserInterfaceController : MonoBehaviour
 	public enum Step : int
 	{
 		First = 1,
-		Second = 2}
+		Second = 2,
+		Third = 3
+	}
 ;
 
 	public void MakeSelectUI()
@@ -32,12 +34,18 @@ public class UserInterfaceController : MonoBehaviour
 		switch ( presentStep )
 		{
 			case Step.First:
-				stepUIObject = (GameObject) Instantiate( Resources.Load<GameObject>( "UIObject/MainUI" ), transform.position, transform.rotation );
+			stepUIObject = (GameObject) Instantiate( Resources.Load<GameObject>( "UIObject/CreateOrSelect" ), transform.position, transform.rotation );
+
 				break;
 
 			case Step.Second:
 				stepUIObject = (GameObject) Instantiate( Resources.Load<GameObject>( "UIObject/GameViewFirstStep" ), transform.position, transform.rotation );
 				break;
+		
+			case Step.Third:
+
+			stepUIObject = (GameObject)Instantiate (Resources.Load<GameObject> ("UIObject/SecondStepUI"), transform.position, transform.rotation);
+			break;
 		}
 	}
 
