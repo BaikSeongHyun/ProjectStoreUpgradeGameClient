@@ -58,7 +58,7 @@ public class ProducedItem : MonoBehaviour,IPointerDownHandler {
 
 
 	public void OnPointerDown(PointerEventData eventdata){
-		selectItem.SellSelectItem (eventdata);
+		//selectItem.SellSelectItem (eventdata);
 
 		//Debug.Log("a"); clear;
 

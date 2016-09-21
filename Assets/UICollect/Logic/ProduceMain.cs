@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class ProduceMain : MonoBehaviour
-{
-
+{	
 	//this class control;
 	[SerializeField] ProduceItemList produceItemList;
 	[SerializeField] RecipeItemSet recipeItemList;
@@ -21,14 +19,30 @@ public class ProduceMain : MonoBehaviour
 	}
 
 
-	//selectItem need Method;
-	public void ProduceSelectItem()
+	//Mothod tree : produceItemButtonClick-> Renewadditem
+	public void ProduceItemButtonClick()
 	{
-		//iteminfomationgetting from ProduceAbleItem;
-		//selectItem = eventdata.pointerCurrentRaycast.gameObject.GetComponent<Item> ();
-		Debug.Log( "this infomation get from ProduceAbleItem and send to Itemview" );
-		recipeItemList.SendItemViewItemUpdate( selectItem );
+		Player playerData;
+		playerData = GameObject.Find ("GameManager").GetComponent<GameManager> ().PlayerData;
+		RenewAddItem(playerData, selectItem);
 	}
+	public void RenewAddItem(Player playerData, Item item)
+	{
+		playerData.AddItem (item);
+	}
+
+
+
+
+	//produceableitemMatiral -> button ->DisplayItem.clickdisplayitemselect
+	public void ProduceItemListClick(string itemName)
+	{
+		//아이템 선택해서 이름추출후 아이템정보에서 검색해 셀렉해야함???;;
+
+		//selectItem.Name = itemName;
+	}
+
+
 
 	public Item GetProduceSelectItem()
 	{

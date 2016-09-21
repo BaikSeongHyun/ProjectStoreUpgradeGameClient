@@ -39,7 +39,7 @@ public class SellButton : MonoBehaviour,IPointerDownHandler
 			if (eventdate.pointerCurrentRaycast.gameObject.name == "SellButton") {
 				//sellItem;
 
-				sell.SellItem (eventdate);
+				//sell.SellItem (eventdate);
 				//selltest;
 				Debug.Log("click");
 			}

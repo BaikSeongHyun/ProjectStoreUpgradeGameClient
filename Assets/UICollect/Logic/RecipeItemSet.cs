@@ -8,33 +8,30 @@ public class RecipeItemSet: MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
 {
 	[SerializeField] ItemView itemView;
 
-	public RecipeDisplayItem[] recipeItem;
+	[SerializeField] RecipeDisplayItem[] recipeItem;
 
-	public Text[] recipeItemCount;
-	public Image[] recipeItemImage;
-
-
+//	public Text[] recipeItemCount;
+//	public Image[] recipeItemImage;
 
 
 	private GameObject[] recipeItemCountObject;
 
+
+
+
+
 	public void LinkComponentElement()
 	{
-		recipeItemCount = new Text[5];
-		recipeItemImage = new Image[5];
+		recipeItem = GetComponentsInChildren<RecipeDisplayItem>();
+
 
 		recipeItemCountObject = new GameObject[5];
 
-//		for (int count = 0; count < needItemCount.Length; count++) {
-//			string name = "NeedItemCount"+ (count+1).ToString();
-//			needItemCount [count] = GameObject.Find (name).GetComponent<Text> ();
-//			//needItemImage [count] = GameObject.Find ()
-//			needItemCountObject [count] = GameObject.Find (name);
-//		}
-//
 		itemView.LinkComponentElement();
 
 	}
+
+
 
 	public void OnPointerDown( PointerEventData eventDate )
 	{

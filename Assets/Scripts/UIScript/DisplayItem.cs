@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections;
 
 public class DisplayItem : MonoBehaviour
@@ -26,5 +27,25 @@ public class DisplayItem : MonoBehaviour
 			selectedImage.sprite = Resources.Load<Sprite>( "UIGameViewFirstStep/SelectedItemName" );
 		else
 			selectedImage.sprite = Resources.Load<Sprite>( "UIGameViewFirstStep/UnselectedItemName" );
+	}
+
+	public bool Isselected
+	{
+		get{ return isSelected;}
+		set{isSelected = value;}
+	}
+
+	public Text Itemtext
+	{
+		get { return itemText;}
+	}
+
+	public void ClickDisPlayItemSelect()
+	{
+		ProduceMain produceMain = gameObject.GetComponentInParent<ProduceMain>();
+		produceMain.ProduceItemListClick (itemText.text);
+		Debug.Log (itemText.text);
+
+
 	}
 }

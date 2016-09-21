@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System;
 
-public class ProduceItemList : MonoBehaviour, IPointerDownHandler
+public class ProduceItemList : MonoBehaviour
 {
 
 	[SerializeField]DisplayItem[] produceItemList;
@@ -14,25 +14,17 @@ public class ProduceItemList : MonoBehaviour, IPointerDownHandler
 		produceItemList = GetComponentsInChildren<DisplayItem>();
 	}
 
-	void ShowView()
-	{
-//MakingItemName1.text = Database.Instance.FindItemUseID (0001).Name;
-	}
+	public void SelectItemFind(int i){
+		
+		//produceItemList [i].Itemtext;
 
-
-
-	// Use this for initialization
-	void Start()
-	{
-		//MakingItemName1.text = Database.Instance.FindItemUseID (0001);
-		//itemName = GetComponent<Text> ();
 
 	}
 
 
-	public void OnPointerDown( PointerEventData eventdata )
-	{
-
+//	public void OnPointerDown( PointerEventData eventdata )
+//	{
+		
 		//selectItem.ProduceSelectItem (eventdata);
 			
 
@@ -59,7 +51,7 @@ public class ProduceItemList : MonoBehaviour, IPointerDownHandler
 
 //		if (eventdate.pointerCurrentRaycast.gameObject == produceAbleItemNameObject) {
 			
-	}
+//	}
 
 			
 

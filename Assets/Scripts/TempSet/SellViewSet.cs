@@ -7,21 +7,21 @@ public class SellViewSet : MonoBehaviour, IPointerDownHandler
 {
 
 	[SerializeField]ProducedItem producedItem;
-	[SerializeField]SellButton sellButton;
 	[SerializeField]Item selectItem;
 
 	public Item GetSellSelectItem(){
 		return selectItem;
 	}
 
-	public void SellSelectItem(PointerEventData eventdata){
+	public void SellSelectItem(){
 		//iteminfomationgetting from ProducedItem;
 		//selectItem = eventdata.pointerCurrentRaycast.gameObject.GetComponent<Item> ();
 		Debug.Log ("this infomation get from ProduceAbleItem and send to Itemview");
-		sellButton.SellSelctItemGet(selectItem);
+		//sellButton.SellSelctItemGet(selectItem);
 	}
 
-	public void SellItem(PointerEventData PointerEventData)
+	//sellbuttonobject -> button -> 
+	public void SellButtonClick()
 	{
 		Debug.Log ("this infomation get from sellbutton and send to ASD");
 	}
@@ -30,7 +30,7 @@ public class SellViewSet : MonoBehaviour, IPointerDownHandler
 	public void LinkComponentElement()
 	{
 		producedItem.LinkComponentElement ();
-		sellButton.LinkComponentElement ();
+		//sellButton.LinkComponentElement ();
 	}
 
 	// update component element
