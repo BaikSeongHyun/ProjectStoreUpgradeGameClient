@@ -89,17 +89,24 @@ public class GameController : MonoBehaviour
 	{
 		Vector3 destination;
 		destination = hitPoint.point;
-		Vector3 matSize;
+
 		//summonposition chec
 		//popup itemprice
 
+		SummonItem ();
+
+	}
+
+	public void SummonItem()
+	{
+		Vector3 matSize;
 		if (Test)
 		{
 			matSize = new Vector3 (mat.transform.localPosition.x - 5, 
 				mat.transform.localPosition.y,
 				mat.transform.localPosition.z);
 
-			Instantiate (makeItem [0], matSize, transform.rotation);
+
 			Test = false;
 
 		}
@@ -109,9 +116,10 @@ public class GameController : MonoBehaviour
 				mat.transform.localPosition.y,
 				mat.transform.localPosition.z);
 
-			Instantiate (makeItem [0], matSize, transform.rotation);
-		}
 
+		}
+		Instantiate (makeItem [0], matSize, transform.rotation);
+		secondStepUI.ItemSettingExit ();
 	}
 
 }

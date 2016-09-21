@@ -84,6 +84,8 @@ public class CustomerAI : MonoBehaviour
 		}
 
 		AIMoveNav.SetDestination (goAwayVector);
+
+		Destroy (this.gameObject, 10.0f);
 	}
 
 	// Update is called once per frame

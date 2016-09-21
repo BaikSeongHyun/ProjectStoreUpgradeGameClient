@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Text;
+using UnityEngine.UI;
 
 public class SecondStepUI : MonoBehaviour
 {
@@ -14,7 +14,9 @@ public class SecondStepUI : MonoBehaviour
 
 	public ElfCharacter elf;
 
-	public GUIText text;
+	public Text moneyText;
+
+	public int sellPrice = 0;
 
 	// Use this for initialization
 	public enum SecondStepMode
@@ -45,6 +47,7 @@ public class SecondStepUI : MonoBehaviour
 		//auctionUI = GameObject.Find ("PopUpSellItem");
 		auctionUI.SetActive (false);
 		itemSetting.SetActive (false);
+		moneyText = transform.Find ("ItemSetting").Find ("PriceText").GetComponent<Text> ();
 
 	}
 
@@ -94,14 +97,26 @@ public class SecondStepUI : MonoBehaviour
 
 	public void ItemPricePlus()
 	{
-
+		sellPrice += 100;
+		moneyText.text =  sellPrice+ "원";
 	}
 
 	public void ItemPriceMinus()
 	{
-
+		if (sellPrice <= 0)
+		{
+			sellPrice = 0;
+		}
+		else
+		{
+			sellPrice -= 100;
+		}
+		moneyText.text = sellPrice + "원";
 	}
-
+	public void ItemSettingExit()
+	{
+		itemSetting.SetActive (false);
+	}
 
 //	public void CashModeOn()
 //	{
