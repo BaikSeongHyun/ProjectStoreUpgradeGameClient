@@ -9,6 +9,7 @@ public class DisplayItem : MonoBehaviour
 	[SerializeField] protected Image itemImage;
 	[SerializeField] protected Image selectedImage;
 	[SerializeField] protected bool isSelected;
+	[SerializeField] protected Item thisItem;
 
 	public void LinkComponentElement()
 	{
@@ -20,6 +21,7 @@ public class DisplayItem : MonoBehaviour
 
 	public void UpdateComponentElement( Item data )
 	{
+		thisItem = data;
 		itemText.text = data.Name;
 		itemImage.sprite = Resources.Load<Sprite>( "ItemIcon/" + data.Name );
 
@@ -29,23 +31,29 @@ public class DisplayItem : MonoBehaviour
 			selectedImage.sprite = Resources.Load<Sprite>( "UIGameViewFirstStep/UnselectedItemName" );
 	}
 
-	public bool Isselected
-	{
-		get{ return isSelected;}
-		set{isSelected = value;}
-	}
-
 	public Text Itemtext
 	{
 		get { return itemText;}
 	}
 
+	public bool IsSelected
+	{
+		get { return isSelected;}
+		set { isSelected = value;}
+	}
+
+	public Item ThisItem
+	{
+		get{ return thisItem;}
+	}
+
+	//click Button, this method play a part produceMain method coll;
 	public void ClickDisPlayItemSelect()
 	{
 		ProduceMain produceMain = gameObject.GetComponentInParent<ProduceMain>();
-		produceMain.ProduceItemListClick (itemText.text);
-		Debug.Log (itemText.text);
-
-
+		produceMain.ProduceItemListClick (thisItem);
 	}
+
+
+
 }

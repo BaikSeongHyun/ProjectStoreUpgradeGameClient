@@ -19,29 +19,45 @@ public class ProduceMain : MonoBehaviour
 	}
 
 
-	//Mothod tree : produceItemButtonClick-> Renewadditem
+	//Mothod tree : produceButtonObject -> Buttonevent ->produceItemButtonClick-> Renewadditem
 	public void ProduceItemButtonClick()
 	{
 		Player playerData;
 		playerData = GameObject.Find ("GameManager").GetComponent<GameManager> ().PlayerData;
 		RenewAddItem(playerData, selectItem);
 	}
+	//Mothod tree : produceButtonObject -> Buttonevent ->produceItemButtonClick-> Renewadditem
 	public void RenewAddItem(Player playerData, Item item)
 	{
+		//middleprocess need;
 		playerData.AddItem (item);
 	}
 
+	public void ProduceProcess( Player data )
+	{
+		
+//				if( produceItem != null )
+//				{
+//					produceTime += Time.deltaTime;
+//					stateGauge.fillAmount = produceTime / produceItem.MakeTime;
+//		
+//					if( produceTime >= produceItem.MakeTime )
+//					{
+//						data.AddItem( produceItem );
+//						produceItem = null;
+//					}
+//				}
+	}
 
 
 
 	//produceableitemMatiral -> button ->DisplayItem.clickdisplayitemselect
-	public void ProduceItemListClick(string itemName)
+	public void ProduceItemListClick(Item selectedData)
 	{
-		//아이템 선택해서 이름추출후 아이템정보에서 검색해 셀렉해야함???;;
-
-		//selectItem.Name = itemName;
+		selectItem = selectedData;
+		produceItemList.ProduceItemFindClick (selectedData);
+		recipeItemList.SendItemViewItemUpdate (selectedData);
 	}
-
 
 
 	public Item GetProduceSelectItem()
@@ -52,7 +68,7 @@ public class ProduceMain : MonoBehaviour
 
 	public void ProduceAbleItemListSend( Store data )
 	{
-		
+			
 	}
 
 	// update component element
@@ -73,21 +89,7 @@ public class ProduceMain : MonoBehaviour
 	}
 
 
-	public void ProduceProcess( Player data )
-	{
-		
-//		if( produceItem != null )
-//		{
-//			produceTime += Time.deltaTime;
-//			stateGauge.fillAmount = produceTime / produceItem.MakeTime;
-//
-//			if( produceTime >= produceItem.MakeTime )
-//			{
-//				data.AddItem( produceItem );
-//				produceItem = null;
-//			}
-//		}
-	}
+
 
 
 
