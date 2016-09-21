@@ -15,6 +15,4 @@ public class RecipeDisplayItem : DisplayItem
 		itemText.text = result + " / " + count.ToString();
 		itemImage.sprite = Resources.Load<Sprite>( "ItemIcon/" + itemData.Name );		                                   
 	}
-
-
 }

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class StoreCreate : MonoBehaviour
 {
-	public UIManager mainUI;
+	public UIManager CreateOrSelect;
 	public StoreSelect storeSelectArray;
 	public Player player;
 
@@ -46,7 +46,7 @@ public class StoreCreate : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		mainUI = GameObject.FindGameObjectWithTag ("MainUI").GetComponent<UIManager> ();
+		CreateOrSelect = GameObject.FindGameObjectWithTag ("CreateOrSelect").GetComponent<UIManager> ();
 
 		bakery = GameObject.Find ("BakeryCreate");
 		bakeryCheck = transform.Find ("BakeryCreate").Find ("BakeryCheck").GetComponent<Image> ();
@@ -80,7 +80,8 @@ public class StoreCreate : MonoBehaviour
 		
 	public void OnCreateStore()
 	{
-		mainUI.ChangeUIMode (UIManager.Mode.CreateStore);
+		CreateOrSelect.storeCreate.SetActive (true);
+		CreateOrSelect.ChangeUIMode (UIManager.Mode.CreateStore);
 	}
 
 	public void AllBlinkStore()
@@ -155,43 +156,34 @@ public class StoreCreate : MonoBehaviour
 			CreateCafeCheck (true);
 			storeCreateStart = name;
 			break;
-			
-
 		}
 	}
-		
 	public void BackSelectStore()
 	{
-		mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
+		CreateOrSelect.ChangeUIMode (UIManager.Mode.SelectStore);
 	}
 	//switch
 	public void SelectStoreCreateEvent()
 	{
 		if (storeCreateStart == "Bakery")
 		{
-			Debug.Log ("i`m bakery");
 			storeSelectArray.CreateStore (storeCreateStart);
-			mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
-
+			CreateOrSelect.ChangeUIMode (UIManager.Mode.SelectStore);
 		}
 		else if (storeCreateStart == "Bar")
 		{
-			Debug.Log ("i`m bar");
 			storeSelectArray.CreateStore (storeCreateStart);
-			mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
+			CreateOrSelect.ChangeUIMode (UIManager.Mode.SelectStore);
 		}
 		else if (storeCreateStart == "FastFood")
 		{
-			Debug.Log ("FastFood");
 			storeSelectArray.CreateStore (storeCreateStart);
-			mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
-		
+			CreateOrSelect.ChangeUIMode (UIManager.Mode.SelectStore);
 		}
 		else if (storeCreateStart == "Cafe")
 		{
-			Debug.Log ("Cafe");
 			storeSelectArray.CreateStore (storeCreateStart);
-			mainUI.ChangeUIMode (UIManager.Mode.SelectStore);
+			CreateOrSelect.ChangeUIMode (UIManager.Mode.SelectStore);
 		}
 	}
 

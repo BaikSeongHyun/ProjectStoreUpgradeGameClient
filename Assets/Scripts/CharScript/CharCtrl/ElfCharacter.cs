@@ -12,6 +12,7 @@ public class ElfCharacter : MonoBehaviour
 	[SerializeField] public bool makeTime;
 	[SerializeField] public bool isStopMat = false;
 	[SerializeField] public int Lv;
+	[SerializeField] SecondStepUI auction;
 
 	public enum ElfPatternName
 	{
@@ -27,12 +28,15 @@ public class ElfCharacter : MonoBehaviour
 	}
 
 
+
+
 	// Use this for initialization
 	void Start () 
 	{
 		destination = transform.position;
 		elfAnimator = GetComponent<Animator> ();
 		moveAgent = GetComponent<NavMeshAgent> ();
+//		auction = GameObject.Find ("SecondStepUI").GetComponent<SecondStepUI> ();
 	}
 	void PetActiveFalse()
 	{
@@ -112,6 +116,7 @@ public class ElfCharacter : MonoBehaviour
 		if(state)
 		{
 			makeTime = true;
+
 		}
 		else
 		{
@@ -119,7 +124,17 @@ public class ElfCharacter : MonoBehaviour
 		}
 		
 	}
-
-
-
+//	public void OnTriggerEnter(Collider coll)
+//	{
+//		if (coll.gameObject.layer == LayerMask.NameToLayer("SellPos"))
+//		{
+//			Debug.Log ("T");
+//		}
+//
+//	}
+//
+//	void OnTriggerExit()
+//	{
+//		Debug.Log ("False");
+//	}
 }

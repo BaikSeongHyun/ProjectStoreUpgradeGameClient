@@ -40,15 +40,15 @@ public class UIManager : MonoBehaviour
 	{
 		switch (UIMode)
 		{
-		case Mode.CreateStore:
-			presentMode = Mode.CreateStore;
-			InitializeModeCreateStore ();
-			break;
+			case Mode.CreateStore:
+				presentMode = Mode.CreateStore;
+				InitializeModeCreateStore ();
+				break;
 
-		case Mode.SelectStore:
-			presentMode = Mode.SelectStore;
-			InitializeModeSelectStore ();
-			break;		
+			case Mode.SelectStore:
+				presentMode = Mode.SelectStore;
+				InitializeModeSelectStore ();
+				break;		
 		}
 	}
 
@@ -56,11 +56,20 @@ public class UIManager : MonoBehaviour
 	{
 		storeSelect.SetActive (false);
 		storeCreate.SetActive (true);
+
 	}
 	public void InitializeModeSelectStore()
 	{
 		storeSelect.SetActive (true);		
 		storeCreate.SetActive (false);
+		//Destroy (GameObject.Find("CreateOrSelect"),0.1f);
+	}
+
+	void Start ()
+	{
+		LinkElement ();
+		storeCreate.SetActive (false);
+
 	}
 
 }
