@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class ProduceMain : MonoBehaviour
-{
-
+{	
 	//this class control;
 	[SerializeField] ProduceItemList produceItemList;
 	[SerializeField] RecipeItemSet recipeItemList;
@@ -21,14 +19,46 @@ public class ProduceMain : MonoBehaviour
 	}
 
 
-	//selectItem need Method;
-	public void ProduceSelectItem()
+	//Mothod tree : produceButtonObject -> Buttonevent ->produceItemButtonClick-> Renewadditem
+	public void ProduceItemButtonClick()
 	{
-		//iteminfomationgetting from ProduceAbleItem;
-		//selectItem = eventdata.pointerCurrentRaycast.gameObject.GetComponent<Item> ();
-		Debug.Log( "this infomation get from ProduceAbleItem and send to Itemview" );
-		recipeItemList.SendItemViewItemUpdate( selectItem );
+		Player playerData;
+		playerData = GameObject.Find ("GameManager").GetComponent<GameManager> ().PlayerData;
+		RenewAddItem(playerData, selectItem);
 	}
+	//Mothod tree : produceButtonObject -> Buttonevent ->produceItemButtonClick-> Renewadditem
+	public void RenewAddItem(Player playerData, Item item)
+	{
+		//middleprocess need;
+		playerData.AddItem (item);
+	}
+
+	public void ProduceProcess( Player data )
+	{
+		
+//				if( produceItem != null )
+//				{
+//					produceTime += Time.deltaTime;
+//					stateGauge.fillAmount = produceTime / produceItem.MakeTime;
+//		
+//					if( produceTime >= produceItem.MakeTime )
+//					{
+//						data.AddItem( produceItem );
+//						produceItem = null;
+//					}
+//				}
+	}
+
+
+
+	//produceableitemMatiral -> button ->DisplayItem.clickdisplayitemselect
+	public void ProduceItemListClick(Item selectedData)
+	{
+		selectItem = selectedData;
+		produceItemList.ProduceItemFindClick (selectedData);
+		recipeItemList.SendItemViewItemUpdate (selectedData);
+	}
+
 
 	public Item GetProduceSelectItem()
 	{
@@ -38,7 +68,7 @@ public class ProduceMain : MonoBehaviour
 
 	public void ProduceAbleItemListSend( Store data )
 	{
-		
+			
 	}
 
 	// update component element
@@ -59,21 +89,7 @@ public class ProduceMain : MonoBehaviour
 	}
 
 
-	public void ProduceProcess( Player data )
-	{
-		
-//		if( produceItem != null )
-//		{
-//			produceTime += Time.deltaTime;
-//			stateGauge.fillAmount = produceTime / produceItem.MakeTime;
-//
-//			if( produceTime >= produceItem.MakeTime )
-//			{
-//				data.AddItem( produceItem );
-//				produceItem = null;
-//			}
-//		}
-	}
+
 
 
 

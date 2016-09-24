@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using System.Collections;
 
 public class ItemView : MonoBehaviour {
-	[SerializeField]Item SelectItem;
+	//[SerializeField]Item selectItem;
 
 	[SerializeField]Text itemName;
 	[SerializeField]Image itemImage;
@@ -14,9 +13,8 @@ public class ItemView : MonoBehaviour {
 
 	public void LinkComponentElement()
 	{
-//		itemName = GetComponent<Text> ();
-//		itemImage = transform.Find ("ItemImage").GetComponent<Image> ();
-
+		itemName = GetComponentInChildren<Text> ();
+		itemImage = transform.Find ("SelectItemImage").GetComponent<Image> ();
 		//SelectItem = GameObject.Find ("Produce").GetComponent<ProduceViewSet> ().GetProduceSelectItem ();
 	}
 
@@ -25,6 +23,9 @@ public class ItemView : MonoBehaviour {
 		itemName.text = selectedData.Name;
 		//path ItemImage/Wheat
 		itemImage.sprite = Resources.Load<Sprite> ("ItemImage/" + selectedData.Name);
+
+		Debug.Log( "this infomation get form ProduceItemListClick -> produceViewSet and Send to Itemview -> ItemView Update" );
+
 	}
 
 

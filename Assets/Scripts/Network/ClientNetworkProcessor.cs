@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Net;
 using System.Net.Sockets;
 
+[System.Serializable]
 public class ClientNetworkProcessor
 {
 	class AsyncData
@@ -20,10 +21,10 @@ public class ClientNetworkProcessor
 
 	public event OnReceiveEvent OnReceived;
 
-	Socket myClientSocket;
+	[SerializeField] Socket myClientSocket;
 	AsyncCallback receiveAsyncCallback;
-	string serverIP;
-	int serverPort;
+	[SerializeField] string serverIP;
+	[SerializeField] int serverPort;
 
 	public Socket ClientSocket { get { return myClientSocket; } }
 
