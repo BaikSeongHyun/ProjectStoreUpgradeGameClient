@@ -8,7 +8,7 @@ public class SecondStepUI : MonoBehaviour
 	public GameObject recipeInventory;
 	public bool inventoryButton = false;
 	public bool needItemButton = false;
-	public GameObject needItem;
+
 	public GameObject auctionUI;
 	public GameObject itemSetting;
 
@@ -39,14 +39,16 @@ public class SecondStepUI : MonoBehaviour
 
 	void LinkElement()
 	{
+		
 		recipeInventory = GameObject.Find ("RecipeUI");
 		recipeInventory.SetActive (inventoryButton);
-		//needItem = GameObject.Find ("NeedItem");
-		needItem.SetActive (false);
 		elf = GameObject.Find ("PlayerElf").GetComponent<ElfCharacter> ();
-		//auctionUI = GameObject.Find ("PopUpSellItem");
+		auctionUI = GameObject.Find ("PopUpSellItem");
+		itemSetting = GameObject.Find ("ItemSetting");
 		auctionUI.SetActive (false);
 		itemSetting.SetActive (false);
+
+
 		moneyText = transform.Find ("ItemSetting").Find ("PriceText").GetComponent<Text> ();
 
 	}
@@ -66,8 +68,6 @@ public class SecondStepUI : MonoBehaviour
 	}
 	public void InitializeModeAuctionStep()
 	{
-		needItemButton = true;
-
 		//CashModeOn ();
 		auctionUI.SetActive (true);
 	}

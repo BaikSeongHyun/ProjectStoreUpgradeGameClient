@@ -20,9 +20,10 @@ public class GameController : MonoBehaviour
 //	[SerializeField] ItemViewLogic[] soldItem;
 	[SerializeField] UIManager CreateOrSelect;
 	[SerializeField] SecondStepUI secondStepUI;
+	[SerializeField] int layer;
+	[SerializeField] HouseManager house;
 
 	// Use this for initializationpublic 
-
 	void Start ()
 	{
 		Application.targetFrameRate = 80;
@@ -31,27 +32,27 @@ public class GameController : MonoBehaviour
 		mat = GameObject.FindGameObjectWithTag ("Mat");
 		secondStepUI = GameObject.Find ("SecondStepUI").GetComponent<SecondStepUI> ();
 		secondStepUI.ChangeSecondUIMode (SecondStepUI.SecondStepMode.NormalStep);
-
+//		house = GameObject.Find("House").GetComponent<HouseManager> ();
 	}
 	// Update is called once per frame
 	void Update ()
 	{
-
 		if (!EventSystem.current.IsPointerOverGameObject ())
 		{
 			if (Input.GetButtonDown("Move"))
 			{
 				point = Camera.main.ScreenPointToRay (Input.mousePosition);
+				layer = 1 << LayerMask.NameToLayer ("Terrain");
+				layer |= 1 << LayerMask.NameToLayer ("Mat");
 
-				if (Physics.Raycast (point, out hitPoint, Mathf.Infinity))//terrain 이외 다른 걸 무시, 없으면 얘 무시
+				if (Physics.Raycast (point, out hitPoint, Mathf.Infinity,layer ))//terrain 이외 다른 걸 무시, 없으면 얘 무시
 				{            
 					if (hitPoint.transform.tag == "Terrain")
 					{   
 						InTerrainRay ();
 						secondStepUI.ChangeSecondUIMode (SecondStepUI.SecondStepMode.NormalStep);
-
 					}
-					else if (hitPoint.transform.tag == "Mat" && !matHit)
+					else if (hitPoint.transform.tag == "Mat" && !matHit )
 					{
 						InsertMatRay ();
 						secondStepUI.ChangeSecondUIMode (SecondStepUI.SecondStepMode.AuctionStep);
@@ -60,23 +61,19 @@ public class GameController : MonoBehaviour
 					else if (hitPoint.transform.tag == "Mat" && elf.makeTime && matHit)
 					{
 						MakeItemRay ();
-					
 					}
 				}
 			}
 		}
-
 	}
-
-
 	public void InTerrainRay()
 	{
 		elf.Destination = hitPoint.point;
+		Debug.Log (elf.Destination);
 		elf.isStopMat = false;
 		matHit = false;
 		elf.MakeTime(false);
 	}
-
 	public void InsertMatRay()
 	{
 		matHit = true;
@@ -89,14 +86,10 @@ public class GameController : MonoBehaviour
 	{
 		Vector3 destination;
 		destination = hitPoint.point;
-
 		//summonposition chec
 		//popup itemprice
-
 		SummonItem ();
-
 	}
-
 	public void SummonItem()
 	{
 		Vector3 matSize;
@@ -105,18 +98,13 @@ public class GameController : MonoBehaviour
 			matSize = new Vector3 (mat.transform.localPosition.x - 5, 
 				mat.transform.localPosition.y,
 				mat.transform.localPosition.z);
-
-
 			Test = false;
-
 		}
 		else
 		{
 			matSize = new Vector3 (mat.transform.localPosition.x + 5, 
 				mat.transform.localPosition.y,
 				mat.transform.localPosition.z);
-
-
 		}
 		Instantiate (makeItem [0], matSize, transform.rotation);
 		secondStepUI.ItemSettingExit ();
