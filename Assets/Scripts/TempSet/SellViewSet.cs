@@ -20,6 +20,7 @@ public class SellViewSet : MonoBehaviour, IPointerDownHandler
 	public void SellSelectedItem(Item selectedData)
 	{
 		selectItem = selectedData;
+		producedItem.LinkComponentElement ();
 		Debug.Log ("this infomation get from PlayerDisplayItem");
 	}
 

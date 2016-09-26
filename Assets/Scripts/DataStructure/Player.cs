@@ -50,6 +50,17 @@ public class Player
 		return false;
 	}
 
+//	public bool SubtrackItem(Item data){
+//		for (int i = 0; i < haveItem.Length; i++) {
+//			if (haveItem [i] == data) {
+//				haveItem [i].Count -= 1;
+//				if (haveItem [i].Count == 0) {
+//				
+//				}
+//			}
+//		}
+//	}
+
 
 
 }
