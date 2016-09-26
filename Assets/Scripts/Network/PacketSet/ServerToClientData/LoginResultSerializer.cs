@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public class LoginResultSerializer : Serializer
 {
@@ -26,25 +27,25 @@ public class LoginResultSerializer : Serializer
 	{
 		// set deserialize data
 		bool result = ( GetDataSize() > 0 ) ? true : false;
-
-		// data read failure -> method exit
+		
+        // data read failure -> method exit
 		if( !result )
 			return false;
-
-		// return data initialize 
-		bool loginResult = false;
-		string message ;
+        
+        // return data initialize 
+        bool loginResult = false;
+		string message;
 
 		// data deserizlize
 		result &= Deserialize( ref loginResult );
 		result &= Deserialize( out message, (int) GetDataSize() );
-
-		// input data
-		data.loginResult = loginResult;
+        
+        // input data
+        data.loginResult = loginResult;
 		data.message = message;
 
-		// return result
-		return result;			
+        // return result
+        return result;			
 	}
 }
 

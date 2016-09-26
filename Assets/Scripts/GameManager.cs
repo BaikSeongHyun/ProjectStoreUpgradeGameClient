@@ -36,8 +36,8 @@ public class GameManager : MonoBehaviour
 	// update
 	void Update()
 	{
-		if( presentStore != null )
-			mainUI.UIUpdate( playerData, presentStore );
+//		if( presentStore != null )
+//			mainUI.UIUpdate( playerData, presentStore );
 	}
 
 
@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
 	// send game data request
 	public void SendGameDataRequest()
 	{
+		Debug.Log( "GameLoading start" );
 		//StartCoroutine( GameLoading() );
 	}
 
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour
 	// receive login result
 	public void ReceiveLoginResult( byte[] data )
 	{
+        Debug.Log(data.Length);
 		// receive packet serialize
 		LoginResultPacket receivePacket = new LoginResultPacket( data );
 		LoginResultData loginResultData = receivePacket.GetData();
