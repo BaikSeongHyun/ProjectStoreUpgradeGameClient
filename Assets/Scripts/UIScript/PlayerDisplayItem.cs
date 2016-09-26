@@ -22,9 +22,7 @@ public class PlayerDisplayItem : MonoBehaviour {
 
 	//!! to be continue;
 	public void UpdateComponentElement(Item playItem){
-		string a = (playItem.Name + " / " + playItem.Count).ToString ();
-
-		//haveItemNameCount = (playItem.Name+" / " + playItem.Count).ToString();
+		haveItemNameCount.text = (playItem.Name+" / " + playItem.Count).ToString();
 	}
 
 	//Sell Button -> SellViewSet-> sellButtonSelected

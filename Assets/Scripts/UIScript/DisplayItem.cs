@@ -8,6 +8,10 @@ public class DisplayItem : MonoBehaviour
 	[SerializeField] protected Text itemText;
 	[SerializeField] protected Image itemImage;
 	[SerializeField] protected bool isSelected;
+
+	[SerializeField] protected Image nameBackGound;
+	[SerializeField] protected Image imageBackGound;
+
 	[SerializeField] protected Item thisItem;
 
 	public void LinkComponentElement()
@@ -15,13 +19,23 @@ public class DisplayItem : MonoBehaviour
 		itemText = GetComponent<Text>();
 		itemImage = GetComponent<Image>();
 		isSelected = false;
+
+		nameBackGound = GetComponent<Image> ();
+		imageBackGound = GetComponent<Image> ();
 	}
 
-	public void UpdateComponentElement( Item data )
+	public void UpdateComponentElement( Item Itemdata )
 	{
-		thisItem = data;
-		itemText.text = data.Name;
-		itemImage.sprite = Resources.Load<Sprite>( "ItemIcon/" + data.Name );		                                   
+		thisItem = Itemdata;
+		itemText.text = Itemdata.Name;
+		itemImage.sprite = Resources.Load<Sprite>( "ItemIcon/" + Itemdata.Name );	
+	}
+
+	public void UpdateComponentElement(Player Playerdata)
+	{
+		//resources background folder 
+		//nameBackGound.sprite = Resources.Load<Sprite>("asdf/" + Plyaerdata.store);
+		//imageBackGound.sprite = Resources.Load<Sprite>("asdf/"+Playerdata.store);
 	}
 
 	public Text Itemtext
