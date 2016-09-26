@@ -4,18 +4,18 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System;
 
-public class ProducedItem : MonoBehaviour,IPointerDownHandler {
+public class ProducedItem : MonoBehaviour{
 
 	//[SerializeField] private Player playerinfo;
 
 
-	[SerializeField] DisplayItem[] producedItemList;
+	[SerializeField] PlayerDisplayItem[] producedItemList;
 	[SerializeField] private Player playerdata;
 
-	public SellViewSet selectItem;//sellectItem coll;
+	public Item selectItem;//sellectItem coll;
 
 	public void PlayerHaveItemUpdata(Player data){
-		producedItemList = new DisplayItem[data.HaveItem.Length];
+		producedItemList = new PlayerDisplayItem[data.HaveItem.Length];
 		for (int i = 0; i < playerdata.HaveItem.Length; i++) {
 			producedItemList [i].LinkComponentElement ();
 			producedItemList [i].UpdateComponentElement (data.HaveItem[i]);
@@ -24,19 +24,12 @@ public class ProducedItem : MonoBehaviour,IPointerDownHandler {
 
 	public void LinkComponentElement()
 	{
-		selectItem = GameObject.Find ("Sell").GetComponent<SellViewSet> ();
-		
-//
-//		for (int count = 0; count < producedItemName.Length; count++) {
-//			string producedItemNameSearch = "ProducedItemName" + ( count + 1 ).ToString();
-//			producedItemName [count] = GameObject.Find (producedItemNameSearch).GetComponent<Text> ();
-//			producedItemNameObject [count] = GameObject.Find (producedItemNameSearch);
-//
-//			string producedItemImageSearch = "ProducedItemImage" + (count + 1).ToString ();
-//			producedItemImage [count] = GameObject.Find (producedItemImageSearch).GetComponent<Image> ();
-//			producedItemImageObject [count] = GameObject.Find (producedItemImageSearch);
-//
+		selectItem = transform.GetComponentInParent<SellViewSet> ().GetSellSelectItem ();
+		//selectItem = GameObject.Find ("Sell").GetComponent<SellViewSet> ();
+
 	}
+
+
 
 		//playerdata = GameObject.Find ("GameManager").GetComponent<GameManager> ().PlayerData;
 
@@ -57,8 +50,8 @@ public class ProducedItem : MonoBehaviour,IPointerDownHandler {
 
 
 
-	public void OnPointerDown(PointerEventData eventdata){
-		selectItem.SellSelectItem (eventdata);
+//	public void OnPointerDown(PointerEventData eventdata){
+		//selectItem.SellSelectItem (eventdata);
 
 		//Debug.Log("a"); clear;
 
@@ -70,6 +63,8 @@ public class ProducedItem : MonoBehaviour,IPointerDownHandler {
 //				selectObject = eventdata.pointerCurrentRaycast.gameObject;
 //
 //			}
+
+
 		}
 
 //	public void OnPointerEnter(PointerEventData eventdata){
@@ -89,4 +84,4 @@ public class ProducedItem : MonoBehaviour,IPointerDownHandler {
 //		Debug.Log ("aa");
 //	}
 
-}
+//}

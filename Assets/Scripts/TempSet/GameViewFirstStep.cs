@@ -17,11 +17,8 @@ public class GameViewFirstStep : MonoBehaviour
 		sellItem.LinkComponentElement ();
 	}
 
-	void Update()
-	{
-//		produceItem.ProduceProcess( manager.PlayerData );
-//		sellItem.SellProcess (manager.PlayerData);
-
+	public void UpdateFirstStepUI(){
+	
 	}
 
 }

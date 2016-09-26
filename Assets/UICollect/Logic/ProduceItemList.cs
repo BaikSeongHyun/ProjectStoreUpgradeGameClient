@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System;
 
-public class ProduceItemList : MonoBehaviour, IPointerDownHandler
+public class ProduceItemList : MonoBehaviour
 {
 
 	[SerializeField]DisplayItem[] produceItemList;
@@ -14,57 +14,19 @@ public class ProduceItemList : MonoBehaviour, IPointerDownHandler
 		produceItemList = GetComponentsInChildren<DisplayItem>();
 	}
 
-	void ShowView()
-	{
-//MakingItemName1.text = Database.Instance.FindItemUseID (0001).Name;
+	//produceableitemMatiral -> button ->DisplayItem.clickdisplayitemselect-> produceitemlist -> findclickitem;
+	//and check isSelected;
+	public void ProduceItemFindClick(Item selectedData){
+		for (int i = 0; i < produceItemList.Length; i++) {
+			if (produceItemList [i].ThisItem == selectedData) {
+				produceItemList [i].IsSelected = true;
+				Debug.Log( "this infomation get form ProduceItemListClick -> ProduceItemList and Send to DisplayItem[i] sellect check;" );
+
+			} else
+				produceItemList [i].IsSelected = false;
+		}
 	}
 
 
-
-	// Use this for initialization
-	void Start()
-	{
-		//MakingItemName1.text = Database.Instance.FindItemUseID (0001);
-		//itemName = GetComponent<Text> ();
-
-	}
-
-
-	public void OnPointerDown( PointerEventData eventdata )
-	{
-
-		//selectItem.ProduceSelectItem (eventdata);
-			
-
-
-
-//		for(int count= 0; count < produceAbleItemName.Length; count++){
-//			string produceAbleItemNameSearch = "ProduceAbleItemName" + (count).ToString(); 
-//
-//		if (eventdata.pointerCurrentRaycast.gameObject.name == name) {
-//				//select iteminfo send to Itemview,  needitem;
-//				itemView.TestCollMe(name,count);
-//
-//				
-//				recipeItemList.TestCollMe (name);
-//
-//					}
-//				}
-//			}
-
-
-//			if (eventdate.pointerCurrentRaycast.gameObject == produceAbleItemNameObject []) {
-				
-//			}
-
-//		if (eventdate.pointerCurrentRaycast.gameObject == produceAbleItemNameObject) {
-			
-	}
-
-			
-
-
-
-
-
+	//eventdate.pointerCurrentRaycast.gameObject
 }
