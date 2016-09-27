@@ -608,7 +608,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectStore: {fileID: 0}
   selectUI: {fileID: 0}
-  mainUI: {fileID: 0}
+  CreateOrSelect: {fileID: 0}
+  UIController: {fileID: 0}
+  selectStoreLine:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  selectStoreChange:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &181325456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,48 +1097,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!1001 &722090074
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 418136, guid: 021f3878558324f4dbce44239bb16fc8, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -1.7571629
-      objectReference: {fileID: 0}
-    - target: {fileID: 418136, guid: 021f3878558324f4dbce44239bb16fc8, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.6998624
-      objectReference: {fileID: 0}
-    - target: {fileID: 418136, guid: 021f3878558324f4dbce44239bb16fc8, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -8.263862
-      objectReference: {fileID: 0}
-    - target: {fileID: 418136, guid: 021f3878558324f4dbce44239bb16fc8, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418136, guid: 021f3878558324f4dbce44239bb16fc8, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418136, guid: 021f3878558324f4dbce44239bb16fc8, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418136, guid: 021f3878558324f4dbce44239bb16fc8, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 418136, guid: 021f3878558324f4dbce44239bb16fc8, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 021f3878558324f4dbce44239bb16fc8, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &754103309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,7 +1245,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5e244926f5ceb438e8c50f5d05a82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainUI: {fileID: 506800968}
+  CreateOrSelect: {fileID: 0}
+  storeSelectArray: {fileID: 0}
+  player:
+    playerID: 
+    password: 
+    money: 0
+    haveStore: []
+    haveItem: []
   bakery: {fileID: 706009042}
   bakeryCheck: {fileID: 1613425437}
   bakeryImage: {fileID: 0}
@@ -1296,6 +1270,7 @@ MonoBehaviour:
   cafeImage: {fileID: 942640556}
   cafeAccount: {fileID: 166152741}
   createStoreButton: {fileID: 9228952}
+  storeCreateStart: 
 --- !u!1 &942640554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,6 +1407,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1246427952}
+--- !u!1001 &1247279336
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 405832, guid: 1582eab80c5b3634d9596815452854d7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.7571629
+      objectReference: {fileID: 0}
+    - target: {fileID: 405832, guid: 1582eab80c5b3634d9596815452854d7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.6998624
+      objectReference: {fileID: 0}
+    - target: {fileID: 405832, guid: 1582eab80c5b3634d9596815452854d7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -8.263862
+      objectReference: {fileID: 0}
+    - target: {fileID: 405832, guid: 1582eab80c5b3634d9596815452854d7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405832, guid: 1582eab80c5b3634d9596815452854d7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405832, guid: 1582eab80c5b3634d9596815452854d7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405832, guid: 1582eab80c5b3634d9596815452854d7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405832, guid: 1582eab80c5b3634d9596815452854d7, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1582eab80c5b3634d9596815452854d7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1267334199
 GameObject:
   m_ObjectHideFlags: 0

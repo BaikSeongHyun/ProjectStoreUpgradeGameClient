@@ -4,7 +4,6 @@ using System.Collections;
 public class ElfCharacter : MonoBehaviour 
 {
 	[SerializeField] Vector3 destination;
-
 	[SerializeField] Animator elfAnimator;
 	[SerializeField] AnimatorStateInfo AniInfo;
 	[SerializeField] GameObject Pet;
@@ -20,16 +19,11 @@ public class ElfCharacter : MonoBehaviour
 		Run,
 		Motion
 	};
-
 	public Vector3 Destination
 	{
 		get{return destination;}
 		set{ destination = value; }
 	}
-
-
-
-
 	// Use this for initialization
 	void Start () 
 	{
@@ -58,15 +52,12 @@ public class ElfCharacter : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-
 		if (!makeTime)
 		{
 			transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
 			AniInfo = this.elfAnimator.GetCurrentAnimatorStateInfo (0);
-
 			if (Vector3.Distance (destination, transform.position) <= 1.1f)
 			{
-
 				elfPattern (ElfPatternName.Idle);
 				moveAgent.ResetPath ();
 				transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
@@ -76,25 +67,19 @@ public class ElfCharacter : MonoBehaviour
 				elfPattern (ElfPatternName.Run);
 				if (AniInfo.IsName ("Run"))
 				{
-					
 					Pet.SetActive (true);
 					moveAgent.SetDestination (Destination);
 					transform.position = new Vector3 (transform.position.x, transform.position.y + 0.55f, transform.position.z);
 				}
-
 			}
 		}
 		else
 		{
 			elfPattern (ElfPatternName.Motion);
 		}
-
-	
 	}
-
 	public void elfPattern(ElfPatternName Status)
 	{
-
 		switch (Status)
 		{
 			case ElfPatternName.Idle:
@@ -109,32 +94,16 @@ public class ElfCharacter : MonoBehaviour
 			elfAnimator.SetInteger ("state",3);
 			break;
 		}
-
 	}
 	public void MakeTime(bool state)
 	{
 		if(state)
 		{
 			makeTime = true;
-
 		}
 		else
 		{
 			makeTime = false;
 		}
-		
 	}
-//	public void OnTriggerEnter(Collider coll)
-//	{
-//		if (coll.gameObject.layer == LayerMask.NameToLayer("SellPos"))
-//		{
-//			Debug.Log ("T");
-//		}
-//
-//	}
-//
-//	void OnTriggerExit()
-//	{
-//		Debug.Log ("False");
-//	}
 }

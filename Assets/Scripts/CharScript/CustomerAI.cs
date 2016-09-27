@@ -26,19 +26,15 @@ public class CustomerAI : MonoBehaviour
 	{
 		Idle = 1,
 		Run,
-		Motion}
-
-	;
-
+		Motion
+	};
 	public enum CustomerStep : int
 	{
 		GoStore = 1,
 		RotatePlayer,
 		WaitingTime,
 		Bargin,
-		GoAway}
-
-	;
+		GoAway};
 	// Use this for initialization
 	void Start ()
 	{
@@ -62,9 +58,7 @@ public class CustomerAI : MonoBehaviour
 		{
 			AIMoveNav.ResetPath ();
 			elfCustomerPattern (ElfCustomerPatternName.Motion);
-
 			transform.LookAt (elfPlayer.transform.position);
-
 
 //			transform.rotation = Quaternion.Lerp (transform.rotation, 
 //			Quaternion.LookRotation (elfPlayer.transform.position - transform.position, Vector3.up), Time.deltaTime * 5.0f);
@@ -84,6 +78,8 @@ public class CustomerAI : MonoBehaviour
 		}
 
 		AIMoveNav.SetDestination (goAwayVector);
+
+		Destroy (this.gameObject, 10.0f);
 	}
 
 	// Update is called once per frame
@@ -105,7 +101,8 @@ public class CustomerAI : MonoBehaviour
 		{
 			wantItem = Items [randomItemNum].gameObject;
 
-		} catch(IndexOutOfRangeException e)
+		} 
+		catch(IndexOutOfRangeException e)
 		{
 
 		}
@@ -218,11 +215,4 @@ public class CustomerAI : MonoBehaviour
 			buyItem = false;
 		}
 	}
-
-	public void BuyItem ()
-	{
-				
-	}
-
-
 }
