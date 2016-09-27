@@ -47,6 +47,17 @@ public class Store
         name = _name;
         type = _type;
     }
+
+	public Store(Store data)
+	{
+		storeID = data.storeID;
+		name = data.name;
+		type = data.type;
+		step = data.step;
+		presentEXP = data.presentEXP;
+		requireEXP = data.requireEXP;
+		createItem = data.createItem;
+	}
 }
 
 

@@ -12,32 +12,29 @@ public class SellViewSet : MonoBehaviour, IPointerDownHandler
 	// link component element
 	public void LinkComponentElement()
 	{
-		producedItem.LinkComponentElement ();
+		producedItem.LinkComponentElement();
 		//sellButton.LinkComponentElement ();
 	}
 
-	//playerDisplayItem -> button -> sellSelectedItem; 
-	public void SellSelectedItem(Item selectedData)
+	//playerDisplayItem -> button -> sellSelectedItem;
+	public void SellSelectedItem( Item selectedData )
 	{
 		selectItem = selectedData;
-		producedItem.LinkComponentElement ();
-		Debug.Log ("this infomation get from PlayerDisplayItem");
+		producedItem.LinkComponentElement();
+		Debug.Log( "this infomation get from PlayerDisplayItem" );
 	}
 
 
-	public Item GetSellSelectItem(){
+	public Item GetSellSelectItem()
+	{
 		return selectItem;
 	}
 
 	//sellButton click
-	public void SellButtonClick(){
-		Player playerdata;
+	public void SellButtonClick()
+	{
 		//playerdata.HaveItem // 아이템 빼기;
 	}
-
-
-
-
 
 	// update component element
 	public void UpdateComponentElement( Player data )
@@ -45,14 +42,14 @@ public class SellViewSet : MonoBehaviour, IPointerDownHandler
 
 	}
 
-	public void SellProcess(Player data)
+	public void SellProcess( Player data )
 	{
 		
 	}
 
 
 
-	public void OnPointerDown(PointerEventData eventdata)
+	public void OnPointerDown( PointerEventData eventdata )
 	{
 		
 	}

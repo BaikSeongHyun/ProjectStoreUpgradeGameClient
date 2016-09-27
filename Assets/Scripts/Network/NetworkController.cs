@@ -13,7 +13,6 @@ public class NetworkController : MonoBehaviour
 
 	// queue -> input / output check point
 	[SerializeField] PacketQueue receiveQueue;
-	[SerializeField] PacketQueue sendQueue;
 
 	// delegate -> for packtet receive check
 	public delegate void ReceiveNotifier(byte[] data);
@@ -36,7 +35,6 @@ public class NetworkController : MonoBehaviour
 	{
 		// allocate queue
 		receiveQueue = new PacketQueue();
-		sendQueue = new PacketQueue();
 
 		// allocate buffer
 		receiveBuffer = new byte[bufferSize];

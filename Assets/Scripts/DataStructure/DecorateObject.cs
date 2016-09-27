@@ -4,7 +4,7 @@ public class DecorateObject
 {	
 	string objectName;
 	bool isAllocate;
-	Vector3 allocatePosition;
+	CustomVector3 allocatePosition;
 	
 	public DecorateObject ()
 	{

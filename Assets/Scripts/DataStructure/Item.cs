@@ -1,6 +1,5 @@
 ﻿using System;
 
-[System.Serializable]
 public class Item
 {
     // primary key
@@ -40,14 +39,16 @@ public class Item
         price = 0;
         makeTime = 0f;
         recipe = null;
-        recipe = null;
+        recipeCount = null;
         onSell = false;
+		sellPrice = 0;
+		sellCount = 0;
         storeExp = 0;
         type = Store.StoreType.Bakery;
     }
 
     // constructor = all item parameter
-    public Item(string _id, string _name, int _price, float _makeTime, Item[] _recipe, int[] _recipeCount, bool _onDisplay, float _storeExp, Store.StoreType _type)
+    public Item(string _id, string _name, int _price, float _makeTime, Item[] _recipe, int[] _recipeCount, bool _onSell, float _storeExp, Store.StoreType _type)
     {
         id = _id;
         name = _name;
@@ -55,7 +56,7 @@ public class Item
         makeTime = _makeTime;
         recipe = _recipe;
         recipeCount = _recipeCount;
-        onSell = _onDisplay;
+        onSell = _onSell;
         storeExp = _storeExp;
         type = _type;
     }
@@ -69,8 +70,9 @@ public class Item
         recipe = data.recipe;
         recipeCount = data.recipeCount;
         onSell = data.onSell;
+		sellPrice = data.sellPrice;
+		sellCount = data.sellCount;
         storeExp = data.storeExp;
         type = data.type;
     }
 }
-
