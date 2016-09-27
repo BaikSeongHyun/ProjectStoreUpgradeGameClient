@@ -8,18 +8,10 @@ using System.Collections.Generic;
 public class StepView : MonoBehaviour ,IPointerEnterHandler, IPointerExitHandler 
 {
 	Text stepTextField;
+
 	// Use this for initialization
 
 	//stepTextField.text = ("Step " + ???.step.ToString() +" (" + ???.presentExp.ToString() + " / " + ???.requireExp.ToString() + ") ");
-
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{

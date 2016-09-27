@@ -111,6 +111,7 @@ public class ClientNetworkProcessor
 			Debug.Log( e.Message );
 			Debug.Log( e.InnerException );
 			Debug.Log( "Client : Null Reference Exception - On Connect (begin receive section)" );
+			myClientSocket.Disconnect( false );
 			return false;
 		}
 		catch ( SocketException e )
@@ -118,6 +119,7 @@ public class ClientNetworkProcessor
 			Debug.Log( e.ErrorCode );
 			Debug.Log( e.InnerException );
 			Debug.Log( "Client : Socket Exception - On Connect (begin receive section)" );
+			myClientSocket.Disconnect( false );
 			return false;
 		}
 
@@ -141,13 +143,15 @@ public class ClientNetworkProcessor
 		{
 			Debug.Log( e.Message );
 			Debug.Log( e.InnerException );
-			Debug.Log( "Clinet : Null Reference Exception - On Receive Async Callback (end receive section)" );
+			Debug.Log( "Client : Null Reference Exception - On Receive Async Callback (end receive section)" );
+			clientSocket.Disconnect( false );
 		}
 		catch ( SocketException e )
 		{
 			Debug.Log( e.ErrorCode );
 			Debug.Log( e.InnerException );
-			Debug.Log( "Client : Socket Exception - On Receive Async Callback (end receive section)" );			
+			Debug.Log( "Client : Socket Exception - On Receive Async Callback (end receive section)" );	
+			clientSocket.Disconnect( false );
 		}
 
 		// add event 
@@ -172,12 +176,14 @@ public class ClientNetworkProcessor
 			Debug.Log( e.Message );
 			Debug.Log( e.InnerException );
 			Debug.Log( "Client : Null Reference Exception - On Connect (begin receive section)" );
+			clientSocket.Disconnect( false );
 		}
 		catch ( SocketException e )
 		{
 			Debug.Log( e.ErrorCode );
 			Debug.Log( e.InnerException );
 			Debug.Log( "Client : Socket Exception - On Connect (begin receive section)" );
+			clientSocket.Disconnect( false );
 		}
 	}
 

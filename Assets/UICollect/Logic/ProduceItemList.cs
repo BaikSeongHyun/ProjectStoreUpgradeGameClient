@@ -11,6 +11,7 @@ public class ProduceItemList : MonoBehaviour
 
 	public void LinkComponentElement()
 	{
+		Debug.Log ("DisplayItemLink");
 		produceItemList = GetComponentsInChildren<DisplayItem>();
 	}
 

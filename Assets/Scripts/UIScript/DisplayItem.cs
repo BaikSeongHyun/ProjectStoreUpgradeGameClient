@@ -9,19 +9,24 @@ public class DisplayItem : MonoBehaviour
 	[SerializeField] protected Image itemImage;
 	[SerializeField] protected bool isSelected;
 
-	[SerializeField] protected Image nameBackGound;
-	[SerializeField] protected Image imageBackGound;
-
 	[SerializeField] protected Item thisItem;
+
+	//
+//	[SerializeField] protected Image nameBackGround;
+//	[SerializeField] protected Image imageBackGround;
 
 	public void LinkComponentElement()
 	{
-		itemText = GetComponent<Text>();
-		itemImage = GetComponent<Image>();
+		itemText = GetComponent<Text> ();
+		itemImage = GetComponent<Image> ();
+		//itemText = transform.Find("NameText").GetComponent<Text>();
+		//itemImage = transform.Find("Image").GetComponent<Image>();
 		isSelected = false;
 
-		nameBackGound = GetComponent<Image> ();
-		imageBackGound = GetComponent<Image> ();
+//		nameBackGround = transform.FindChild ("NameBackGround").GetComponent<Image> ();
+//		imageBackGround = transform.FindChild ("ImageBackGround").GetComponent<Image> ();
+		Debug.Log ("LinkDisplayItem");
+
 	}
 
 	public void UpdateComponentElement( Item Itemdata )
@@ -59,6 +64,7 @@ public class DisplayItem : MonoBehaviour
 	{
 		ProduceMain produceMain = gameObject.GetComponentInParent<ProduceMain>();
 		produceMain.ProduceItemListClick (thisItem);
+		Debug.Log ("ClickDisplayItemSelect");
 	}
 
 

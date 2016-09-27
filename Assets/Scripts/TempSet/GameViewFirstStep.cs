@@ -8,17 +8,16 @@ public class GameViewFirstStep : MonoBehaviour
 
 	//[SerializeField] GameManager manager;
 	[SerializeField] ProduceMain produceMain;
-	[SerializeField] SellViewSet sellItem;
+	[SerializeField] SellViewSet sellMain;
+	[SerializeField] Image backGround;
 
 	// link component element
 	public void Awake()
 	{
 		produceMain.LinkComponentElement();
-		sellItem.LinkComponentElement ();
+		sellMain.LinkComponentElement ();
+		backGround = transform.Find ("BackGround").GetComponent<Image> ();
 	}
 
-	public void UpdateFirstStepUI(){
-	
-	}
 
 }
