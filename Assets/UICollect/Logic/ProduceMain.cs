@@ -7,31 +7,36 @@ public class ProduceMain : MonoBehaviour
 	//this class control;
 	[SerializeField] ProduceItemList produceItemList;
 	[SerializeField] RecipeItemSet recipeItemList;
-
+	[SerializeField] GameManager manager;
 	//feature variable, this variable effected producebutton,itemview;
 	[SerializeField] Item selectItem;
-
+	[SerializeField] Player playerData;
 	//link
 	public void LinkComponentElement()
 	{
+		manager = GameObject.Find ("GameManager").GetComponent<GameManager> ();
+		playerData = manager.PlayerData;
 		produceItemList.LinkComponentElement();
 		recipeItemList.LinkComponentElement();
+		Debug.Log ("ProduceMainLink");
 	}
 
 
 	//Mothod tree : produceButtonObject -> Buttonevent ->produceItemButtonClick-> Renewadditem
 	public void ProduceItemButtonClick()
 	{
-		Player playerData;
-		playerData = GameObject.Find ("GameManager").GetComponent<GameManager> ().PlayerData;
-		RenewAddItem(playerData, selectItem);
+		//RenewAddItem(playerData, selectItem);
+		// manager.UpdateItem(itemdata);
+		Debug.Log ("produceItemButtonClick");
+		//++
 	}
 	//Mothod tree : produceButtonObject -> Buttonevent ->produceItemButtonClick-> Renewadditem
-	public void RenewAddItem(Player playerData, Item item)
-	{
-		//middleprocess need;
-		playerData.AddItem (item);
-	}
+
+//	public void RenewAddItem(Player playerData, Item item)
+//	{
+//		//middleprocess need;
+//		playerData.AddItem (item);
+//	}
 
 	public void ProduceProcess( Player data )
 	{
@@ -57,6 +62,7 @@ public class ProduceMain : MonoBehaviour
 		selectItem = selectedData;
 		produceItemList.ProduceItemFindClick (selectedData);
 		recipeItemList.SendItemViewItemUpdate (selectedData);
+		Debug.Log ("produceItemListClick");
 	}
 
 
