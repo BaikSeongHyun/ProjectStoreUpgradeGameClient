@@ -2,8 +2,6 @@
 
 public class PacketHeader
 {
-	public short length;
-	public byte id;
+    public short length;
+    public byte id;
 }
-
-

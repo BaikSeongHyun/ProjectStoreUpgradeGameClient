@@ -1,45 +1,52 @@
 ﻿using System;
-using UnityEngine;
+
 
 [System.Serializable]
 public class Store
 {
-	// field
-	[SerializeField] string name;
-	[SerializeField] StoreType type;
-	[SerializeField] int step;
-	[SerializeField] float presentEXP;
-	[SerializeField] float requireEXP;
-	Item[] createItem;
-	DecorateObject allocatedObject;
+    // primary key
+    string storeID;
 
-	// property
-	public string StoreName { get { return name; } }
+    // elements
+    string name;
+    StoreType type;
+    int step;
+    float presentEXP;
+    float requireEXP;
+    Item[] createItem;
+    DecorateObject allocatedObject;
 
-	public int Step { get { return step; } }
+    // property
+    public string StoreName { get { return name; } }
 
-	public float PresentEXP { get { return presentEXP; } }
+    public int Step { get { return step; } }
 
-	public float RequireEXP { get { return requireEXP; } }
+    public float PresentEXP { get { return presentEXP; } }
 
-	public float FillEXP { get { return ( presentEXP / requireEXP ); } }
+    public float RequireEXP { get { return requireEXP; } }
 
-	public Item[] CreateItemSet { get { return createItem; } }
+    public float FillEXP { get { return (presentEXP / requireEXP); } }
+
+    public Item[] CreateItemSet { get { return createItem; } }
 
 
-	public enum StoreType
-	{
-		Bakery,
-		Cafe,
-		FastFoodRestaurant,
-		Bar}
+    public enum StoreType : int
+    {
+        Bakery = 1,
+        Cafe = 2,
+        FastFoodRestaurant = 3,
+        Bar
+    }
 ;
+    public Store()
+    {
+    }
 
-	public Store( string _name, StoreType _type )
-	{
-		name = _name;
-		type = _type;
-	}
+    public Store(string _name, StoreType _type)
+    {
+        name = _name;
+        type = _type;
+    }
 }
 
 
