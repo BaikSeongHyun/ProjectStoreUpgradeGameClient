@@ -22,19 +22,17 @@ public class DataTable
 
 	void InputItemData()
 	{
-		Item[] recipe;
+		string[] recipe;
 		int[] recipeCount;
+		// set field 1 set
 		itemInformation.Add ("Pro0001", new Item ("Pro0001", "소보로빵", 0, 0, null, null, false, 0, Store.StoreType.Bakery));
 
-		recipe = new Item[1];
-		recipe [0] = FindItemUseID ("Pro0001");
+		// set field 2 set
+		recipe = new string[1];
+		recipe [0] = "Pro0001";
 		recipeCount = new int[1];
 		recipeCount[0] = 3;
 		itemInformation.Add ("Pro0002", new Item("Pro0002", "죽빵", 1000, 10f, recipe, recipeCount, false, 100, Store.StoreType.Bakery));
-		recipe [0] = FindItemUseID ("Pro0002");
-		recipeCount = new int[1]; 
-		recipeCount[0] = 3;
-
 	}
 
 	public Item FindItemUseID(string id)

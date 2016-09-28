@@ -1,61 +1,121 @@
 ﻿using System;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Player
 {
-    //key value
-    string playerID;
+	//key value
+	string playerID;
 
-    //dependant value
-    string password;
-    string name;
-    int money;
-    Store[] haveStore;
-    Item[] haveItem;
-    DecorateObject haveDecorateObject;
+	//dependant value
+	string password;
+	string name;
+	int money;
+	List<Store> haveStore;
+	List<Item> haveItem;
+	DecorateObject haveDecorateObject;
 
-    // property
-    public string ID { get { return playerID; } set { playerID = value; } }
-    public string Password {  get { return password; } set { password = value; } }
-    public string Name { get { return name; } set { name = value; } }
-    public int Money { get { return money; } set { money = value; } }
+	// property
+	public string ID { get { return playerID; } set { playerID = value; } }
 
-    public Item[] HaveItem { get { return haveItem; } }
+	public string Password { get { return password; } set { password = value; } }
 
-    public Player()
-    {
-    }
+	public string Name { get { return name; } set { name = value; } }
+
+	public int Money { get { return money; } set { money = value; } }
+
+	public List<Item> HaveItem { get { return haveItem; } }
+
+	public Player()
+	{		
+		haveStore = new List<Store>();
+		haveItem = new List<Item>();
+	}
     
-    //constructor ->
-    public Player(string _playerID, string _password)
-    {
-        playerID = _playerID;
-        password = _password;
-    }
+	//constructor -> id, password parameter
+	public Player( string _playerID, string _password )
+	{
+		playerID = _playerID;
+		password = _password;
 
-    public Item FindItemByID(string id)
-    {
-        foreach (Item element in haveItem)
-            if (element.ID == id)
-                return element;
+		haveStore = new List<Store>();
+		haveItem = new List<Item>();
+	}
 
-        return null;
-    }
+	// find store - use update
+	public bool FindStoreByID( string id, ref Store data )
+	{
+		foreach ( Store element in haveStore )
+		{
+			if( element.ID == id )
+			{
+				data = element;
+				return true;
+			}
+		}
+		data = null;
+		return false;
+	}
 
-    public bool AddItem(Item data)
-    {
-        // add haveItem
-        for (int i = 0; i < haveItem.Length; i++)
-        {
-            if (haveItem[i] == null)
-            {
-                haveItem[i] = new Item(data);
-                return true;
-            }
-        }
+	// set store
+	public void UpdateStore( StoreData data )
+	{
+		Store tempData = new Store();
+		if( FindStoreByID( data.storeID, ref tempData ) )
+		{
+			tempData.Step = data.step;
+			tempData.PresentEXP = data.presentEXP;
+			tempData.RequireEXP = data.requireEXP;
+		}
+		else
+		{
+			tempData = new Store( data );
+			haveStore.Add( tempData );
+		}
+	}
 
-        return false;
-    }
+	// find item - use ui
+	public Item FindItemByID( string id )
+	{
+		foreach ( Item element in haveItem )
+			if( element.ID == id )
+				return element;
+
+		return null;
+	}
+
+	// find item - use update
+	public bool FindItemByID( string id, ref Item data )
+	{
+		foreach ( Item element in haveItem )
+		{
+			if( element.ID == id )
+			{
+				data = element;
+				return true;
+			}
+		}
+		data = null;
+		return false;
+	}
+
+	// set item
+	public void UpdateItem( ItemData data )
+	{
+		Item tempData = new Item();
+		if( FindItemByID( data.itemID, ref tempData ) )
+		{
+			tempData.Count = data.count;
+			tempData.OnSell = data.isSell;
+			tempData.SellPrice = data.sellPrice;
+			tempData.SellCount = data.sellCount;	
+		}
+		else
+		{
+			tempData = new Item( data );
+			haveItem.Add( tempData );
+		}
+	}
 
 
 

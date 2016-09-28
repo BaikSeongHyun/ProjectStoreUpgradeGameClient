@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
 	// receive login result
 	public void ReceiveLoginResult( byte[] data )
 	{
-        Debug.Log(data.Length);
+		Debug.Log( data.Length );
 		// receive packet serialize
 		LoginResultPacket receivePacket = new LoginResultPacket( data );
 		LoginResultData loginResultData = receivePacket.GetData();
@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
 		// login success
 		if( loginResultData.loginResult )
 		{
+			playerData.ID = id;
 			SendGameDataRequest();
 			Debug.Log( loginResultData.message );
 		}
@@ -119,26 +120,66 @@ public class GameManager : MonoBehaviour
 			Debug.Log( loginResultData.message );
 	}
 
-	// receive game data
-	public void ReceiveGameData( byte[] data )
+	// receive money data
+	public void ReceiveMoneyData( byte[] data )
 	{
-		// data deserialize
+		// receive packet data serialize
+		MoneyDataPacket receivePacket = new MoneyDataPacket( data );
+		MoneyData moneyData = receivePacket.GetData();
 
-		// data set -> check parameter
+		// set data
+		playerData.Money = moneyData.money;
+	}
 
+	// receive store data
+	public void ReceiveStoreData( byte[] data )
+	{
+		// receive packet data serialize
+		StoreDataPacket receivePacket = new StoreDataPacket( data );
+		StoreData storeData = receivePacket.GetData();
+
+		// set data
+		playerData.UpdateStore( storeData );
+	}
+
+	// receive item data
+	public void ReceiveItemData( byte[] data )
+	{
+		// receive packet data serialize
+		ItemDataPacket receivePacket = new ItemDataPacket( data );
+		ItemData itemData = receivePacket.GetData();
+
+		// set data
+		playerData.UpdateItem( itemData );
 	}
 
 	// receive store create result
-	public void ReceiveStoreCreateData( byte[] data )
+	public void ReceiveStoreCreateResult( byte[] data )
 	{
-		// success -> data update
-
-		// success -> ui (create -> select)
-
-		// fail -> pop up ( result string )
+		
 	}
 
+	// receive item create result
+	public void ReceiveItemCreateResult( byte[] data )
+	{
+		
+	}
+
+	// receive item acquire result
+	public void ReceiveItemAcquireResult( byte[] data )
+	{
+
+	}
+
+	// receive item sell result
+	public void ReceiveItemSellResult( byte[] data )
+	{
+
+	}
+
+
 	// coroutine section
+	// game loading routine
 	IEnumerator GameLoading()
 	{
 		// check parameter -> active value

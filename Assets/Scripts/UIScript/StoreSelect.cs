@@ -36,7 +36,6 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 
 	public void OnPointerDown( PointerEventData eventData )
 	{
-		string name = eventData.pointerEnter.gameObject.name;
 		selectStore = eventData.pointerEnter.gameObject; 
 	}
 
