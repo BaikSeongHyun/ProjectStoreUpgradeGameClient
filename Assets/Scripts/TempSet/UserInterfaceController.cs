@@ -8,50 +8,59 @@ public class UserInterfaceController : MonoBehaviour
 	[SerializeField] UIUpsideBar upsideBarLogic;
 	[SerializeField] GameObject stepUIObject;
 
-	void Start()
+
+	void Start ()
 	{
-		MakeGameStep( Step.First );
+		MakeGameStep (Step.First);
 	}
 
 	public enum Step : int
 	{
 		First = 1,
 		Second = 2,
-		Third = 3
-	}
-;
+		Third = 3}
+	;
 
-	public void MakeSelectUI()
+
+
+
+	void Update ()
+	{
+				
+	}
+
+	public void MakeSelectUI ()
 	{
 
 	}
 
 
-	public void MakeGameStep( Step presentStep )
+	public void MakeGameStep (Step presentStep)
 	{
-		Destroy( stepUIObject );
+		Destroy (stepUIObject);
 
-		switch ( presentStep )
+		switch (presentStep)
 		{
-			case Step.First:
-			stepUIObject = (GameObject) Instantiate( Resources.Load<GameObject>( "UIObject/CreateOrSelect" ), transform.position, transform.rotation );
+		case Step.First:
+			stepUIObject = (GameObject)Instantiate (Resources.Load<GameObject> ("UIObject/CreateOrSelect"), transform.position, transform.rotation);
+			break;
 
-				break;
-
-			case Step.Second:
-				stepUIObject = (GameObject) Instantiate( Resources.Load<GameObject>( "UIObject/GameViewFirstStep" ), transform.position, transform.rotation );
-				break;
+		case Step.Second:
+			stepUIObject = (GameObject)Instantiate (Resources.Load<GameObject> ("UIObject/FirstStepUI"), transform.position, transform.rotation);
+			stepUIObject.name = "FirstStepUI";
+			break;
 		
-			case Step.Third:
+		case Step.Third:
 
 			stepUIObject = (GameObject)Instantiate (Resources.Load<GameObject> ("UIObject/SecondStepUI"), transform.position, transform.rotation);
+			stepUIObject.name = "SecondStepUI";
 			break;
 		}
 	}
 
-	public void UIUpdate( Player playerData, Store presentStore )
+	public void UIUpdate (Player playerData, Store presentStore)
 	{
-		if( upsideBar.activeSelf )
-			upsideBarLogic.UpdateUpsideBar( playerData, presentStore );
+		if (upsideBar.activeSelf)
+			upsideBarLogic.UpdateUpsideBar (playerData, presentStore);
 	}
 }
