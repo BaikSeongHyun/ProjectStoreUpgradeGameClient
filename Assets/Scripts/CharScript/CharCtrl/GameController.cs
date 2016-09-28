@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
 	[SerializeField] SecondStepUI secondStepUI;
 	[SerializeField] int layer;
 	[SerializeField] HouseManager house;
+	[SerializeField] GameObject[] ItemList;
+	[SerializeField] GameObject[] itemCheck;
 
 	// Use this for initializationpublic 
 	void Start ()
@@ -37,6 +39,9 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		
+		itemCheck = GameObject.FindGameObjectsWithTag ("Item");
+
 		if (!EventSystem.current.IsPointerOverGameObject ())
 		{
 			if (Input.GetButtonDown("Move"))
@@ -92,22 +97,27 @@ public class GameController : MonoBehaviour
 	}
 	public void SummonItem()
 	{
-		Vector3 matSize;
-		if (Test)
-		{
-			matSize = new Vector3 (mat.transform.localPosition.x - 5, 
-				mat.transform.localPosition.y,
-				mat.transform.localPosition.z);
-			Test = false;
-		}
-		else
-		{
-			matSize = new Vector3 (mat.transform.localPosition.x + 5, 
-				mat.transform.localPosition.y,
-				mat.transform.localPosition.z);
-		}
-		Instantiate (makeItem [0], matSize, transform.rotation);
-		secondStepUI.ItemSettingExit ();
+
+		ItemList = GameObject.FindGameObjectsWithTag ("Slot");
+		Debug.Log (ItemList.Length);
+			if (true)
+			{
+				var Item =(GameObject)Instantiate (makeItem [0], ItemList[0].transform.position, transform.rotation);		
+				itemCheck [0] = Item;
+			}
+			else
+			{
+				var Item =(GameObject)Instantiate (makeItem [0], ItemList[1].transform.position, transform.rotation);		
+				itemCheck [1] = Item;			
+			}
+
+			secondStepUI.ItemSettingExit ();
+
+//		if()
+//		{
+//			Debug.Log ("err");
+//			secondStepUI.ItemSettingExit ();
+//		}
 	}
 
 }
