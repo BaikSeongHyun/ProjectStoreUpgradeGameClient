@@ -11,6 +11,7 @@ public class SecondStepUI : MonoBehaviour
 	public bool inventoryButton = false;
 	public bool needItemButton = false;
 	public Image settingImage;
+	public Image scrollBarItemImage;
 
 	public GameObject auctionUI;
 	public GameObject itemSetting;
@@ -27,7 +28,22 @@ public class SecondStepUI : MonoBehaviour
 		NormalStep,
 		AuctionStep
 	};
-
+	public ElfCharacter Elf {
+		get {
+			return this.elf;
+		}
+		set {
+			elf = value;
+		}
+	}
+	public Text MoneyText {
+		get {
+			return this.moneyText;
+		}
+		set {
+			moneyText = value;
+		}
+	}
 	public SecondStepMode PresentMode
 	{
 		get{ return presentMode; }
@@ -35,6 +51,8 @@ public class SecondStepUI : MonoBehaviour
 
 	void Start () 
 	{
+		Instantiate( Resources.Load<GameObject>( "UIObject/CharcterManager" ), transform.position, transform.rotation );
+
 		LinkElement ();	
 	}
 		
@@ -45,12 +63,11 @@ public class SecondStepUI : MonoBehaviour
 		
 		recipeInventory = GameObject.Find ("RecipeUI");
 		recipeInventory.SetActive (inventoryButton);
-		elf = GameObject.Find ("PlayerElf").GetComponent<ElfCharacter> ();
-		//auctionUI = GameObject.Find ("PopUpSellItem");
-		itemSetting = GameObject.Find ("ItemSetting");
+		//elf = GameObject.Find ("PlayerElf").GetComponent<ElfCharacter> ();
+		settingImage = transform.Find ("ItemSetting").Find ("ItemImage").GetComponent<Image> ();
+		scrollBarItemImage = transform.Find("RecipeUI").Find("ItemImage").GetComponent<Image>();
 		auctionUI.SetActive (false);
 		itemSetting.SetActive (false);
-		settingImage = transform.Find ("ItemSetting").Find ("ItemImage").GetComponent<Image> ();
 
 
 		moneyText = transform.Find ("ItemSetting").Find ("PriceText").GetComponent<Text> ();
@@ -67,6 +84,7 @@ public class SecondStepUI : MonoBehaviour
 
 		case SecondStepMode.NormalStep:
 			InitializeModeNormalStep ();
+		
 			break;
 		}
 	}
@@ -78,6 +96,7 @@ public class SecondStepUI : MonoBehaviour
 	public void InitializeModeNormalStep()
 	{
 		auctionUI.SetActive (false);
+		itemSetting.SetActive (false);
 	}
 
 	public void RecipeModeOn()
@@ -106,16 +125,20 @@ public class SecondStepUI : MonoBehaviour
 		case "SecondImage":
 			settingImage.sprite = Resources.Load<Sprite> ("ItemImage\\ItemIconBreadBear");
 			break;
-			
-			
-
 		}
-
-	
+	}
+	public int SellPrice {
+		get {
+			return this.sellPrice;
+		}
+		set {
+			sellPrice = value;
+		}
 	}
 
 	public void ItemPricePlus()
 	{
+		
 		sellPrice += 100;
 		moneyText.text =  sellPrice+ "원";
 	}
@@ -136,25 +159,39 @@ public class SecondStepUI : MonoBehaviour
 	{
 		itemSetting.SetActive (false);
 	}
+	public void ScrollBarItemImageChange(string name)
+	{
+		switch (name)
+		{
 
-//	public void CashModeOn()
-//	{
-//		if (!needItemButton)
-//		{
-//			needItemButton = true;
-//			needItem.SetActive (needItemButton);
-//
-//			inventoryButton = true;
-//			recipeInventory.SetActive (inventoryButton);
-//		}
-//		else if (needItemButton)
-//		{
-//			
-//			needItemButton = false;
-//			needItem.SetActive (needItemButton);
-//
-//			inventoryButton = false;
-//			recipeInventory.SetActive (inventoryButton);
-//		}
-//	}
+			case "BreadBagaete":
+				scrollBarItemImage.sprite = Resources.Load<Sprite> ("ItemImage\\ItemIconBreadBagaete");
+				break;
+
+			case "BreadBear":
+				scrollBarItemImage.sprite = Resources.Load<Sprite> ("ItemImage\\ItemIconBreadBear");
+				break;
+
+			case "BreadBream":
+				scrollBarItemImage.sprite = Resources.Load<Sprite> ("ItemImage\\ItemIconBreadBream");
+				break;
+
+			case "BreadCastela":
+				scrollBarItemImage.sprite = Resources.Load<Sprite> ("ItemImage\\ItemIconBreadCastela");
+				break;
+
+			case "BreadHarbang":
+				scrollBarItemImage.sprite = Resources.Load<Sprite> ("ItemImage\\ItemIconBreadHarbang");
+				break;
+
+			case "BreadMoka":
+				scrollBarItemImage.sprite = Resources.Load<Sprite> ("ItemImage\\ItemIconBreadMoka");
+				break;
+
+		}
+		
+	}
+
+
+		
 }
