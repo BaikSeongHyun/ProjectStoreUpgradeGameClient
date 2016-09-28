@@ -13,7 +13,7 @@ public class PlayerDisplayItem : MonoBehaviour {
 
 	public void LinkComponentElement()
 	{
-		haveItemNameCount = GetComponentInChildren<Text> ();
+		haveItemNameCount = GetComponent<Text> ();
 		itemImage = transform.Find ("Image").GetComponent<Image> ();
 		selectedImage = transform.Find ("NameCountBackImage").GetComponent<Image> ();
 		isSelected = false;
@@ -30,6 +30,16 @@ public class PlayerDisplayItem : MonoBehaviour {
 	{
 		SellViewSet sellMain = gameObject.GetComponentInParent<SellViewSet>();
 		sellMain.SellSelectedItem(thisItem);
+	}
+
+	public Item ThisItem{
+		get { return thisItem;}
+	}
+
+	public bool IsSelected
+	{
+		get { return isSelected;}
+		set { isSelected = value;}
 	}
 
 
