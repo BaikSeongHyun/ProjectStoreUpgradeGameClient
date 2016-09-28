@@ -61,7 +61,7 @@ public class ProduceMain : MonoBehaviour
 	{
 		selectItem = selectedData;
 		produceItemList.ProduceItemFindClick (selectedData);
-		recipeItemList.SendItemViewItemUpdate (selectedData);
+		recipeItemList.SendItemViewItemUpdate (selectedData, playerData);
 		Debug.Log ("produceItemListClick");
 	}
 

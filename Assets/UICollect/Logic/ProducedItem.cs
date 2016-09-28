@@ -18,18 +18,38 @@ public class ProducedItem : MonoBehaviour
 
 	public void PlayerHaveItemUpdata( Player data )
 	{
-		producedItemList = new PlayerDisplayItem[data.HaveItem.Count];
-		for ( int i = 0; i < playerdata.HaveItem.Count; i++ )
-		{
-			producedItemList[i].LinkComponentElement();
-			producedItemList[i].UpdateComponentElement( data.HaveItem[i] );
-		}
+//		producedItemList = new PlayerDisplayItem[data.HaveItem.Count];
+//		for ( int i = 0; i < playerdata.HaveItem.Count; i++ )
+//		{
+//			producedItemList[i].LinkComponentElement();
+//			producedItemList[i].UpdateComponentElement( data.HaveItem[i] );
+//		}
+
+		producedItemList = GetComponentsInChildren<PlayerDisplayItem> ();
+
 	}
 
 	public void LinkComponentElement()
 	{
+		producedItemList = GetComponentsInChildren<PlayerDisplayItem> ();
 		selectItem = transform.GetComponentInParent<SellViewSet>().GetSellSelectItem();
-		//selectItem = GameObject.Find ("Sell").GetComponent<SellViewSet> ();
+		PlayerHaveItemUpdata (playerdata);
+
+	}
+
+	public void SelectItem(Item selectedItemData)
+	{	
+		selectItem = selectedItemData;
+		for (int i = 0; i < producedItemList.Length; i++) {
+			if (producedItemList [i].ThisItem == selectItem) {
+				producedItemList [i].IsSelected = true;
+				Debug.Log( "this infomation get form ProduceItemListClick -> ProduceItemList and Send to DisplayItem[i] sellect check;" );
+
+			}
+			producedItemList [i].IsSelected = false;
+
+		}
+
 
 	}
 
@@ -70,22 +90,3 @@ public class ProducedItem : MonoBehaviour
 
 
 }
-
-//	public void OnPointerEnter(PointerEventData eventdata){
-//		//for (int count = 0; count < producedItemName.Length; count++) {
-//			string producedItemImageSearch = "ProducedItemImage" + (count).ToString ();
-//			if (eventdata.pointerCurrentRaycast.gameObject.name == producedItemImageSearch) {
-//			//	popUpText.text = producedItemNameSearch.ToString ();
-//				//popUpText.text = producedItemImageSearch;
-//				Debug.Log (producedItemImageSearch);
-//			}
-//
-//
-//			}
-//		}
-//
-//	public void OnPointerExit(PointerEventData eventdate){
-//		Debug.Log ("aa");
-//	}
-
-//}
