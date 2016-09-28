@@ -9,13 +9,13 @@ public class StoreCreateRequestSerializer : Serializer
         Clear();
 
         //serialize element
-        bool result = true;
+        bool result = true;    
+        result &= Serialize(data.storeType);
         result &= Serialize(data.playerID);
         result &= Serialize(".");
         result &= Serialize(data.storeID);
         result &= Serialize(".");
         result &= Serialize(data.storeName);
-        result &= Serialize(data.storeType);  
 
         // failure serialize -> method exit
         if (!result)
@@ -34,6 +34,12 @@ public class StoreCreateRequestSerializer : Serializer
         if (!result)
             return false;
 
+        // data intialize
+        byte storeType = 0;
+        result &= Deserialize(ref storeType);
+
+        data.storeType = storeType;
+
         // packet -> multiple string -> seperate string
         string linkedString;
         result &= Deserialize(out linkedString, (int)GetDataSize());
@@ -43,13 +49,7 @@ public class StoreCreateRequestSerializer : Serializer
         // input data
         data.playerID = dataSet[0];
         data.storeID = dataSet[1];
-        data.storeID = dataSet[2];
-
-        // data intialize
-        byte storeType = 0;
-        result &= Deserialize(ref storeType);
-
-        data.storeType = storeType;
+        data.storeName = dataSet[2];       
 
         // return result   
         return result;

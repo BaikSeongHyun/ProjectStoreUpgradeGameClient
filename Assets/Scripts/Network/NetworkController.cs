@@ -124,16 +124,18 @@ public class NetworkController : MonoBehaviour
 
 				ReceiveNotifier notifier;
 
+				notifierForClient.TryGetValue( packetID, out notifier );
+				notifier( packetData );		
+
 				// use notifier
 				try
 				{
-					notifierForClient.TryGetValue( packetID, out notifier );
-					notifier( packetData );			
+						
 				}
 				catch ( NullReferenceException e )
 				{
+					Debug.Log( e.StackTrace );
 					Debug.Log( e.Message );
-					Debug.Log( e.InnerException );
 					Debug.Log( "Client : Null Reference Exception - On Receive (use notifier)" );
 				}
 			}

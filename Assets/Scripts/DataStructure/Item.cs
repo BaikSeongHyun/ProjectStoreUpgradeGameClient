@@ -33,11 +33,11 @@ public class Item
 
 	public int[] RecipeCount { get { return recipeCount; } }
 
-	public bool OnSell { get { return onSell; } set { OnSell = value; } }
+	public bool OnSell { get { return onSell; } set { onSell = value; } }
 
 	public int SellPrice { get { return sellPrice; } set { sellPrice = value; } }
 
-	public int SellCount { get { return sellCount; } set { SellCount = value; } }
+	public int SellCount { get { return sellCount; } set { sellCount = value; } }
 
 	public int Count { get { return count; } set { count = value; } }
 
@@ -88,7 +88,7 @@ public class Item
 		type = data.type;
 	}
 
-	public Item(ItemData data)
+	public Item( ItemData data )
 	{
 		id = data.itemID;
 		name = data.itemName;
@@ -97,13 +97,12 @@ public class Item
 		sellPrice = data.sellPrice;
 		sellCount = data.sellCount;
 
-		Item tempDataSet = Database.Instance.FindItemUseID( id );
+		Item tempDataSet = new Item( Database.Instance.FindItemUseID( id ) );
 
 		makeTime = tempDataSet.makeTime;
 		recipe = tempDataSet.recipe;
 		recipeCount = tempDataSet.recipeCount;
 		storeExp = tempDataSet.storeExp;
 		type = tempDataSet.type;
-
 	}
 }

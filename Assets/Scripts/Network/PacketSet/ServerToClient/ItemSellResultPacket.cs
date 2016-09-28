@@ -17,6 +17,7 @@ public class ItemSellResultPacket : Packet <ItemSellResultData, ItemSellResultSe
     {
         // allocate serializer
         serializer = new ItemSellResultSerializer();
+        serializer.SetDeserializedData(data);
 
         // allocate data
         dataElement = new ItemSellResultData();

@@ -17,9 +17,10 @@ public class LoginResultPacket : Packet<LoginResultData, LoginResultSerializer>
 	{
 		// allocate serializer
 		serializer = new LoginResultSerializer();
+        serializer.SetDeserializedData(data);
 
-		// allocate data
-		dataElement = new LoginResultData();
+        // allocate data
+        dataElement = new LoginResultData();
 
 		// deserialize data
 		serializer.Deserialize( ref dataElement );

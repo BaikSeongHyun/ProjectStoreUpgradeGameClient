@@ -30,20 +30,29 @@ public class Database
 		int[] recipeCount;
 
 		// set field 1 set
-		itemInformation.Add( "Pro0001", new Item( "Pro0001", "소보로빵", 0, 0, null, null, false, 0, Store.StoreType.Bakery ) );
+		itemInformation.Add( "pro0001", new Item( "pro0001", "hamBread", 500, 0, null, null, false, 0, Store.StoreType.Bakery ) );
 
 		// set field 2 set
 		recipe = new string[1];
-		recipe[0] = "Pro0001";
+		recipe[0] = "pro0001";
 		recipeCount = new int[1];
 		recipeCount[0] = 3;
-		itemInformation.Add( "Pro0002", new Item( "Pro0002", "죽빵", 1000, 10f, recipe, recipeCount, false, 100, Store.StoreType.Bakery ) );
+		itemInformation.Add( "pro0002", new Item( "pro0002", "bambooBread", 1000, 10f, recipe, recipeCount, false, 100, Store.StoreType.Bakery ) );
 	}
 
 	void InputStoreData()
 	{
-		Store temp = new Store( "Store0001", "Bakery", Store.StoreType.Bakery, 1, 0, 2000f );
-		storeInformation.Add( "Store0001", temp ); 
+		Store temp;
+		// store0001
+		temp = new Store( "store0001", "Bakery", Store.StoreType.Bakery, 1, 0, 2000f );
+		storeInformation.Add( "store0001", temp ); 
+
+		// store0002
+		temp = new Store( "store0002", "Coolcafe", Store.StoreType.Cafe, 1, 0, 2000f );
+		storeInformation.Add( "store0002", temp );
+
+		temp = new Store( "store0003", "Hotbar", Store.StoreType.Bar, 1, 0, 2000f );
+		storeInformation.Add( "store0003", temp );
 	}
 
 	public Item FindItemUseID( string id )

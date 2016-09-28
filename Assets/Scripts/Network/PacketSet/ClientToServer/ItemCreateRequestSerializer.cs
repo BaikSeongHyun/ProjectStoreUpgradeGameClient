@@ -10,11 +10,10 @@ public class ItemCreateRequestSerializer : Serializer
 
         //serialize element
         bool result = true;
+        result &= Serialize(data.count);
         result &= Serialize(data.playerID);
         result &= Serialize(".");
-        result &= Serialize(data.itemID);
-        result &= Serialize(data.count);
-        
+        result &= Serialize(data.itemID);        
 
         // failure serialize -> method exit
         if (!result)
@@ -34,6 +33,15 @@ public class ItemCreateRequestSerializer : Serializer
         if (!result)
             return false;
 
+        // return data initialize
+        short count = 0;
+
+        // remain data deserialize
+        result &= Deserialize(ref count);
+
+        // input data
+        data.count = count;
+
         // packet -> multiple string -> seperate string
         string linkedString;
         result &= Deserialize(out linkedString, (int)GetDataSize());
@@ -42,16 +50,7 @@ public class ItemCreateRequestSerializer : Serializer
 
         // input data
         data.playerID = dataSet[0];
-        data.itemID = dataSet[1];
-       
-        // return data initialize
-        short count = 0;  
-
-        // remain data deserialize
-        result &= Deserialize(ref count);
-        
-        // input data
-        data.count = count;
+        data.itemID = dataSet[1];      
                
         // return result   
         return result;

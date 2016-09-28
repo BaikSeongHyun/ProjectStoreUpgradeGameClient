@@ -17,6 +17,7 @@ public class ItemAcquireResultPacket : Packet<ItemAcquireResultData, ItemAcquire
     {
         // allocate serializer
         serializer = new ItemAcquireResultSerializer();
+        serializer.SetDeserializedData(data);
 
         // allocate data
         dataElement = new ItemAcquireResultData();

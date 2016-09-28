@@ -37,7 +37,6 @@ public class ClientNetworkProcessor
 	// create packet include header
 	private byte[] CreatePacketStream<T, U>( Packet<T,U> packet )
 	{
-		Debug.Log( packet.GetPacketData().Length );
 		// data iniialize  
 		byte[] packetData = packet.GetPacketData();	
 
@@ -191,27 +190,23 @@ public class ClientNetworkProcessor
 	public int Send<T,U>( Packet<T,U> packet )
 	{
 		byte[] data = CreatePacketStream( packet );
-		Debug.Log( data.Length );
-
-		AnalysisPacket( data );
 
 		// send message to client
 		try
-		{
-			
+		{			
 			return myClientSocket.Send( data, data.Length, SocketFlags.None );
 		}
 		catch ( NullReferenceException e )
 		{
+			Debug.Log( e.StackTrace );
 			Debug.Log( e.Message );
-			Debug.Log( e.InnerException );
 			Debug.Log( "Client : Null Reference Exception - Send (send section)" );
 			return -1;
 		}
 		catch ( SocketException e )
 		{
+			Debug.Log( e.StackTrace );
 			Debug.Log( e.ErrorCode );
-			Debug.Log( e.InnerException );
 			Debug.Log( "Client : Socket Exception - Send (send section)" );
 			return -1;
 		}
@@ -237,55 +232,4 @@ public class ClientNetworkProcessor
 			Debug.Log( "Client : Socket Exception - On Disconnect (close section)" );
 		}
 	}
-
-	public void AnalysisPacket( byte[] data )
-	{
-		int packetID;
-		byte[] packetData;
-
-		SeperatePacket( data, out packetID, out packetData );
-		Debug.Log( packetData.Length );
-		ReceiveJoinRequest( packetData );		
-	}
-
-	public bool SeperatePacket( byte[] originalData, out int packetID, out byte[] seperatedData )
-	{
-		PacketHeader header = new PacketHeader();
-		HeaderSerializer serializer = new HeaderSerializer();
-
-		serializer.SetDeserializedData( originalData );
-		serializer.Deserialize( ref header );
-
-		Debug.Log( "Packet ID : " + header.id.ToString() + " , Packet Length :" + header.length.ToString() ); 
-		int headerSize = Marshal.SizeOf( header.id ) + Marshal.SizeOf( header.length );
-		int packetDataSize = originalData.Length - headerSize;
-		byte[] packetData = null;
-
-		if( packetDataSize > 0 )
-		{
-			packetData = new byte[packetDataSize];
-			Buffer.BlockCopy( originalData, headerSize, packetData, 0, packetData.Length );
-		}
-		else
-		{
-			packetID = header.id;
-			seperatedData = null;
-			return false;
-		}
-
-		packetID = header.id;
-		seperatedData = packetData;
-		return true;
-	}
-
-	public void ReceiveJoinRequest( byte[] data )
-	{
-		// receive packet serialize 
-		JoinRequestPacket receivePacket = new JoinRequestPacket( data );
-		JoinRequestData joinRequestData = receivePacket.GetData();
-
-		Debug.Log( joinRequestData.id );
-		Debug.Log( joinRequestData.password );
-	}
-
 }

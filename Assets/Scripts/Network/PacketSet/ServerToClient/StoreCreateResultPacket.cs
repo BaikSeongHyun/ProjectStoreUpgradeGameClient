@@ -17,6 +17,7 @@ public class StoreCreateResultPacket : Packet<StoreCreateResultData, StoreCreate
     {
         // allocate serializer
         serializer = new StoreCreateResultSerializer();
+        serializer.SetDeserializedData(data);
 
         // allocate data
         dataElement = new StoreCreateResultData();

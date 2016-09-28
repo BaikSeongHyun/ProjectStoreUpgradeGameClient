@@ -10,17 +10,17 @@ public class ItemDataSerializer : Serializer
 
         //serialize element
         bool result = true;
-        result &= Serialize(data.playerID);
-        result &= Serialize(".");
-        result &= Serialize(data.itemID);
-        result &= Serialize(".");
-        result &= Serialize(data.itemName);
         result &= Serialize(data.storeType);
         result &= Serialize(data.count);
         result &= Serialize(data.price);
         result &= Serialize(data.isSell);
         result &= Serialize(data.sellPrice);
         result &= Serialize(data.sellCount);
+        result &= Serialize(data.playerID);
+        result &= Serialize(".");
+        result &= Serialize(data.itemID);
+        result &= Serialize(".");
+        result &= Serialize(data.itemName);
 
         // failure serialize -> method exit
         if (!result)
@@ -39,17 +39,6 @@ public class ItemDataSerializer : Serializer
         // data read failure -> method exit
         if (!result)
             return false;
-
-        // packet -> multiple string -> seperate string
-        string linkedString;
-        result &= Deserialize(out linkedString, (int)GetDataSize());
-
-        string[] dataSet = linkedString.Split('.');
-
-        // input data
-        data.playerID = dataSet[0];
-        data.itemID = dataSet[1];
-        data.itemName = dataSet[2];
 
         // return data initialize
         byte storeType = 0;
@@ -74,6 +63,17 @@ public class ItemDataSerializer : Serializer
         data.isSell = isSell;
         data.sellPrice = sellPrice;
         data.sellCount = sellCount;
+
+        // packet -> multiple string -> seperate string
+        string linkedString;
+        result &= Deserialize(out linkedString, (int)GetDataSize());
+
+        string[] dataSet = linkedString.Split('.');
+
+        // input data
+        data.playerID = dataSet[0];
+        data.itemID = dataSet[1];
+        data.itemName = dataSet[2];
 
         // return result   
         return result;

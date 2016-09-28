@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 	void Awake()
 	{
 		// create player data
-		// playerData = new Player();
+		playerData = new Player();
 
 		// set network data
 		networkProcessor = GetComponent<NetworkController>();
@@ -29,6 +29,13 @@ public class GameManager : MonoBehaviour
 		// set receive notifier
 		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.JoinResult, ReceiveJoinResult );
 		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.LoginResult, ReceiveLoginResult );
+		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.MoneyData, ReceiveMoneyData );
+		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.StoreData, ReceiveStoreData );
+		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.ItemData, ReceiveItemData );
+		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.StoreCreateResult, ReceiveStoreCreateResult );
+		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.ItemCreateResult, ReceiveItemCreateResult );
+		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.ItemAcquireResult, ReceiveItemAcquireResult );
+		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.ItemSellResult, ReceiveItemSellResult );
 
 		presentStore = null;
 	}
@@ -80,12 +87,33 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log( "GameLoading start" );
 		//StartCoroutine( GameLoading() );
+		// set data
+		GameDataRequestData sendData = new GameDataRequestData();
+		sendData.playerID = id;
+
+		GameDataRequestPacket sendPacket = new GameDataRequestPacket( sendData );
+
+		networkProcessor.Send( sendPacket );
 	}
 
 	// send create store
-	public void CreateStore( Store createStore )
+	public void SendCreateStore( Store createStore )
 	{
 		
+	}
+
+	public void SendCreateStore()
+	{
+		StoreCreateRequestData sendData = new StoreCreateRequestData();
+
+		sendData.playerID = id;
+		sendData.storeID = "store0003";
+		sendData.storeName = "hotbar";
+		sendData.storeType = 3;
+
+		StoreCreateRequestPacket sendPacket = new StoreCreateRequestPacket(sendData);
+
+		networkProcessor.Send(sendPacket);
 	}
 
 
@@ -156,25 +184,42 @@ public class GameManager : MonoBehaviour
 	// receive store create result
 	public void ReceiveStoreCreateResult( byte[] data )
 	{
-		
+		// receive packet data serialize
+		StoreCreateResultPacket receivePacket = new StoreCreateResultPacket( data );
+		StoreCreateResultData resultData = receivePacket.GetData();
+
+		// popup & result print
+
 	}
 
 	// receive item create result
 	public void ReceiveItemCreateResult( byte[] data )
 	{
-		
+		// receive packet data serialize 
+		ItemCreateResultPacket receivePacket = new ItemCreateResultPacket( data );
+		ItemCreateResultData resultData = receivePacket.GetData();
+
+		// popup & result print
 	}
 
 	// receive item acquire result
 	public void ReceiveItemAcquireResult( byte[] data )
 	{
+		// receive packet data serialize 
+		ItemAcquireResultPacket receivePacket = new ItemAcquireResultPacket( data );
+		ItemAcquireResultData resultData = receivePacket.GetData();
 
+		// popup & result print
 	}
 
 	// receive item sell result
 	public void ReceiveItemSellResult( byte[] data )
 	{
+		// receive packet data serialize 
+		ItemSellResultPacket receivePacket = new ItemSellResultPacket( data );
+		ItemSellResultData resultData = receivePacket.GetData();
 
+		// popup & result print
 	}
 
 

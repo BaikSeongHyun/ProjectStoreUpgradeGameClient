@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class Player
@@ -11,8 +12,8 @@ public class Player
 	string password;
 	string name;
 	int money;
-	List<Store> haveStore;
-	List<Item> haveItem;
+	[SerializeField] List<Store> haveStore;
+	[SerializeField] List<Item> haveItem;
 	DecorateObject haveDecorateObject;
 
 	// property

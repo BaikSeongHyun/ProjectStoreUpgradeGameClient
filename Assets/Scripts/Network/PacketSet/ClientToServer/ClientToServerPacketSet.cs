@@ -29,6 +29,7 @@ public class LoginRequestData
 // Packet ID : 3 -> GameData Request
 public class GameDataRequestData
 {
+    public string playerID;
 }
 
 // Packet ID : 4 -> Store Create Request

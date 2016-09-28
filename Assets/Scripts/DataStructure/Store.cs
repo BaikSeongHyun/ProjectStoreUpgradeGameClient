@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class Store
 {
 	// primary key
-	string storeID;
+	[SerializeField] string storeID;
 
 	// elements
-	string name;
-	StoreType type;
-	int step;
-	float presentEXP;
-	float requireEXP;
-	List<Item> createItem;
-	DecorateObject allocatedObject;
+	[SerializeField] string name;
+	[SerializeField] StoreType type;
+	[SerializeField] int step;
+	[SerializeField] float presentEXP;
+	[SerializeField] float requireEXP;
+	[SerializeField] List<Item> createItem;
+	[SerializeField] DecorateObject allocatedObject;
 
 	// property
 	public string ID { get { return storeID; } }
@@ -87,10 +88,8 @@ public class Store
 		presentEXP = data.presentEXP;
 		requireEXP = data.requireEXP;
 
-		Store tempDataSet = Database.Instance.FindStoreUseID( storeID );
+		Store tempDataSet = new Store( Database.Instance.FindStoreUseID( storeID ) );
 		createItem = tempDataSet.createItem;
-
-		createItem = new List<Item>();
 	}
 
 	public static StoreType SetStoreType( int type )

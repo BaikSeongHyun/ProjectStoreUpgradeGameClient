@@ -1,33 +1,32 @@
 ﻿using System;
-
-public class ItemCreateResultPacket : Packet<ItemCreateResultData, ItemCreateResultSerializer>
+public class GameDataRequestPacket : Packet <GameDataRequestData, GameDataRequestSerializer>
 {
     // constructor - packet data
-    public ItemCreateResultPacket(ItemCreateResultData data)
+    public GameDataRequestPacket(GameDataRequestData data)
     {
         // allocate serialzier
-        serializer = new ItemCreateResultSerializer();
+        serializer = new GameDataRequestSerializer();
 
         // allocate data
         dataElement = data;
     }
 
     // constructor - byte stream
-    public ItemCreateResultPacket(byte[] data)
+    public GameDataRequestPacket(byte[] data)
     {
         // allocate serializer
-        serializer = new ItemCreateResultSerializer();
+        serializer = new GameDataRequestSerializer();
         serializer.SetDeserializedData(data);
 
         // allocate data
-        dataElement = new ItemCreateResultData();
+        dataElement = new GameDataRequestData();
 
         // deserialize data
         serializer.Deserialize(ref dataElement);
     }
 
     // return data set
-    public override ItemCreateResultData GetData()
+    public override GameDataRequestData GetData()
     {
         return dataElement;
     }
@@ -35,7 +34,7 @@ public class ItemCreateResultPacket : Packet<ItemCreateResultData, ItemCreateRes
     // return packet data -> packet id
     public override int GetPacketID()
     {
-        return (int)ServerToClientPacket.ItemCreateResult;
+        return (int)ClientToServerPacket.GameDataRequest;
     }
 
     // return packet data -> byte stream data section

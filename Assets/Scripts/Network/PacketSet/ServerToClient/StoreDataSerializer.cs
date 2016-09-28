@@ -10,15 +10,15 @@ public class StoreDataSerializer : Serializer
 
         //serialize element
         bool result = true;
-        result &= Serialize(data.playerID);
-        result &= Serialize(".");
-        result &= Serialize(data.storeID);
-        result &= Serialize(".");
-        result &= Serialize(data.storeName);
         result &= Serialize(data.storeType);
         result &= Serialize(data.step);
         result &= Serialize(data.presentEXP);
         result &= Serialize(data.requireEXP);
+        result &= Serialize(data.playerID);
+        result &= Serialize(".");
+        result &= Serialize(data.storeID);
+        result &= Serialize(".");
+        result &= Serialize(data.storeName);      
 
         // failure serialize -> method exit
         if (!result)
@@ -36,17 +36,6 @@ public class StoreDataSerializer : Serializer
         // data read failure -> method exit
         if (!result)
             return false;
-
-        // packet -> multiple string -> seperate string
-        string linkedString;
-        result &= Deserialize(out linkedString, (int)GetDataSize());
-
-        string[] dataSet = linkedString.Split('.');
-
-        // input data
-        data.playerID = dataSet[0];
-        data.storeID = dataSet[1];
-        data.storeID = dataSet[2];
 
         // return data initialize
         byte storeType = 0;
@@ -66,8 +55,18 @@ public class StoreDataSerializer : Serializer
         data.presentEXP = presentEXP;
         data.requireEXP = requireEXP;
 
+        // packet -> multiple string -> seperate string
+        string linkedString;
+        result &= Deserialize(out linkedString, (int)GetDataSize());
+
+        string[] dataSet = linkedString.Split('.');
+
+        // input data
+        data.playerID = dataSet[0];
+        data.storeID = dataSet[1];
+        data.storeName = dataSet[2];
+                
         // return result   
         return result;
     }
 }
-
