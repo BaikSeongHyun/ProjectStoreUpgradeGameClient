@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
+using UnityEngine.EventSystems;
 
 public class SecondStepUI : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class SecondStepUI : MonoBehaviour
 	public GameObject recipeInventory;
 	public bool inventoryButton = false;
 	public bool needItemButton = false;
+	public Image settingImage;
 
 	public GameObject auctionUI;
 	public GameObject itemSetting;
@@ -43,10 +46,11 @@ public class SecondStepUI : MonoBehaviour
 		recipeInventory = GameObject.Find ("RecipeUI");
 		recipeInventory.SetActive (inventoryButton);
 		elf = GameObject.Find ("PlayerElf").GetComponent<ElfCharacter> ();
-		auctionUI = GameObject.Find ("PopUpSellItem");
+		//auctionUI = GameObject.Find ("PopUpSellItem");
 		itemSetting = GameObject.Find ("ItemSetting");
 		auctionUI.SetActive (false);
 		itemSetting.SetActive (false);
+		settingImage = transform.Find ("ItemSetting").Find ("ItemImage").GetComponent<Image> ();
 
 
 		moneyText = transform.Find ("ItemSetting").Find ("PriceText").GetComponent<Text> ();
@@ -90,9 +94,24 @@ public class SecondStepUI : MonoBehaviour
 		}
 	}
 
-	public void ItemPrice()
+	public void ItemPrice(string ItemImage)
 	{
-		itemSetting.SetActive (true);	
+		itemSetting.SetActive (true);
+
+		switch (ItemImage)
+		{
+		case "FirstImage":
+			settingImage.sprite = Resources.Load<Sprite> ("ItemImage\\ItemIconBreadBagaete");
+			break;
+		case "SecondImage":
+			settingImage.sprite = Resources.Load<Sprite> ("ItemImage\\ItemIconBreadBear");
+			break;
+			
+			
+
+		}
+
+	
 	}
 
 	public void ItemPricePlus()
