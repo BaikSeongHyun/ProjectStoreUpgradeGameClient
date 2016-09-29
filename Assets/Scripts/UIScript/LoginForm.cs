@@ -4,18 +4,14 @@ using UnityEngine.UI;
 
 public class LoginForm : MonoBehaviour
 {
+	// field
 	[SerializeField] InputField idInput;
 	[SerializeField] InputField passwordInput;
 
-	public string ID
-	{
-		get { return idInput.text; }
-	}
+	//property
+	public string ID { get { return idInput.text; } }
 
-	public string Password
-	{
-		get { return passwordInput.text; }	
-	}
+	public string Password { get { return passwordInput.text; } }
 	
 	// Use this for initialization
 	void Start()
@@ -26,15 +22,15 @@ public class LoginForm : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (idInput.isFocused)
+		if( idInput.isFocused )
 		{
-			if (Input.GetKeyUp( KeyCode.Tab ))
+			if( Input.GetKeyUp( KeyCode.Tab ) )
 				passwordInput.Select();
 		}
 		
-		if (passwordInput.isFocused)
+		if( passwordInput.isFocused )
 		{
-			if (Input.GetKeyUp( KeyCode.KeypadEnter ))
+			if( Input.GetKeyUp( KeyCode.KeypadEnter ) )
 				;
 		}
 	}

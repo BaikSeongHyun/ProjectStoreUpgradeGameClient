@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
 	[SerializeField] NetworkController networkProcessor;
 	[SerializeField] Player playerData;
 	[SerializeField] Store presentStore;
+	[SerializeField] bool isLogin;
 	[SerializeField] string id;
 	[SerializeField] string password;
 	[SerializeField] UserInterfaceController mainUI;
+	[SerializeField] LoginForm loginForm;
 
 	// property
 	public Player PlayerData { get { return playerData; } }
@@ -23,8 +25,7 @@ public class GameManager : MonoBehaviour
 		playerData = new Player();
 
 		// set network data
-		networkProcessor = GetComponent<NetworkController>();
-		networkProcessor.ConnectToServer();
+		networkProcessor = GetComponent<NetworkController>();	
 
 		// set receive notifier
 		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.JoinResult, ReceiveJoinResult );
@@ -37,14 +38,23 @@ public class GameManager : MonoBehaviour
 		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.ItemAcquireResult, ReceiveItemAcquireResult );
 		networkProcessor.RegisterServerReceivePacket( (int) ServerToClientPacket.ItemSellResult, ReceiveItemSellResult );
 
+		isLogin = false;
 		presentStore = null;
 	}
 
 	// update
 	void Update()
 	{
-//		if( presentStore != null )
-//			mainUI.UIUpdate( playerData, presentStore );
+		if( isLogin )
+		{
+			id = playerData.ID;
+			password = playerData.Password;
+		}
+		else
+		{
+			id = loginForm.ID;
+			password = loginForm.Password;
+		}
 	}
 
 
@@ -57,6 +67,9 @@ public class GameManager : MonoBehaviour
 	// send join requset
 	public void SendJoinRequest()
 	{
+		// connection start
+		networkProcessor.ConnectToServer();
+
 		// set data
 		JoinRequestData sendData = new JoinRequestData();
 		sendData.id = id;
@@ -71,6 +84,9 @@ public class GameManager : MonoBehaviour
 	// send login request
 	public void SendLoginRequest()
 	{
+		// connection start
+		networkProcessor.ConnectToServer();
+
 		// set data
 		LoginRequestData sendData = new LoginRequestData();
 		sendData.id = id;
@@ -137,11 +153,11 @@ public class GameManager : MonoBehaviour
 		LoginResultPacket receivePacket = new LoginResultPacket( data );
 		LoginResultData loginResultData = receivePacket.GetData();
 
+		isLogin = loginResultData.loginResult;
 		// login success
 		if( loginResultData.loginResult )
 		{
-			playerData.ID = id;
-			SendGameDataRequest();
+			StartCoroutine( GameLoading() );
 			Debug.Log( loginResultData.message );
 		}
 		else
@@ -227,8 +243,8 @@ public class GameManager : MonoBehaviour
 	// game loading routine
 	IEnumerator GameLoading()
 	{
-		// check parameter -> active value
-
+		SendGameDataRequest();
+		Destroy( loginForm.gameObject );
 		// set select ui
 		mainUI.MakeSelectUI();
 

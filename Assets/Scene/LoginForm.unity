@@ -101,6 +101,7 @@ GameObject:
   - 223: {fileID: 112006876}
   - 114: {fileID: 112006875}
   - 114: {fileID: 112006874}
+  - 114: {fileID: 112006878}
   m_Layer: 5
   m_Name: LoginFormUI
   m_TagString: Untagged
@@ -188,6 +189,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &112006878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 112006873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bbf13d66ea941458ec4a359449fc48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idInput: {fileID: 1648703422}
+  passwordInput: {fileID: 635847436}
 --- !u!1 &212926195
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +574,7 @@ GameObject:
   - 114: {fileID: 635847437}
   - 114: {fileID: 635847436}
   m_Layer: 5
-  m_Name: Password
+  m_Name: PasswordInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,8 +638,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 635847437}
   m_TextComponent: {fileID: 796106872}
   m_Placeholder: {fileID: 1530705356}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -1280,9 +1294,11 @@ MonoBehaviour:
     presentEXP: 0
     requireEXP: 0
     createItem: []
+  isLogin: 0
   id: dds4120
   password: dds4120
   mainUI: {fileID: 0}
+  loginForm: {fileID: 112006878}
 --- !u!4 &1459307913
 Transform:
   m_ObjectHideFlags: 0
