@@ -13,7 +13,7 @@ public class ProducedItem : MonoBehaviour
 	[SerializeField] PlayerDisplayItem[] producedItemList;
 	[SerializeField] private Player playerdata;
 
-	public Item selectItem;
+	[SerializeField] Item selectItem;
 //sellectItem coll;
 
 	public void PlayerHaveItemUpdata( Player data )
@@ -40,13 +40,21 @@ public class ProducedItem : MonoBehaviour
 	public void SelectItem(Item selectedItemData)
 	{	
 		selectItem = selectedItemData;
-		for (int i = 0; i < producedItemList.Length; i++) {
+		for (int i = 0; i < producedItemList.Length; i++) 
+		{
 			if (producedItemList [i].ThisItem == selectItem) {
 				producedItemList [i].IsSelected = true;
-				Debug.Log( "this infomation get form ProduceItemListClick -> ProduceItemList and Send to DisplayItem[i] sellect check;" );
 
+				Debug.Log ("this infomation get form ProduceItemListClick -> ProduceItemList and Send to DisplayItem[i] sellect check;");
 			}
-			producedItemList [i].IsSelected = false;
+			else if (producedItemList [i].ThisItem != selectItem) 
+			{
+				producedItemList [i].IsSelected = false;
+			}
+
+				Debug.Log (producedItemList [0].IsSelected);
+
+
 
 		}
 

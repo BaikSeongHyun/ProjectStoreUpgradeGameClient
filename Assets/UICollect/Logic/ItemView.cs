@@ -20,9 +20,9 @@ public class ItemView : MonoBehaviour {
 
 	public void UpdateProducingIteamInfo(Item selectedData)
 	{
-		itemName.text = selectedData.Name;
+		itemName.text = selectedData.Name + "아닌데요".ToString();
 		//path ItemImage/Wheat
-		itemImage.sprite = Resources.Load<Sprite> ("ItemImage/" + selectedData.Name);
+		itemImage.sprite = Resources.Load<Sprite> ("ItemIcon/" + selectedData.Name);
 
 		Debug.Log( "this infomation get form ProduceItemListClick -> produceViewSet and Send to Itemview -> ItemView Update" );
 
