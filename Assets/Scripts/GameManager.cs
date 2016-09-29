@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] Player playerData;
 	[SerializeField] Store presentStore;
 	[SerializeField] bool isLogin;
+	[SerializeField] string serverIP;
+	[SerializeField] int serverPort;
 	[SerializeField] string id;
 	[SerializeField] string password;
 	[SerializeField] UserInterfaceController mainUI;
@@ -46,21 +48,20 @@ public class GameManager : MonoBehaviour
 	void Update()
 	{
 		if( isLogin )
-		{
+		{			
 			id = playerData.ID;
 			password = playerData.Password;
 		}
 		else
 		{
+			serverIP = loginForm.IP;
+			serverPort = loginForm.Port;
 			id = loginForm.ID;
 			password = loginForm.Password;
 		}
+
+		mainUI.UIUpdate( playerData, presentStore );
 	}
-
-
-	// private method
-
-
 
 	// public method
 	// send data section
@@ -68,7 +69,7 @@ public class GameManager : MonoBehaviour
 	public void SendJoinRequest()
 	{
 		// connection start
-		networkProcessor.ConnectToServer();
+		networkProcessor.ConnectToServer( serverIP, serverPort );
 
 		// set data
 		JoinRequestData sendData = new JoinRequestData();
@@ -85,7 +86,7 @@ public class GameManager : MonoBehaviour
 	public void SendLoginRequest()
 	{
 		// connection start
-		networkProcessor.ConnectToServer();
+		networkProcessor.ConnectToServer( serverIP, serverPort );
 
 		// set data
 		LoginRequestData sendData = new LoginRequestData();
@@ -102,8 +103,6 @@ public class GameManager : MonoBehaviour
 	public void SendGameDataRequest()
 	{
 		Debug.Log( "GameLoading start" );
-		//StartCoroutine( GameLoading() );
-		// set data
 		GameDataRequestData sendData = new GameDataRequestData();
 		sendData.playerID = id;
 
@@ -115,7 +114,16 @@ public class GameManager : MonoBehaviour
 	// send create store
 	public void SendCreateStore( Store createStore )
 	{
-		
+		StoreCreateRequestData sendData = new StoreCreateRequestData();
+
+		sendData.playerID = id;
+		sendData.storeID = createStore.ID;
+		sendData.storeName = createStore.StoreName;
+		sendData.storeType = (byte) ( (int) createStore.Type );
+
+		StoreCreateRequestPacket sendPacket = new StoreCreateRequestPacket( sendData );
+
+		networkProcessor.Send( sendPacket );
 	}
 
 	public void SendCreateStore()
@@ -127,9 +135,9 @@ public class GameManager : MonoBehaviour
 		sendData.storeName = "hotbar";
 		sendData.storeType = 3;
 
-		StoreCreateRequestPacket sendPacket = new StoreCreateRequestPacket(sendData);
+		StoreCreateRequestPacket sendPacket = new StoreCreateRequestPacket( sendData );
 
-		networkProcessor.Send(sendPacket);
+		networkProcessor.Send( sendPacket );
 	}
 
 
@@ -157,7 +165,8 @@ public class GameManager : MonoBehaviour
 		// login success
 		if( loginResultData.loginResult )
 		{
-			StartCoroutine( GameLoading() );
+			SendGameDataRequest();
+			GameLoading();
 			Debug.Log( loginResultData.message );
 		}
 		else
@@ -238,16 +247,26 @@ public class GameManager : MonoBehaviour
 		// popup & result print
 	}
 
+	// non network method
+	public void GameStart()
+	{
+		if( presentStore != null )
+			mainUI.MakeGameStep( presentStore.Step );
+	}
+
+	public void SetPresentStore( Store data )
+	{
+		presentStore = playerData.FindStoreByID( data.ID );
+	}
+
 
 	// coroutine section
 	// game loading routine
-	IEnumerator GameLoading()
+	public void GameLoading()
 	{
-		SendGameDataRequest();
-		Destroy( loginForm.gameObject );
-		// set select ui
-		mainUI.MakeSelectUI();
+		loginForm.gameObject.SetActive( false );
 
-		yield return new WaitForSeconds( 0f );
+		// set select ui
+		mainUI.MakeGameStep( 0 );
 	}
 }

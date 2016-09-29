@@ -9,66 +9,67 @@ public class UIManager : MonoBehaviour
 	public StoreCreate storeCreateLogic;
 
 	public GameObject storeSelect;
-	public StoreSelect storeSelectLogic;
+	public StoreSelectView storeSelectLogic;
 
 	public enum Mode
 	{
 		CreateStore,
-		SelectStore
-	};
+		SelectStore}
+;
 
 	public Mode PresentMode
 	{
-		get { return presentMode;}
+		get { return presentMode; }
 	}
 
 	public bool OnStoreCreate
 	{
-		get{return storeCreate.activeSelf; }
+		get{ return storeCreate.activeSelf; }
 	}
 
 	public void LinkElement()
 	{
-		storeCreate = GameObject.Find ("StoreCreate");
-		storeCreateLogic = storeCreate.GetComponent<StoreCreate> ();
+		storeCreate = GameObject.Find( "StoreCreate" );
+		storeCreateLogic = storeCreate.GetComponent<StoreCreate>();
 
-		storeSelect = GameObject.Find ("MainStatus");
-		storeSelectLogic = storeSelect.GetComponent<StoreSelect> ();
+		storeSelect = GameObject.Find( "MainStatus" );
+		storeSelectLogic = storeSelect.GetComponent<StoreSelectView>();
 	}
 
-	public void ChangeUIMode(Mode UIMode)
+	public void ChangeUIMode( Mode UIMode )
 	{
-		switch (UIMode)
+		switch ( UIMode )
 		{
 			case Mode.CreateStore:
 				presentMode = Mode.CreateStore;
-				InitializeModeCreateStore ();
+				InitializeModeCreateStore();
 				break;
 
 			case Mode.SelectStore:
 				presentMode = Mode.SelectStore;
-				InitializeModeSelectStore ();
+				InitializeModeSelectStore();
 				break;		
 		}
 	}
 
 	public void InitializeModeCreateStore()
 	{
-		storeSelect.SetActive (false);
-		storeCreate.SetActive (true);
+		storeSelect.SetActive( false );
+		storeCreate.SetActive( true );
 
 	}
+
 	public void InitializeModeSelectStore()
 	{
-		storeSelect.SetActive (true);		
-		storeCreate.SetActive (false);
+		storeSelect.SetActive( true );		
+		storeCreate.SetActive( false );
 		//Destroy (GameObject.Find("CreateOrSelect"),0.1f);
 	}
 
-	void Start ()
+	void Start()
 	{
-		LinkElement ();
-		storeCreate.SetActive (false);
+		LinkElement();
+		storeCreate.SetActive( false );
 
 	}
 

@@ -15,8 +15,13 @@ public class GameViewFirstStep : MonoBehaviour
 	public void Awake()
 	{
 		produceMain.LinkComponentElement();
-		sellMain.LinkComponentElement ();
-		backGround = transform.Find ("BackGround").GetComponent<Image> ();
+		sellMain.LinkComponentElement();
+		backGround = transform.Find( "BackGround" ).GetComponent<Image>();
+	}
+
+	public void UpdateUIComponent()
+	{
+
 	}
 
 

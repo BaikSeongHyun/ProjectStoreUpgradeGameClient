@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ElfCharacter : MonoBehaviour 
+public class ElfCharacter : MonoBehaviour
 {
 	[SerializeField] Vector3 destination;
 	[SerializeField] Animator elfAnimator;
@@ -11,93 +11,97 @@ public class ElfCharacter : MonoBehaviour
 	[SerializeField] public bool makeTime;
 	[SerializeField] public bool isStopMat = false;
 	[SerializeField] public int Lv;
-	[SerializeField] SecondStepUI auction;
+	[SerializeField] GameViewSecondStep auction;
 
 	public enum ElfPatternName
 	{
-		Idle =1,
+		Idle = 1,
 		Run,
-		Motion
-	};
+		Motion}
+;
+
 	public Vector3 Destination
 	{
-		get{return destination;}
-		set{ destination = value; }
+		get{ return destination; }
+		set { destination = value; }
 	}
 	// Use this for initialization
-	void Start () 
+	void Start()
 	{
 		destination = transform.position;
-		elfAnimator = GetComponent<Animator> ();
-		moveAgent = GetComponent<NavMeshAgent> ();
+		elfAnimator = GetComponent<Animator>();
+		moveAgent = GetComponent<NavMeshAgent>();
 //		auction = GameObject.Find ("SecondStepUI").GetComponent<SecondStepUI> ();
 	}
+
 	void PetActiveFalse()
 	{
-		Pet.SetActive (false);
+		Pet.SetActive( false );
 
-		if (isStopMat)
+		if( isStopMat )
 		{
-			transform.rotation = new Quaternion (transform.rotation.x, 180, transform.rotation.z, 0);
-			if (Vector3.Distance (destination, transform.position) <= 1.1f)
+			transform.rotation = new Quaternion( transform.rotation.x, 180, transform.rotation.z, 0 );
+			if( Vector3.Distance( destination, transform.position ) <= 1.1f )
 			{
 				makeTime = true;
 			}
 		}
-		if (isStopMat && makeTime)
+		if( isStopMat && makeTime )
 		{
-			elfPattern (ElfPatternName.Motion);
+			elfPattern( ElfPatternName.Motion );
 		}
 	}
 	// Update is called once per frame
-	void Update () 
+	void Update()
 	{
-		if (!makeTime)
+		if( !makeTime )
 		{
-			transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
-			AniInfo = this.elfAnimator.GetCurrentAnimatorStateInfo (0);
-			if (Vector3.Distance (destination, transform.position) <= 1.1f)
+			transform.position = new Vector3( transform.position.x, 0, transform.position.z );
+			AniInfo = this.elfAnimator.GetCurrentAnimatorStateInfo( 0 );
+			if( Vector3.Distance( destination, transform.position ) <= 1.1f )
 			{
-				elfPattern (ElfPatternName.Idle);
-				moveAgent.ResetPath ();
-				transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
+				elfPattern( ElfPatternName.Idle );
+				moveAgent.ResetPath();
+				transform.position = new Vector3( transform.position.x, transform.position.y, transform.position.z );
 			}
-			else if (Vector3.Distance (destination, transform.position) >= 1.1f)
+			else if( Vector3.Distance( destination, transform.position ) >= 1.1f )
 			{
-				elfPattern (ElfPatternName.Run);
-				if (AniInfo.IsName ("Run"))
+				elfPattern( ElfPatternName.Run );
+				if( AniInfo.IsName( "Run" ) )
 				{
-					Pet.SetActive (true);
-					moveAgent.SetDestination (Destination);
-					transform.position = new Vector3 (transform.position.x, transform.position.y + 0.55f, transform.position.z);
+					Pet.SetActive( true );
+					moveAgent.SetDestination( Destination );
+					transform.position = new Vector3( transform.position.x, transform.position.y + 0.55f, transform.position.z );
 				}
 			}
 		}
 		else
 		{
-			elfPattern (ElfPatternName.Motion);
+			elfPattern( ElfPatternName.Motion );
 		}
 	}
-	public void elfPattern(ElfPatternName Status)
+
+	public void elfPattern( ElfPatternName Status )
 	{
-		switch (Status)
+		switch ( Status )
 		{
 			case ElfPatternName.Idle:
-			elfAnimator.SetInteger ("state",1);
-			break;
+				elfAnimator.SetInteger( "state", 1 );
+				break;
 
 			case ElfPatternName.Run:
-			elfAnimator.SetInteger ("state",2);
-			break;
+				elfAnimator.SetInteger( "state", 2 );
+				break;
 
 			case ElfPatternName.Motion:
-			elfAnimator.SetInteger ("state",3);
-			break;
+				elfAnimator.SetInteger( "state", 3 );
+				break;
 		}
 	}
-	public void MakeTime(bool state)
+
+	public void MakeTime( bool state )
 	{
-		if(state)
+		if( state )
 		{
 			makeTime = true;
 		}

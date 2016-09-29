@@ -95,8 +95,10 @@ public class NetworkController : MonoBehaviour
 
 	// public method
 	// start network connection
-	public bool ConnectToServer()
+	public bool ConnectToServer( string serverIP, int serverPort )
 	{
+		clientProcessor.SetServerInformation( serverIP, serverPort );
+
 		return clientProcessor.Connect();
 	}
 

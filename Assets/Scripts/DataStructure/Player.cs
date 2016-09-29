@@ -25,7 +25,10 @@ public class Player
 
 	public int Money { get { return money; } set { money = value; } }
 
+	public List<Store> HaveStore { get { return haveStore; } }
+
 	public List<Item> HaveItem { get { return haveItem; } }
+
 
 	public Player()
 	{		
@@ -41,6 +44,16 @@ public class Player
 
 		haveStore = new List<Store>();
 		haveItem = new List<Item>();
+	}
+
+	// find store - use ui
+	public Store FindStoreByID( string id )
+	{
+		foreach ( Store element in haveStore )
+			if( element.ID == id )
+				return element;
+
+		return null;
 	}
 
 	// find store - use update

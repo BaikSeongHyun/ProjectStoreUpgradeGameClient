@@ -22,6 +22,8 @@ public class Store
 
 	public string StoreName { get { return name; } }
 
+	public StoreType Type { get { return type; } }
+
 	public int Step { get { return step; } set { step = value; } }
 
 	public float PresentEXP { get { return presentEXP; } set { presentEXP = value; } }
@@ -41,6 +43,14 @@ public class Store
 		FastFoodRestaurant = 3,
 		Bar = 4}
 ;
+
+	public enum StoreStep : int
+	{
+		Select = 0,
+		First = 1,
+		Second = 2,
+		Third = 3
+	}
 
 	public Store()
 	{
@@ -107,6 +117,21 @@ public class Store
 		}
 
 		return StoreType.Default;
+	}
+
+	public static StoreStep SetStoreStep( int step )
+	{
+		switch ( step )
+		{
+			case 1:
+				return StoreStep.First;
+			case 2:
+				return StoreStep.Second;
+			case 3:
+				return StoreStep.Third;
+		}
+
+		return StoreStep.Select;
 	}
 
 	public void AddItemList( Item data )

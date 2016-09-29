@@ -6,61 +6,77 @@ public class UserInterfaceController : MonoBehaviour
 {
 	[SerializeField] GameObject upsideBar;
 	[SerializeField] UIUpsideBar upsideBarLogic;
-	[SerializeField] GameObject stepUIObject;
+	[SerializeField] GameObject selectView;
+	[SerializeField] StoreSelectView selectViewLogic;
+	[SerializeField] GameObject firstView;
+	[SerializeField] GameViewFirstStep firstViewLogic;
+	[SerializeField] GameObject secondView;
+	[SerializeField] GameViewSecondStep secondViewLogic;
 
 
-	void Start ()
+	void Awake()
 	{
-		MakeGameStep (Step.First);
+		LinkComponentElement();
+		AllComponentShutDown();
 	}
 
-	public enum Step : int
+	void Start()
 	{
-		First = 1,
-		Second = 2,
-		Third = 3}
-	;
-
-
-
-
-	void Update ()
-	{
-				
+		upsideBar.SetActive( false );
 	}
 
-	public void MakeSelectUI ()
+	public void LinkComponentElement()
 	{
+		upsideBar = transform.Find( "UpsideBar" ).gameObject;
+		upsideBarLogic = upsideBar.GetComponent<UIUpsideBar>();
 
+		selectView = transform.Find( "StoreSelectUI" ).gameObject;
+		selectViewLogic = selectView.GetComponent<StoreSelectView>();
+
+		firstView = transform.Find( "FirstStepUI" ).gameObject;
+		firstViewLogic = firstView.GetComponent<GameViewFirstStep>();
+
+		secondView = transform.Find( "SecondStepUI" ).gameObject;
+		secondViewLogic = secondView.GetComponent<GameViewSecondStep>();
 	}
 
-
-	public void MakeGameStep (Step presentStep)
+	public void AllComponentShutDown()
 	{
-		Destroy (stepUIObject);
+		upsideBar.SetActive( false );
+		selectView.SetActive( false );
+		firstView.SetActive( false );
+		secondView.SetActive( false );
+	}
 
-		switch (presentStep)
+	public void MakeGameStep( int presentStep )
+	{		
+		AllComponentShutDown();
+
+		switch ( presentStep )
 		{
-		case Step.First:
-			stepUIObject = (GameObject)Instantiate (Resources.Load<GameObject> ("UIObject/CreateOrSelect"), transform.position, transform.rotation);
-			break;
-
-		case Step.Second:
-			stepUIObject = (GameObject)Instantiate (Resources.Load<GameObject> ("UIObject/FirstStepUI"), transform.position, transform.rotation);
-			stepUIObject.name = "FirstStepUI";
-			break;
-		
-		case Step.Third:
-
-			stepUIObject = (GameObject)Instantiate (Resources.Load<GameObject> ("UIObject/CharcterManager"), transform.position, transform.rotation);
-			stepUIObject.name = "CharacterManager";
-			break;
+			case 0:
+				selectView.SetActive( true );
+				break;
+			case 1:
+				upsideBar.SetActive( true );
+				firstView.SetActive( true );
+				break;
+			case 2:
+				upsideBar.SetActive( true );
+				secondView.SetActive( true );
+				break;
 		}
 	}
 
-	public void UIUpdate (Player playerData, Store presentStore)
+	public void UIUpdate( Player playerData, Store presentStore )
 	{
-		if (upsideBar.activeSelf)
-			upsideBarLogic.UpdateUpsideBar (playerData, presentStore);
+		if( upsideBar.activeSelf )
+			upsideBarLogic.UpdateUpsideBar( playerData, presentStore );
+		if( selectView.activeSelf )
+			selectViewLogic.UpdateUIComponent();
+		if( firstView.activeSelf )
+			firstViewLogic.UpdateUIComponent();
+		if( secondView.activeSelf )
+			secondViewLogic.UpdateUIComponent();
 	}
 }
