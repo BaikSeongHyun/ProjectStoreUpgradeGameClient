@@ -16,8 +16,6 @@ public class ProduceMain : MonoBehaviour
 		manager = GameObject.Find ("GameLogic").GetComponent<GameManager> ();
 		produceItemList.LinkComponentElement();
 		recipeItemList.LinkComponentElement();
-		Debug.Log ("ProduceMainLink");
-
 	}
 
 

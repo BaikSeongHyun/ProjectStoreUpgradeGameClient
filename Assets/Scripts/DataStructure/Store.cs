@@ -34,7 +34,6 @@ public class Store
 
 	public List<Item> CreateItemSet { get { return createItem; } }
 
-
 	public enum StoreType : int
     {
 		Default = 0,

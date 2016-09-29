@@ -13,16 +13,14 @@ public class UserInterfaceController : MonoBehaviour
 	[SerializeField] GameObject secondView;
 	[SerializeField] GameViewSecondStep secondViewLogic;
 
-
 	void Awake()
 	{
 		LinkComponentElement();
-		AllComponentShutDown();
 	}
 
 	void Start()
 	{
-		upsideBar.SetActive( false );
+		AllComponentShift();
 	}
 
 	public void LinkComponentElement()
@@ -40,30 +38,30 @@ public class UserInterfaceController : MonoBehaviour
 		secondViewLogic = secondView.GetComponent<GameViewSecondStep>();
 	}
 
-	public void AllComponentShutDown()
+	public void AllComponentShift()
 	{
-		upsideBar.SetActive( false );
-		selectView.SetActive( false );
-		firstView.SetActive( false );
-		secondView.SetActive( false );
+		upsideBar.transform.localPosition = new Vector3( 2000f, 0f, 0f );
+		selectView.transform.localPosition = new Vector3( 2000f, 0f, 0f );
+		firstView.transform.localPosition = new Vector3( 2000f, 0f, 0f );
+		secondView.transform.localPosition = new Vector3( 2000f, 0f, 0f );
 	}
 
 	public void MakeGameStep( int presentStep )
 	{		
-		AllComponentShutDown();
+		AllComponentShift();
 
 		switch ( presentStep )
 		{
 			case 0:
-				selectView.SetActive( true );
+				selectView.transform.localPosition = new Vector3( 0f, 0f, 0f );
 				break;
 			case 1:
-				upsideBar.SetActive( true );
-				firstView.SetActive( true );
+				upsideBar.transform.localPosition = new Vector3( 0f, 0f, 0f );
+				firstView.transform.localPosition = new Vector3( 0f, 0f, 0f );
 				break;
 			case 2:
-				upsideBar.SetActive( true );
-				secondView.SetActive( true );
+				upsideBar.transform.localPosition = new Vector3( 0f, 0f, 0f );
+				secondView.transform.localPosition = new Vector3( 0f, 0f, 0f );
 				break;
 		}
 	}

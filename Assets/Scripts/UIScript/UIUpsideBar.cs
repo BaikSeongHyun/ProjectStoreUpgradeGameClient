@@ -20,6 +20,8 @@ public class UIUpsideBar : MonoBehaviour
 	// update this object -> update location : mainUI -> game manager
 	public void UpdateUpsideBar( Player player, Store presentStore )
 	{
+		if( presentStore == null )
+			return;
 		storeName.text = presentStore.StoreName;
 		storeStepInfo.text = "Step." + presentStore.Step.ToString() + " (" + presentStore.PresentEXP.ToString() + "/" + presentStore.RequireEXP + ")";
 		storeStepInfoGauge.fillAmount = presentStore.FillEXP;

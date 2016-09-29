@@ -618,7 +618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010929364522
 GameObject:
   m_ObjectHideFlags: 1
@@ -891,7 +891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011305275214
 GameObject:
   m_ObjectHideFlags: 1
@@ -2342,7 +2342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013590129716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,12 +2554,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013596699638}
   m_Layer: 5
-  m_Name: SecondStepCreatePopup
+  m_Name: SecondStepCreatePopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013780741600
 GameObject:
   m_ObjectHideFlags: 1
@@ -4880,7 +4880,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114000012206143316}
   m_HandleRect: {fileID: 224000013093992434}
   m_Direction: 2
-  m_Value: 0.9999998
+  m_Value: 1
   m_Size: 0.6
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5883,7 +5883,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114000013486668024}
-        m_MethodName: CashModeOn
+        m_MethodName: OnClickInventoryPopUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7552,7 +7552,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114000013486668024}
-        m_MethodName: RecipeModeOn
+        m_MethodName: OnClickCreatePopUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8149,7 +8149,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224000014257085640}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.59999996
+  m_Size: 0.6
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9159,12 +9159,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presentMode: 0
-  recipeInventory: {fileID: 1000013431809076}
-  inventoryButton: 0
-  needItemButton: 0
+  createPopUp: {fileID: 0}
+  inventoryPopUp: {fileID: 0}
   settingImage: {fileID: 0}
   scrollBarItemImage: {fileID: 0}
-  auctionUI: {fileID: 1000013279665724}
   itemSetting: {fileID: 1000010394563788}
   elf: {fileID: 0}
   moneyText: {fileID: 0}

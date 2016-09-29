@@ -6,7 +6,7 @@ using System;
 
 public class RecipeItemSet: MonoBehaviour
 {
-	[SerializeField] RecipeDisplayItem[] recipeItem; // item recipe maxlength ^
+	[SerializeField] RecipeDisplayItem[] recipeItem;
 	[SerializeField] ItemView itemView;
 
 	private GameObject[] recipeItemCountObject;
@@ -21,15 +21,24 @@ public class RecipeItemSet: MonoBehaviour
 	//middle bridge part method;
 	public void SendItemViewItemUpdate( Item selectedData, Player playerData )
 	{
-		Debug.Log( "this infomation get form ProduceItemListClick -> produceViewSet and Send to Itemview" );
 		itemView.UpdateProducingIteamInfo( selectedData );
-		int i;
-		for(i = 0; i < selectedData.Recipe.Length; i++) {
-			recipeItem [i].UpdateComponent (selectedData.Recipe [i], selectedData.RecipeCount[i], playerData);
-		}
-		//need test
-		for (int j = i; j < recipeItem.Length; j++) {
-			recipeItem [j].ClearComponent ();
+		int i = 0;
+		foreach ( RecipeDisplayItem element in recipeItem )
+		{
+			try
+			{
+				element.UpdateComponent( selectedData.Recipe[i], selectedData.RecipeCount[i], playerData );
+			}
+			catch ( Exception e )
+			{
+				Debug.Log( e.StackTrace );
+				Debug.Log( e.Message );
+				element.ClearComponent();
+			}
+			finally
+			{
+				i++;
+			}
 		}
 	}
 

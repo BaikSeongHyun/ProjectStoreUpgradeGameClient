@@ -57,7 +57,9 @@ public class GameManager : MonoBehaviour
 			serverIP = loginForm.IP;
 			serverPort = loginForm.Port;
 			id = loginForm.ID;
+			playerData.ID = id;
 			password = loginForm.Password;
+			playerData.Password = password;
 		}
 
 		mainUI.UIUpdate( playerData, presentStore );
@@ -102,7 +104,6 @@ public class GameManager : MonoBehaviour
 	// send game data request
 	public void SendGameDataRequest()
 	{
-		Debug.Log( "GameLoading start" );
 		GameDataRequestData sendData = new GameDataRequestData();
 		sendData.playerID = id;
 
@@ -114,12 +115,17 @@ public class GameManager : MonoBehaviour
 	// send create store
 	public void SendCreateStore( Store createStore )
 	{
+		Debug.Log( "Send Create Store" );
 		StoreCreateRequestData sendData = new StoreCreateRequestData();
 
 		sendData.playerID = id;
+		Debug.Log( sendData.playerID );
 		sendData.storeID = createStore.ID;
+		Debug.Log( sendData.storeID );
 		sendData.storeName = createStore.StoreName;
+		Debug.Log( sendData.storeName );
 		sendData.storeType = (byte) ( (int) createStore.Type );
+		Debug.Log( sendData.storeType );
 
 		StoreCreateRequestPacket sendPacket = new StoreCreateRequestPacket( sendData );
 

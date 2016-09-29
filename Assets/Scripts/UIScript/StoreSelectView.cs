@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 
-public class StoreSelectView : StandardUIForm
+public class StoreSelectView : MonoBehaviour
 {
 	// field
 	[SerializeField] Text selectedStoreName;
@@ -28,17 +28,23 @@ public class StoreSelectView : StandardUIForm
 	}
 
 	// update this ui component
-	public override void UpdateUIComponent()
+	public void UpdateUIComponent()
 	{
-		int i;
-		for ( i = 0; i < manager.PlayerData.HaveStore.Count; i++ )
+		int i = 0;
+		foreach ( StoreElement element in storeElementSet )
 		{
-			storeElementSet[i].UpdateStoreElement( manager.PlayerData.HaveStore[i] );
-		}
-
-		for ( int j = i; j < storeElementSet.Length; i++ )
-		{
-			storeElementSet[j].ClearComponent();
+			try
+			{
+				element.UpdateStoreElement( manager.PlayerData.HaveStore[i] );			
+			}
+			catch ( ArgumentException e )
+			{				
+				element.ClearComponent();
+			}
+			finally
+			{
+				i++;
+			}
 		}
 	}
 
@@ -59,6 +65,4 @@ public class StoreSelectView : StandardUIForm
 	{
 		manager.GameStart();
 	}
-
-
 }
