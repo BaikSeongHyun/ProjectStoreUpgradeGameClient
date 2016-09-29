@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] RaycastHit hitPoint;
 	[SerializeField] Ray point;
 	[SerializeField] GameObject mat;
+	[SerializeField] GameObject secondStepUIObject;
 
 	[SerializeField] List <GameObject> makeItem = new List<GameObject>();
 //	[SerializeField] ItemViewLogic[] soldItem;
@@ -30,6 +31,9 @@ public class GameController : MonoBehaviour
 	void Start ()
 	{		
 		Vector3 charPos = new Vector3 (3.0f,0f,5.6f);
+
+		secondStepUIObject = (GameObject)Instantiate( Resources.Load<GameObject>( "UIObject/SecondStepUI" ), transform.position, transform.rotation );
+		secondStepUIObject.name = "SecondStepUI";
 
 		var elfChar =Instantiate( Resources.Load<GameObject>( "Prefab/PlayerElf" ), charPos, transform.rotation );
 		elfChar.name = "PlayerElf";

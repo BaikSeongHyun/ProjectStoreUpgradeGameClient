@@ -13,6 +13,8 @@ public class SecondStepUI : MonoBehaviour
 	public Image settingImage;
 	public Image scrollBarItemImage;
 
+	[SerializeField] public GameController characterManager;
+
 	public GameObject auctionUI;
 	public GameObject itemSetting;
 
@@ -51,7 +53,6 @@ public class SecondStepUI : MonoBehaviour
 
 	void Start () 
 	{
-		Instantiate( Resources.Load<GameObject>( "UIObject/CharcterManager" ), transform.position, transform.rotation );
 
 		LinkElement ();	
 	}
@@ -66,6 +67,7 @@ public class SecondStepUI : MonoBehaviour
 		//elf = GameObject.Find ("PlayerElf").GetComponent<ElfCharacter> ();
 		settingImage = transform.Find ("ItemSetting").Find ("ItemImage").GetComponent<Image> ();
 		scrollBarItemImage = transform.Find("RecipeUI").Find("ItemImage").GetComponent<Image>();
+		characterManager = GameObject.Find ("CharacterManager").GetComponent<GameController> ();
 		auctionUI.SetActive (false);
 		itemSetting.SetActive (false);
 
@@ -159,6 +161,13 @@ public class SecondStepUI : MonoBehaviour
 	{
 		itemSetting.SetActive (false);
 	}
+
+	public void SummonItemRequest()
+	{
+		characterManager.SummonItem ();
+	}
+
+
 	public void ScrollBarItemImageChange(string name)
 	{
 		switch (name)

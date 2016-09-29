@@ -52,8 +52,8 @@ public class UserInterfaceController : MonoBehaviour
 		
 		case Step.Third:
 
-			stepUIObject = (GameObject)Instantiate (Resources.Load<GameObject> ("UIObject/SecondStepUI"), transform.position, transform.rotation);
-			stepUIObject.name = "SecondStepUI";
+			stepUIObject = (GameObject)Instantiate (Resources.Load<GameObject> ("UIObject/CharcterManager"), transform.position, transform.rotation);
+			stepUIObject.name = "CharacterManager";
 			break;
 		}
 	}

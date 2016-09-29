@@ -20,6 +20,7 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 	void Start()
 	{
 		CreateOrSelect = GameObject.FindGameObjectWithTag( "CreateOrSelect" ).GetComponent<UIManager>();
+
 		selectUI = this.gameObject;
 		selectStoreLine[0] = GameObject.Find( "FirstStore" );
 		selectStoreChange[0] = transform.Find( "FirstStore" ).GetComponent<Image>();
@@ -79,7 +80,6 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 	public void StartCreateStore()
 	{
 		selectUI.SetActive( false );	
-
 	}
 
 	void OnMouseDown()
@@ -87,7 +87,4 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 		//CreateStore parameterstoreinfo input
 		StartGame();
 	}
-
-
-
 }
