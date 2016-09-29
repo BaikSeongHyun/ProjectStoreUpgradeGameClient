@@ -11,6 +11,8 @@ public class ProduceMain : MonoBehaviour
 	//feature variable, this variable effected producebutton,itemview;
 	[SerializeField] Item selectItem;
 	[SerializeField] Player playerData;
+
+	[SerializeField] public UserInterfaceController UIController;
 	//link
 	public void LinkComponentElement()
 	{
@@ -19,6 +21,7 @@ public class ProduceMain : MonoBehaviour
 		produceItemList.LinkComponentElement();
 		recipeItemList.LinkComponentElement();
 		Debug.Log ("ProduceMainLink");
+
 	}
 
 
@@ -26,8 +29,21 @@ public class ProduceMain : MonoBehaviour
 	public void ProduceItemButtonClick()
 	{
 		//RenewAddItem(playerData, selectItem);
-		// manager.UpdateItem(itemdata);
+		 //manager.UpdateItem(itemdata);
 		Debug.Log ("produceItemButtonClick");
+
+		UIController = GameObject.Find( "MainUI" ).GetComponent<UserInterfaceController>();
+
+		UIController.MakeGameStep( UserInterfaceController.Step.Third );
+		Destroy( GameObject.Find( "FirstStepUI" ), 0.5f );
+
+
+
+
+
+
+
+
 		//++
 	}
 	//Mothod tree : produceButtonObject -> Buttonevent ->produceItemButtonClick-> Renewadditem
@@ -37,24 +53,6 @@ public class ProduceMain : MonoBehaviour
 //		//middleprocess need;
 //		playerData.AddItem (item);
 //	}
-
-	public void ProduceProcess( Player data )
-	{
-		
-//				if( produceItem != null )
-//				{
-//					produceTime += Time.deltaTime;
-//					stateGauge.fillAmount = produceTime / produceItem.MakeTime;
-//		
-//					if( produceTime >= produceItem.MakeTime )
-//					{
-//						data.AddItem( produceItem );
-//						produceItem = null;
-//					}
-//				}
-	}
-
-
 
 	//produceableitemMatiral -> button ->DisplayItem.clickdisplayitemselect
 	public void ProduceItemListClick(Item selectedData)

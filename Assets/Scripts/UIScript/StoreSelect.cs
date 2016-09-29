@@ -71,7 +71,7 @@ public class StoreSelect : MonoBehaviour, IPointerDownHandler
 	public void StartGame()
 	{
 		selectUI.SetActive( false );
-		UIController.MakeGameStep( UserInterfaceController.Step.Third );
+		UIController.MakeGameStep( UserInterfaceController.Step.Second );
 		Destroy( GameObject.Find( "CreateOrSelect" ), 0.5f );
 		//store infomation push
 	}

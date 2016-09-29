@@ -29,6 +29,7 @@ public class PlayerDisplayItem : MonoBehaviour {
 	public void ClickPlayerDisPlayItemSelect()
 	{
 		SellViewSet sellMain = gameObject.GetComponentInParent<SellViewSet>();
+		isSelected = true;
 		sellMain.SellSelectedItem(thisItem);
 	}
 
